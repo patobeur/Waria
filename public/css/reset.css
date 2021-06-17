@@ -1,0 +1,149 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Define the base font-size equivalent to 10px */
+html {
+	font-size: 0.625em; /* fallback IE8+ */
+	font-size: calc(1em * 0.625); /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+}
+
+/* Remove focus for mouse users */
+:focus:not(:focus-visible) {
+	outline: none;
+}
+
+/* Set text selection */
+::-moz-selection {
+	color: #000;
+	background: #fbd404;
+}
+::selection {
+	color: #000;
+	background: #fbd404;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+	padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Set scroll behavior */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+	list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* tel: links */
+a[href^="tel"] {
+	white-space: nowrap;
+	pointer-events: none;
+	text-decoration: none;
+	color: inherit;
+}
+@media (max-width: 30em) {
+	a[href^="tel"] {
+		pointer-events: auto;
+		text-decoration: underline;
+	}
+}
+
+/* Make medias easier to work with */
+img,
+video,
+audio {
+	max-width: 100%;
+	display: block;
+}
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Set cursor pointer */
+label[for],
+button,
+input[type="submit"],
+select {
+	cursor: pointer;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* Screen reader text */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Image replacement */
+.ir {
+	font: 0/0 a;
+	color: transparent;
+	border: 0;
+	text-shadow: none;
+}
+
+/* Print external URLs */
+@media print {
+	a {
+		text-decoration: underline;
+	}
+	[href]:not([href^="#"]):after {
+		content: " (" attr(href) ") ";
+	}
+}
