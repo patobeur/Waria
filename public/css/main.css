@@ -8,15 +8,6 @@
   --playernamespeed: 0.5789s;
 }
 
-.info {
-  position: absolute;
-  top: calc(10%);
-  left: calc(50% - 320px);
-  width: 640px;
-  font-size: 1rem;
-  line-height: 100%;
-}
-
 #screen {
   position: absolute;
   top: calc(50% - 240px);
@@ -92,6 +83,44 @@
   content: "Candle";
 }
 
+#screen .board .road .info {
+  position: absolute;
+  top: calc(10%);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 1rem;
+  line-height: 100%;
+  background-color: rgba(255, 255, 255, 0.788);
+  border-radius: 9px;
+  padding: 1rem;
+}
+
+#screen .board .road .info.inf-1 {
+  top: calc(10%);
+  left: 100px;
+}
+
+#screen .board .road .info.inf-2 {
+  top: calc(35%);
+  left: 350px;
+}
+
+#screen .board .road .info.inf-3 {
+  top: calc(15%);
+  left: 650px;
+}
+
+#screen .board .road .info.inf-4 {
+  top: calc(25%);
+  left: 950px;
+}
+
+#screen .board .road .info.inf-5 {
+  top: calc(5%);
+  left: 1250px;
+}
+
 #screen .board #player {
   position: absolute;
   bottom: 150px;
@@ -110,8 +139,9 @@
 
 #screen .board #player::before {
   position: absolute;
-  content: "Waria [Lv1]";
-  top: 5p;
+  font-size: 0.8rem;
+  content: "Waria [1]";
+  top: -5px;
   left: 30px;
   border: 1px solid black;
   background-color: rgba(255, 255, 255, 0.877);
@@ -122,6 +152,12 @@
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  -webkit-animation: playernamefloating var(--playernamespeed) infinite;
+  /* Safari 4+ */
+  /* Fx 5+ */
+  /* Opera 12+ */
+  animation: playernamefloating var(--playernamespeed) infinite;
+  /* IE 10+, Fx 29+ */
 }
 
 #screen .board #player.idle {
@@ -204,27 +240,31 @@
   color: red;
 }
 
+#screen .console div {
+  background-color: #d6d6d6;
+}
+
 @-webkit-keyframes playernamefloating {
   0% {
-    top: 0px;
+    top: -10px;
   }
   50% {
-    top: 5px;
+    top: -5px;
   }
   100% {
-    top: 0px;
+    top: -10px;
   }
 }
 
 @keyframes playernamefloating {
   0% {
-    top: 0px;
+    top: -10px;
   }
   50% {
-    top: 5px;
+    top: -5px;
   }
   100% {
-    top: 0px;
+    top: -10px;
   }
 }
 /*# sourceMappingURL=main.css.map */
