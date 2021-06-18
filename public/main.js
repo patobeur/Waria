@@ -34,6 +34,7 @@ let goRight = false
 let goLeft = false
 let facing = "left"
 let acting = "idle"
+let standing = ""
 // console.log(`ratioX ${ratioX}`)
 
 function logKey(event) {
@@ -45,16 +46,22 @@ function logKey(event) {
 		acting = "attack"
 		if (nbPressedKey < 1) { nbPressedKey++ }
 	}
+	if (event.code === "ArrowDown" || event.code === "KeyC") {
+		standing = "crouch"
+		// if (nbPressedKey < 1) { nbPressedKey++ }
+	}
 	if (event.code === "ArrowRight" || event.code === "KeyD") {
 		goRight = true
 		facing = "right"
 		acting = "run"
+		standing = ""
 		if (nbPressedKey < 1) { nbPressedKey++ }
 	}
 	if (event.code === "ArrowLeft" || event.code === "KeyA") {
 		goLeft = true
 		facing = "left"
 		acting = "run"
+		standing = ""
 		if (nbPressedKey < 1) { nbPressedKey++ }
 	}
 	console.log(event.code)
@@ -96,6 +103,7 @@ function displayConsole() {
 	document.getElementById("nbPressedKey").innerHTML = "nbPressedKey:" + nbPressedKey;
 	document.getElementById("acting").innerHTML = "acting:" + acting;
 	document.getElementById("facing").innerHTML = "facing:" + facing;
+	document.getElementById("standing").innerHTML = "standing:" + standing;
 }
 
 
@@ -108,7 +116,7 @@ function get_acting() {
 			acting = "idle"
 		}
 	}
-	player.setAttribute("class", acting + " " + facing)
+	player.setAttribute("class", acting + " " + facing + " " + standing)
 }
 function playforward() {
 	console.log("pressed ? : " + isPressedKey)

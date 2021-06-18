@@ -76,6 +76,14 @@
   background-image: url("../anims_Assets/waria_idle_l.gif");
 }
 
+#screen .board #player.idle.crouch {
+  background-image: url("../anims_Assets/waria_gocrouch.gif");
+}
+
+#screen .board #player.idle.crouch.left {
+  background-image: url("../anims_Assets/waria_gocrouch_l.gif");
+}
+
 #screen .board #player.run {
   background-image: url("../anims_Assets/waria_run.gif");
 }
@@ -106,6 +114,14 @@
 
 #screen .board #player.attack.left {
   background-image: url("../anims_Assets/waria_dask_attack_l.gif");
+}
+
+#screen .board #player.gocrouch {
+  background-image: url("../anims_Assets/waria_gocrouch.gif");
+}
+
+#screen .board #player.gocrouch.left {
+  background-image: url("../anims_Assets/waria_gocrouch_l.gif");
 }
 
 #screen .board .ratio {
