@@ -59,6 +59,7 @@
 				// -o-animation: playernamefloating var(--playernamespeed) infinite; /* Opera 12+ */
 				// animation: playernamefloating var(--playernamespeed) infinite; /* IE 10+, Fx 29+ */
 			}
+			//idle {
 			&.idle {
 				background-image: url("../anims_Assets/waria_idle.gif");
 
@@ -66,6 +67,13 @@
 					background-image: url("../anims_Assets/waria_idle_l.gif");
 				}
 			}
+			&.idle.crouch {
+				background-image: url("../anims_Assets/waria_gocrouch.gif");
+				&.left {
+					background-image: url("../anims_Assets/waria_gocrouch_l.gif");
+				}
+			}
+			//run
 			&.run {
 				background-image: url("../anims_Assets/waria_run.gif");
 				&::before {
@@ -78,16 +86,25 @@
 					}
 				}
 			}
+			//jump
 			&.jump {
 				background-image: url("../anims_Assets/waria_jump.gif");
 				&.left {
 					background-image: url("../anims_Assets/waria_jump_l.gif");
 				}
 			}
+			//attack
 			&.attack {
 				background-image: url("../anims_Assets/waria_dask_attack.gif");
 				&.left {
 					background-image: url("../anims_Assets/waria_dask_attack_l.gif");
+				}
+			}
+			//gocrouch
+			&.gocrouch {
+				background-image: url("../anims_Assets/waria_gocrouch.gif");
+				&.left {
+					background-image: url("../anims_Assets/waria_gocrouch_l.gif");
 				}
 			}
 		}
