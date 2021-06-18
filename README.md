@@ -9,3 +9,5 @@ https://patobeur.github.io/Waria/public/
 
 Btw, thx to Clembod for his nices pixelarts
 https://clembod.itch.io
+
+inspiration/objectives : https://www.youtube.com/watch?v=IQjzFt8Sqpk
