@@ -119,7 +119,7 @@ function get_acting() {
 	player.setAttribute("class", acting + " " + facing + " " + standing)
 }
 function playforward() {
-	console.log("pressed ? : " + isPressedKey)
+	// console.log("pressed ? : " + isPressedKey)
 	if (isPressedKey) {
 		actualX = roadSlider.style.left
 		// console.log(`key pressed actualX ${actualX}`)

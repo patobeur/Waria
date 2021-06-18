@@ -6,6 +6,14 @@
 :root {
 	--playernamespeed: 0.5789s;
 }
+.info {
+	position: absolute;
+	top: calc(10%);
+	left: calc(50% - 320px);
+	width: 640px;
+	font-size: 1rem;
+	line-height: 100%;
+}
 #screen {
 	position: absolute;
 	top: calc(50% - 240px);
@@ -29,6 +37,40 @@
 			height: 350px;
 			background-image: url("../PixelsAssets/fond.jpg");
 			background-position: left bottom;
+			.objet {
+				position: absolute;
+				bottom: 85px;
+				width: 16px;
+				height: 16px;
+				outline: 1px dotted black;
+				background-position: left bottom;
+				&::before {
+					position: absolute;
+					top: -15px;
+					width: max-content;
+				}
+				&.golden-key {
+					background-image: url("../PixelsAssets/golden-key.png");
+					left: 2472px;
+					&::before {
+						content: "golden-key";
+					}
+				}
+				&.silver-key {
+					background-image: url("../PixelsAssets/silver-key.png");
+					left: 2372px;
+					&::before {
+						content: "silver-key";
+					}
+				}
+				&.candle {
+					background-image: url("../PixelsAssets/candle.png");
+					left: 120px;
+					&::before {
+						content: "Candle";
+					}
+				}
+			}
 		}
 		#player {
 			position: absolute;
@@ -53,6 +95,7 @@
 				border-radius: 5px;
 				padding: 1px 5px;
 				transition: left 0.5s ease-out;
+				width: max-content;
 
 				// -webkit-animation: playernamefloating var(--playernamespeed) infinite; /* Safari 4+ */
 				// -moz-animation: playernamefloating var(--playernamespeed) infinite; /* Fx 5+ */
@@ -115,8 +158,6 @@
 			right: 5px;
 			height: 20px;
 			.progress {
-				font-size: 2rem;
-				line-height: 2rem;
 				position: relative;
 				width: 0%;
 				height: 100%;
@@ -129,14 +170,11 @@
 			right: 5px;
 			top: 5px;
 			color: white;
-			font-size: 2rem;
 			color: red;
 		}
 	}
 	.console {
 		div {
-			font-size: 2rem;
-			line-height: 2rem;
 		}
 	}
 }

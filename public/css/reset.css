@@ -9,6 +9,7 @@
 html {
 	font-size: 0.625em; /* fallback IE8+ */
 	font-size: calc(1em * 0.625); /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+	font-size: 1rem;
 }
 
 /* Remove focus for mouse users */
@@ -59,7 +60,7 @@ html {
 body {
 	min-height: 100vh;
 	text-rendering: optimizeSpeed;
-	line-height: 1.5;
+	line-height: 1.5rem;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
