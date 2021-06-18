@@ -1,4 +1,5 @@
 https://oco.itch.io/
 
-![What is this](waria_jump.gif)
-[alt text](waria_jump.gif)
+[alt text](https://github.com/patobeur/Waria/blob/main/public/anims_Assets/waria_idle.gif)
+
+![alt text](https://github.com/patobeur/Waria/blob/main/public/anims_Assets/waria_idle.gif)
