@@ -57,7 +57,7 @@
 				}
 				&.candle {
 					background-image: url("../PixelsAssets/candle.png");
-					left: 120px;
+					left: 50px;
 					&::before {
 						content: "Candle";
 					}
@@ -69,9 +69,15 @@
 				width: max-content;
 				font-size: 1rem;
 				line-height: 100%;
-				background-color: rgba(255, 255, 255, 0.788);
+				background-color: rgba(255, 255, 255, 0.588);
 				border-radius: 9px;
 				padding: 1rem;
+				&.inf-0 {
+					top: calc(10%);
+					left: 1700px;
+					text-align: center;
+					font-size: 1.5rem;
+				}
 				&.inf-1 {
 					top: calc(10%);
 					left: 100px;
@@ -92,6 +98,14 @@
 					top: calc(5%);
 					left: 1250px;
 				}
+				&.inf-6 {
+					top: calc(15%);
+					left: 2300px;
+				}
+				&.inf-7 {
+					top: calc(50%);
+					left: 2550px;
+				}
 			}
 		}
 		#player {
@@ -100,7 +114,7 @@
 			width: 128px;
 			height: 88px;
 			background-size: 100%;
-			outline: 1px dotted black;
+			// outline: 1px dotted black;
 			&::after {
 				position: absolute;
 				content: "div#player";
