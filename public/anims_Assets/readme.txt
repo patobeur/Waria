@@ -5,7 +5,7 @@ Btw, thx to Clembod for his nices pixelarts
 https://clembod.itch.io
 
 waria_idle right
-![waria_idle](/waria_idle.gif?raw=true "waria_idle")
+![waria_idle](\waria_idle.gif?raw=true "waria_idle")
 
 waria_idle left
 ![waria_idle_l](waria_idle_l.gif?raw=true "waria_idle_l")
