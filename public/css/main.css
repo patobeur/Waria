@@ -250,10 +250,11 @@
 
 #screen .board #health {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  left: 5px;
+  top: 75px;
   color: white;
-  color: red;
+  color: rgba(247, 6, 127, 0.562);
+  font-size: 2rem;
 }
 
 #screen .console div {
