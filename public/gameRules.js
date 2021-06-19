@@ -18,6 +18,7 @@ class WariaGame {
 	constructor() {
 		this.board = new Board('level1', 640, 480);
 		this.slidingRoad = new SlidingRoad('level1', 640, 480);
+		this.PlayerOne = new Player("Waria")
 
 		this.name = name;
 		this.hauteur = hauteur;
@@ -125,12 +126,14 @@ class Collisions {
 
 // ------------------------------------- PLAYER CLASS ---------------
 class Player {
-	constructor(name) {
+	constructor(playername, archetype, information) {
 		this.xp = 0
 		this.lv = 1
 		this.heart = 3 // player heart
 		// this.health = this.heart * 100 * this.lv // player hp
-		this.name = name;
+		this.playername = playername;
+		this.archetype = archetype;
+		this.information = information;
 		this.divW = 64 * 2; // pixels (fixed *2 to fit my needs for testing)
 		this.divH = 44 * 2; // pixels (fixed *2 to fit my needs for testing)
 		this.acting = "idle"; // default empty = idle {'', 'idle','run'}
@@ -155,4 +158,5 @@ class Player {
 	detectKeyUnPress() { }
 	addAction() { }
 }
-let PlayerOne = new Player("Waria")
+
+let NewGame = new WariaGame("Waria", "Warrior", "what else !!")
