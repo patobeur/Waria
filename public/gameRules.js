@@ -1,85 +1,6 @@
 "use strict";
-console.log('Waria game rules js up')
-console.log('Try to clean this mess doing some classes.')
-console.log('1rst Point : screen must be % display to match device ?')
-const playerDom = document.getElementById('player')
-const screenDom = document.getElementById('screen')
-const roadDom = document.getElementById('road-slider')
-
-// ------------------------------------- CLASS ----------------------
-// creating and adjusting the board to screen
-class WariaGame {
-	constructor(playername, archetype, information) {
-		this.levelCurrent = 1;
-		this.Screen = new ScreenManager();
-		// this.slidingRoad = new SlidingRoad('level1', 640, 480);
-		// this.PlayerOne = new Player(playername, archetype, information)
-
-		this.movesize = 2 // pixels
-		this.intervalSize = 5; // microsec interval roadslider playforward
-	}
-	get_ScreenDomInfo_Once() {
-
-	}
-	playScene() {
-		// render scene
-	}
-	nextLevel() {
-		// update next lv
-	}
-}
-// ------------------------------------- CLASS ----------------------
-// creating and adjusting the board to screen
-class ScreenManager {
-	constructor() {
-		this.nbPan = 6;
-		this.OriginalScreenW = 640 // pixels
-		this.OriginalScreenH = 480 // pixels
-		this.OriginalPanW = this.OriginalScreenW // pixels
-		this.OriginalPanH = 350 // pixels
-		this.movesize = 2 * this.ScreenRatio // pixels
-		this.roadTop = 0 // pixels
-		this.calcWinsize()
-	}
-	get_ScreenDomInfo_Once() {
-
-	}
-	AdjustScreenManagerDomInfo() {
-
-	}
-	calcWinsize = () => {
-		if (window.innerWidth < window.innerHeight) {
-			this.ScreenRatio = window.innerWidth / this.OriginalScreenW
-			this.ScreenW = parseInt(this.OriginalScreenW * this.ScreenRatio)
-			this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
-		}
-		else {
-			this.ScreenRatio = window.innerHeight / this.OriginalScreenH
-			this.ScreenW = window.innerWidth
-			this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
-		}
-
-		screenDom.style.width = parseInt(this.ScreenW) + "px"
-		screenDom.style.height = parseInt(this.ScreenH) + "px"
-
-		roadDom.style.width = parseInt(this.nbPan * this.OriginalScreenW * this.ScreenRatio) + "px"
-		roadDom.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + "px"
-		this.roadTop = parseInt(((this.OriginalScreenH - this.OriginalPanH) / 2) * this.ScreenRatio)
-		roadDom.style.top = this.roadTop + "px"
-
-		roadDom.style.backgroundSize = "auto 100%"
-
-		console.log("-----")
-		console.log('Origin ScreenW:' + this.ScreenW + ' ScreenH:' + this.ScreenH)
-		console.log('Final ScreenW:' + parseInt(this.ScreenW * this.ScreenRatio) + ' ScreenH:' + parseInt(this.OriginalPanH * this.ScreenRatio))
-		console.log('ScreenRatio:' + this.ScreenRatio)
-		console.log('size:' + (100 * this.ScreenRatio) + "%")
-		// console.log({ width: window.innerWidth, height: window.innerHeight })
-	};
-}
-// ------------------------------------- CLASS ----------------------
-// adjusting the road (% ?? or pixels)
-// and make it move when keys [->,<-,Q or D] are pressed
+const WLOG = true; // console.log actif
+const WLANG = 'fr_FR';
 class SlidingRoad {
 	constructor(name, hauteur, largeur, nbpan) {
 
@@ -121,28 +42,68 @@ class SlidingRoad {
 	}
 }
 // ------------------------------------- CLASS ----------------------
-class Keyboard {
-	constructor(name, divW, divH) {
+class KeyboardManager {
+	constructor() {
+		this.nbPressedKey = 0
+		this.Wactions = {}
 		this.keys = {
-			// key : [ facing , acting, standing, whilepressed , endingcode]
-			'ArrowDown': ["crouch", "", "", true],
-			'KeyC': ["crouch", "", "", true],
-
-			'ControlLeft': ["attack", "", "", false],
-
-			'ArrowRight': ["right", "run", "", true],
-			'KeyD': ["right", "run", "", true],
-
-			'ArrowLeft': ["left", "run", "", true],
-			'KeyA': ["left", "run", "", true],
-
-			'Escape': ["", "", "", false, "stop"],
+			"fr_FR": [
+				{ key: 'ArrowDown', eventcode: 'ArrowDown', keycode: 40, facing: "crouch", acting: "", standing: "", whilepressed: true },
+				{ key: 'c', eventcode: 'KeyC', keycode: 67, facing: "crouch", acting: "", standing: "", whilepressed: true },
+				{ key: 'ControlLeft', eventcode: 'ControlLeft', keycode: 17, facing: "attack", acting: "", standing: "", whilepressed: true },
+				{ key: 'ArrowRight', eventcode: 'ArrowRight', keycode: 39, facing: "right", acting: "run", standing: "", whilepressed: true },
+				{ key: 'd', eventcode: 'KeyD', keycode: 68, facing: "right", acting: "run", standing: "", whilepressed: true },
+				{ key: 'ArrowLeft', eventcode: 'ArrowLeft', keycode: 37, facing: "left", acting: "run", standing: "", whilepressed: true },
+				{ key: 'q', eventcode: 'KeyA', keycode: 81, facing: "left", acting: "run", standing: "", whilepressed: true },
+				{ key: 'Escape', eventcode: 'Escape', keycode: 27, facing: "", acting: "", standing: "", endingcode: true }
+			]
 		}
+		document.onkeydown = (eventkeydown) => { this.detectKeyPress(eventkeydown) };
 	}
 	get_PlayerDomInfo_Once() {
-
 	}
-	detectKeyPress() { }
+	detectKeyPress(eventkeydown) {
+		console.log(eventkeydown.keyCode)
+		this.keys[WLANG].forEach(element => {
+			if (element.keycode === eventkeydown.keyCode) {
+				this.Wactions = {
+					goRight: (element.acting === "run") ? (facing === "right" ? true : false) : false,
+					goLeft: (element.acting === "run") ? (facing === "left" ? true : false) : false,
+					facing: (element.facing != "") ? element.facing : facing,
+					acting: "idle",
+					standing: "",
+				}
+				WariaGame.set_Actions(this.Wactions)// console.log(this.Wactions)
+			}
+			// console.log(eventkeydown.code)
+		});
+		// if (event.code === "Escape") {
+		// 	clearInterval(run)
+		// 	console.log("interval cleared")
+		// }
+		// if (event.code === "ControlLeft") {
+		// 	acting = "attack"
+		// 	if (this.nbPressedKey < 1) { this.nbPressedKey++ }
+		// }
+		// if (event.code === "ArrowDown" || event.code === "KeyC") {
+		// 	standing = "crouch"
+		// 	// if (this.nbPressedKey < 1) { this.nbPressedKey++ }
+		// }
+		// if (event.code === "ArrowRight" || event.code === "KeyD") {
+		// 	goRight = true
+		// 	facing = "right"
+		// 	acting = "run"
+		// 	standing = ""
+		// 	if (this.nbPressedKey < 1) { this.nbPressedKey++ }
+		// }
+		// if (event.code === "ArrowLeft" || event.code === "KeyA") {
+		// 	goLeft = true
+		// 	facing = "left"
+		// 	acting = "run"
+		// 	standing = ""
+		// 	if (this.nbPressedKey < 1) { this.nbPressedKey++ }
+		// }
+	}
 	detectKeyUnPress() { }
 	addAction() { }
 }
@@ -191,9 +152,51 @@ class Player {
 		console.log(this.playername + " is alive !")
 	}
 }
+// ------------------------------------- CLASS ----------------------
+// creating and adjusting the board to screen
+class WariaGame {
+	constructor(playername, archetype, information) {
+		this.set_LocalStorage(playername, archetype, information)
+		this.levelCurrent = 0;
+		this.Screen = new ScreenManager();
+		this.Keyboarder = new KeyboardManager();
+		this.Wactions = { 'one': 'one' }
+		// this.slidingRoad = new SlidingRoad('level1', 640, 480);
+		// this.PlayerOne = new Player(playername, archetype, information)
+
+		this.movesize = 2 // pixels
+		this.intervalSize = 5; // microsec interval roadslider playforward
+		setInterval(this.playScene, 1000)
+	}
+	set_Actions(datas) {
+		this.Wactions = datas
+		console.log('set_Actions:' + this.Wactions)
+	}
+	get_ScreenDomInfo_Once() {
+
+	}
+	playScene() {
+		// render scene
+		console.log(this.Wactions)
+	}
+	set_nextLevel() {
+		this.levelCurrent++
+	}
+	set_LocalStorage(playername, archetype, information) {
+		// initialize
+		if (!(localStorage.WCoin && localStorage.WCoin >= 0)) {
+			localStorage.WCoin = 0
+			localStorage.WLv = 1
+			localStorage.WName = playername
+			localStorage.WArchetype = archetype
+			localStorage.Winfo = information
+		}
+	}
+}
 
 let NewGame = new WariaGame("Waria", "Warrior", "what else !!")
 
 // Calculate the viewport size
-// let winsize = calcWinsize();
-window.addEventListener('resize', (e) => NewGame.Screen.calcWinsize());
+// window.addEventListener('resize', (e) => { NewGame.Screen.calcWinsize() });
+window.onresize = (eventResize) => { NewGame.Screen.calcWinSizeRatio() };
+// document.onkeyup = unlogKey;

@@ -17,11 +17,11 @@ body {
 	height: 480px;
 	top: 0px;
 	left: 0px;
-	background-color: black;
+	// background-color: black;
 	// transform: scale(1.2);
 	.board {
 		position: relative;
-		background-color: rgba(153, 128, 179, 0.26);
+		// background-color: rgba(51, 255, 0, 0.26);
 		width: 100%;
 		height: 100%;
 		display: flex;
@@ -29,11 +29,8 @@ body {
 		overflow-x: hidden;
 		.road {
 			position: absolute;
-			top: calc((480px - 350px) / 2);
-			height: 350px;
 			background-image: url("../PixelsAssets/fond.jpg");
 			background-position: left bottom;
-			background-color: rgb(121, 45, 197);
 			.objet {
 				position: absolute;
 				bottom: 85px;
@@ -115,11 +112,11 @@ body {
 		}
 		#player {
 			position: absolute;
-			bottom: 150px;
+			top: 295px;
 			width: 128px;
 			height: 88px;
 			background-size: 100%;
-			// outline: 1px dotted black;
+			outline: 1px dotted black;
 			&::after {
 				position: absolute;
 				content: "div#player";
@@ -222,12 +219,12 @@ body {
 	.console {
 		position: absolute;
 		bottom: 0;
-		left: 0;
+		right: 0;
 		height: 100px;
-		width: 100%;
+		width: max-content;
 		z-index: 10;
-		background-color: rgb(214, 214, 214);
 		div {
+			background-color: rgb(214, 214, 214);
 		}
 	}
 }
