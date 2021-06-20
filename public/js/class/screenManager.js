@@ -1,6 +1,7 @@
 "use strict";
 const PLAYERDOM = document.getElementById('player')
 const SCREENDOM = document.getElementById('screen')
+const BOARDDOM = document.getElementById('board')
 const ROADDOM = document.getElementById('road-slider')
 
 // ------------------------------------- CLASS ----------------------
@@ -22,7 +23,7 @@ class ScreenManager {
 		this.OriginalPlayerW = 64 * 2
 		this.OriginalPlayerH = 44 * 2
 		this.OriginalPlayerTop = 0 // pixels from top
-		this.OriginalroadFloorY = 335// pixels from top
+		this.OriginalroadFloorY = 272// pixels from top
 		// Init ----------------------------------------------------
 		this.ScreenRatio = 1
 		this.ScreenW = this.OriginalScreenW
@@ -35,45 +36,34 @@ class ScreenManager {
 
 		this.playerTop = this.roadFloorY // pixels from top
 		this.calcWinSizeRatio()
-
+		ROADDOM.style.backgroundSize = "auto 100%"
+		// BOARDDOM.style.width = "100%"
+		// SCREENDOM.style.width = "100%"
+		// SCREENDOM.style.height = "100vh"
 	}
 	get_ScreenDomInfo_Once() {
 
 	}
 	AdjustScreenManagerDomInfo() {
-		SCREENDOM.style.width = this.ScreenW + "px"
-		SCREENDOM.style.height = this.ScreenH + "px"
-
 		ROADDOM.style.width = parseInt(this.nbPan * this.OriginalScreenW * this.ScreenRatio) + "px"
 		ROADDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + "px"
-		ROADDOM.style.top = this.roadTop + "px"
-		ROADDOM.style.backgroundSize = "auto 100%"
 		PLAYERDOM.style.top = this.playerTop + "px"
 		PLAYERDOM.style.width = this.PlayerW + "px"
 		PLAYERDOM.style.height = this.PlayerH + "px"
+		BOARDDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + "px"
 
 	}
 	calcWinSizeRatio = () => {
-		if (window.innerWidth < window.innerHeight) {
-			this.ScreenRatio = window.innerWidth / this.OriginalScreenW
-			this.ScreenW = parseInt(this.OriginalScreenW * this.ScreenRatio)
-			this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
-		}
-		else {
-			this.ScreenRatio = window.innerHeight / this.OriginalScreenH
-			// this.ScreenW = window.innerWidth
-			this.ScreenW = parseInt(this.OriginalScreenW * this.ScreenRatio)
-			this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
-		}
-
+		this.ScreenRatio = window.innerWidth / this.OriginalScreenW
+		this.ScreenW = parseInt(this.OriginalScreenW * this.ScreenRatio)
+		this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
 		this.PlayerW = parseInt(this.OriginalPlayerW * this.ScreenRatio) // pixels
 		this.PlayerH = parseInt(this.OriginalPlayerH * this.ScreenRatio) // pixels
-		this.roadTop = parseInt(((this.OriginalScreenH - this.OriginalPanH) / 2) * this.ScreenRatio)
 		this.roadFloorY = parseInt(this.OriginalroadFloorY * this.ScreenRatio) // pixels from top
 		this.MoovingSpeed = parseInt(this.OriginalMoovingSpeed * this.ScreenRatio) // pixels
 		this.playerTop = this.roadFloorY - this.PlayerH // pixels from top
-		console.log(this.roadFloorY)
-		console.log(this.OriginalroadFloorY)
+		this.roadTop = parseInt(((this.OriginalScreenH - this.OriginalPanH) / 2) * this.ScreenRatio)
+		// ------------------------------
 		this.AdjustScreenManagerDomInfo()
 	};
 }
