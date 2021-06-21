@@ -8,7 +8,6 @@ class WariaGame {
 		this.Screen = new ScreenManager();
 		this.Keyboard = new KeyboardManager();
 		this.Wactions = { 'one': 'one' }
-		this.fffffff = "ffffffffffff"
 		// this.slidingRoad = new SlidingRoad('level1', 640, 480);
 		// this.PlayerOne = new Player(playername, archetype, information)
 
@@ -18,7 +17,7 @@ class WariaGame {
 	}
 	set_Actions(datas) {
 		this.Wactions = datas
-		console.log('set_Actions:' + this.Wactions)
+		console.log(this.Wactions)
 	}
 	get_ScreenDomInfo_Once() {
 

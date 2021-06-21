@@ -3,7 +3,7 @@
 class KeyboardManager {
 	constructor() {
 		this.nbPressedKey = 0
-		this.Wactions = {}
+		this.Wactions = { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 		this.keys = {
 			"fr_FR": [
 				{ key: 'ArrowDown', eventcode: 'ArrowDown', keycode: 40, facing: "crouch", acting: "", standing: "", whilepressed: true },
@@ -21,19 +21,19 @@ class KeyboardManager {
 	get_PlayerDomInfo_Once() {
 	}
 	detectKeyPress(eventkeydown) {
-		console.log(eventkeydown.keyCode)
-		this.keys[WLANG].forEach(element => {
+		if (WLOG) console.log(eventkeydown.keyCode, eventkeydown.code)
+		this.keys[WLANG].forEach(element => {// find if pressed key exist
 			if (element.keycode === eventkeydown.keyCode) {
 				this.Wactions = {
-					goRight: (element.acting === "run") ? (facing === "right" ? true : false) : false,
-					goLeft: (element.acting === "run") ? (facing === "left" ? true : false) : false,
+					goRight: (element.acting === "run") ? (element.facing === "right" ? true : false) : false,
+					goLeft: (element.acting === "run") ? (element.facing === "left" ? true : false) : false,
 					facing: (element.facing != "") ? element.facing : facing,
 					acting: "idle",
 					standing: "",
 				}
-				WariaGame.set_Actions(this.Wactions)// console.log(this.Wactions)
+				this.nbPressedKey++
+				NewGame.set_Actions(this.Wactions)
 			}
-			// console.log(eventkeydown.code)
 		});
 		// if (event.code === "Escape") {
 		// 	clearInterval(run)
