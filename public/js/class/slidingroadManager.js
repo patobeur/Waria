@@ -2,16 +2,13 @@
 // ------------------------------------- CLASS ----------------------
 class SlidingRoadManager {
 	constructor(name, hauteur, largeur, nbpan) {
-
-		this.intervalSize = 5; // microsec interval roadslider playScene()
-
+		if (WLOG) console.log("SlidingRoadManager Class Mounting!")
 		this.divId = 'road-slider';
 		this.name = name;
 		this.hauteur = hauteur;
 		this.largeur = largeur;
 		this.nbPan = nbpan;
 		this.movesize = 2 // pixels move when sliding forward or backward
-		this.intervalSize = 5; // microsec interval roadslider playforward
 	}
 	get_RoadDomInfo_Once() {
 

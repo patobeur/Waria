@@ -1,5 +1,4 @@
 "use strict";
-const PLAYERDOM = document.getElementById('player')
 const SCREENDOM = document.getElementById('screen')
 const BOARDDOM = document.getElementById('board')
 const ROADDOM = document.getElementById('road-slider')
@@ -40,6 +39,7 @@ class ScreenManager {
 		// BOARDDOM.style.width = "100%"
 		// SCREENDOM.style.width = "100%"
 		// SCREENDOM.style.height = "100vh"
+		if (WLOG) console.log("ScreenManager Class Mounted!")
 	}
 	get_ScreenDomInfo_Once() {
 

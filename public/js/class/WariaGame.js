@@ -6,27 +6,42 @@ class WariaGame {
 		this.set_LocalStorage(playername, archetype, information)
 		this.levelCurrent = 0;
 		this.Screen = new ScreenManager();
+		this.Player = new PlayerManager(playername, archetype, information);
 		this.Keyboard = new KeyboardManager();
-		this.Wactions = { 'one': 'one' }
+		this.paused = false
 		// this.slidingRoad = new SlidingRoad('level1', 640, 480);
 		// this.PlayerOne = new Player(playername, archetype, information)
 
-		this.movesize = 2 // pixels
-		this.intervalSize = 5; // microsec interval roadslider playforward
-		setInterval(this.playScene(), 1000)
+		this.intervalSize = 1000; // microsec interval renderScene
+		setInterval(this.renderScene(), this.intervalSize)
+		if (WLOG) console.log("WariaGame Class Mounted!")
 	}
-	set_Actions(datas) {
-		this.Wactions = datas
-		console.log(this.Wactions)
+	set_Actions(actions, isPressedKey) {
+		this.Player.set_Actions(actions, isPressedKey)
+	}
+	set_Action(actionname, action, isPressedKey) {
+		this.Player.set_Action(actionname, action, isPressedKey)
+	}
+	set_Paused() {
+		if (this.paused === true) {
+			this.paused = false
+			setInterval(this.renderScene(), this.intervalSize)
+		} else {
+			this.paused = true
+			clearInterval(this.renderScene)
+			console.log("game paused")
+		}
+		// this.paused = !this.paused // ???
+
 	}
 	get_ScreenDomInfo_Once() {
 
 	}
-	playScene() {
-		// render scene
-		// console.log(this.Wactions)
-		// console.log(this.fffffff)
-		console.log(this.movesize)
+	renderScene() {
+		if (!this.paused) {
+			// render scene
+			// do that
+		}
 	}
 	set_nextLevel() {
 		this.levelCurrent++
