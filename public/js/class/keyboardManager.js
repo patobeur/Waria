@@ -29,7 +29,7 @@ class KeyboardManager {
 				this.Wactions = {
 					goRight: (element.acting === "run") ? (element.facing === "right" ? true : false) : false,
 					goLeft: (element.acting === "run") ? (element.facing === "left" ? true : false) : false,
-					facing: (element.facing != "") ? element.facing : "",
+					facing: (element.facing != "") ? element.facing : this.Wactions.facing,
 					acting: element.acting,
 					standing: "",
 				}
