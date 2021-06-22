@@ -35,7 +35,7 @@
   position: absolute;
   top: calc((480px - 350px) / 2);
   height: 350px;
-  background-image: url("../PixelsAssets/fond.jpg");
+  background-image: url("../assets/PixelsAssets/fond.jpg");
   background-position: left bottom;
 }
 
@@ -57,7 +57,7 @@
 }
 
 #screen .board .road .objet.golden-key {
-  background-image: url("../PixelsAssets/golden-key.png");
+  background-image: url("../assets/PixelsAssets/golden-key.png");
   left: 2472px;
 }
 
@@ -66,7 +66,7 @@
 }
 
 #screen .board .road .objet.silver-key {
-  background-image: url("../PixelsAssets/silver-key.png");
+  background-image: url("../assets/PixelsAssets/silver-key.png");
   left: 2372px;
 }
 
@@ -75,7 +75,7 @@
 }
 
 #screen .board .road .objet.candle {
-  background-image: url("../PixelsAssets/candle.png");
+  background-image: url("../assets/PixelsAssets/candle.png");
   left: 50px;
 }
 
@@ -177,23 +177,23 @@
 }
 
 #screen .board #player.idle {
-  background-image: url("../anims_Assets/waria_idle.gif");
+  background-image: url("../assets/anims_Assets/waria_idle.gif");
 }
 
 #screen .board #player.idle.left {
-  background-image: url("../anims_Assets/waria_idle_l.gif");
+  background-image: url("../assets/anims_Assets/waria_idle_l.gif");
 }
 
 #screen .board #player.idle.crouch {
-  background-image: url("../anims_Assets/waria_gocrouch.gif");
+  background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
 }
 
 #screen .board #player.idle.crouch.left {
-  background-image: url("../anims_Assets/waria_gocrouch_l.gif");
+  background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
 }
 
 #screen .board #player.run {
-  background-image: url("../anims_Assets/waria_run.gif");
+  background-image: url("../assets/anims_Assets/waria_run.gif");
 }
 
 #screen .board #player.run::before {
@@ -201,7 +201,7 @@
 }
 
 #screen .board #player.run.left {
-  background-image: url("../anims_Assets/waria_run_l.gif");
+  background-image: url("../assets/anims_Assets/waria_run_l.gif");
 }
 
 #screen .board #player.run.left::before {
@@ -209,27 +209,27 @@
 }
 
 #screen .board #player.jump {
-  background-image: url("../anims_Assets/waria_jump.gif");
+  background-image: url("../assets/anims_Assets/waria_jump.gif");
 }
 
 #screen .board #player.jump.left {
-  background-image: url("../anims_Assets/waria_jump_l.gif");
+  background-image: url("../assets/anims_Assets/waria_jump_l.gif");
 }
 
 #screen .board #player.attack {
-  background-image: url("../anims_Assets/waria_dask_attack.gif");
+  background-image: url("../assets/anims_Assets/waria_dask_attack.gif");
 }
 
 #screen .board #player.attack.left {
-  background-image: url("../anims_Assets/waria_dask_attack_l.gif");
+  background-image: url("../assets/anims_Assets/waria_dask_attack_l.gif");
 }
 
 #screen .board #player.gocrouch {
-  background-image: url("../anims_Assets/waria_gocrouch.gif");
+  background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
 }
 
 #screen .board #player.gocrouch.left {
-  background-image: url("../anims_Assets/waria_gocrouch_l.gif");
+  background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
 }
 
 #screen .board .ratio {

@@ -27,7 +27,7 @@
 			// width: 400%;
 			top: calc((480px - 350px) / 2);
 			height: 350px;
-			background-image: url("../PixelsAssets/fond.jpg");
+			background-image: url("../assets/PixelsAssets/fond.jpg");
 			background-position: left bottom;
 			.objet {
 				position: absolute;
@@ -42,21 +42,21 @@
 					width: max-content;
 				}
 				&.golden-key {
-					background-image: url("../PixelsAssets/golden-key.png");
+					background-image: url("../assets/PixelsAssets/golden-key.png");
 					left: 2472px;
 					&::before {
 						content: "golden-key";
 					}
 				}
 				&.silver-key {
-					background-image: url("../PixelsAssets/silver-key.png");
+					background-image: url("../assets/PixelsAssets/silver-key.png");
 					left: 2372px;
 					&::before {
 						content: "silver-key";
 					}
 				}
 				&.candle {
-					background-image: url("../PixelsAssets/candle.png");
+					background-image: url("../assets/PixelsAssets/candle.png");
 					left: 50px;
 					&::before {
 						content: "Candle";
@@ -141,26 +141,26 @@
 			}
 			//idle {
 			&.idle {
-				background-image: url("../anims_Assets/waria_idle.gif");
+				background-image: url("../assets/anims_Assets/waria_idle.gif");
 
 				&.left {
-					background-image: url("../anims_Assets/waria_idle_l.gif");
+					background-image: url("../assets/anims_Assets/waria_idle_l.gif");
 				}
 			}
 			&.idle.crouch {
-				background-image: url("../anims_Assets/waria_gocrouch.gif");
+				background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
 				&.left {
-					background-image: url("../anims_Assets/waria_gocrouch_l.gif");
+					background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
 				}
 			}
 			//run
 			&.run {
-				background-image: url("../anims_Assets/waria_run.gif");
+				background-image: url("../assets/anims_Assets/waria_run.gif");
 				&::before {
 					left: -5px;
 				}
 				&.left {
-					background-image: url("../anims_Assets/waria_run_l.gif");
+					background-image: url("../assets/anims_Assets/waria_run_l.gif");
 					&::before {
 						left: 65px;
 					}
@@ -168,23 +168,23 @@
 			}
 			//jump
 			&.jump {
-				background-image: url("../anims_Assets/waria_jump.gif");
+				background-image: url("../assets/anims_Assets/waria_jump.gif");
 				&.left {
-					background-image: url("../anims_Assets/waria_jump_l.gif");
+					background-image: url("../assets/anims_Assets/waria_jump_l.gif");
 				}
 			}
 			//attack
 			&.attack {
-				background-image: url("../anims_Assets/waria_dask_attack.gif");
+				background-image: url("../assets/anims_Assets/waria_dask_attack.gif");
 				&.left {
-					background-image: url("../anims_Assets/waria_dask_attack_l.gif");
+					background-image: url("../assets/anims_Assets/waria_dask_attack_l.gif");
 				}
 			}
 			//gocrouch
 			&.gocrouch {
-				background-image: url("../anims_Assets/waria_gocrouch.gif");
+				background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
 				&.left {
-					background-image: url("../anims_Assets/waria_gocrouch_l.gif");
+					background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
 				}
 			}
 		}
