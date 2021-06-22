@@ -8,6 +8,7 @@ class WariaGame {
 		this.Screen = new ScreenManager();
 		this.Player = new PlayerManager(playername, archetype, information);
 		this.Keyboard = new KeyboardManager();
+		// this.SlidingRoad = new SlidingRoadManager();
 		this.paused = false
 		// this.slidingRoad = new SlidingRoad('level1', 640, 480);
 		// this.PlayerOne = new Player(playername, archetype, information)
@@ -16,22 +17,23 @@ class WariaGame {
 		setInterval(this.renderScene(), this.intervalSize)
 		if (WLOG) console.log("WariaGame Class Mounted!")
 	}
-	set_Actions(actions, isPressedKey) {
+	set_Actions(actions, isPressedKey) { // call from KeyboardManager
 		this.Player.set_Actions(actions, isPressedKey)
+		// this.SlidingRoad.playforward(actions, isPressedKey)
 	}
-	set_Action(actionname, action, isPressedKey) {
+	set_Action(actionname, action, isPressedKey) { // call from KeyboardManager
 		this.Player.set_Action(actionname, action, isPressedKey)
 	}
-	set_Paused() {
+	set_Paused() { // call from KeyboardManager
+		// this.paused = !this.paused // ???
 		if (this.paused === true) {
 			this.paused = false
-			setInterval(this.renderScene(), this.intervalSize)
+			// setInterval(this.renderScene(), this.intervalSize)
 		} else {
 			this.paused = true
-			clearInterval(this.renderScene)
+			// clearInterval(this.renderScene)
 			console.log("game paused")
 		}
-		// this.paused = !this.paused // ???
 
 	}
 	get_ScreenDomInfo_Once() {
@@ -41,6 +43,9 @@ class WariaGame {
 		if (!this.paused) {
 			// render scene
 			// do that
+		}
+		else {
+			console.log("game paused !")
 		}
 	}
 	set_nextLevel() {

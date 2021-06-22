@@ -18,9 +18,9 @@ class PlayerManager {
 		// console.log(this.Pactions)
 		this.get_acting()
 	}
-	set_Action(actionname, action, isPressedKey) {
-		this.Pactions[actionname] = action
-	}
+	// set_Action(actionname, action, isPressedKey) {
+	// 	this.Pactions[actionname] = action
+	// }
 	get_acting() {
 		if (this.PisPressedKey === false) {
 			this.Pactions.acting = "idle"

@@ -39,9 +39,9 @@ class KeyboardManager {
 				}
 				NewGame.set_Actions(this.Wactions, this.isPressedKey)
 			}
-			// else if (27 === eventkeydown.keyCode) {
-			// 	NewGame.set_Paused(true)
-			// }
+			else if (27 === eventkeydown.keyCode) {
+				NewGame.set_Paused(true)
+			}
 		});
 	}
 	detectKeyUnPress(event) {
@@ -85,5 +85,4 @@ class KeyboardManager {
 		document.getElementById("facing").innerHTML = "facing:" + this.Wactions.facing;
 		document.getElementById("standing").innerHTML = "standing:" + this.Wactions.standing;
 	}
-	addAction() { }
 }

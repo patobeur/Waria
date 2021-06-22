@@ -41,6 +41,19 @@ class ScreenManager {
 		// SCREENDOM.style.height = "100vh"
 		if (WLOG) console.log("ScreenManager Class Mounted!")
 	}
+	get_slideDatas() {
+		console.log('slideDatas:')
+		console.log({
+			nbpan: this.nbPan,
+			panWidth: this.OriginalPanW,
+			movesize: this.MoovingSpeed
+		})
+		return {
+			nbpan: this.nbPan,
+			panWidth: this.OriginalPanW,
+			movesize: this.MoovingSpeed
+		}
+	}
 	get_ScreenDomInfo_Once() {
 
 	}
