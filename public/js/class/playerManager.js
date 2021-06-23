@@ -9,7 +9,7 @@ class PlayerManager {
 		this.PisPressedKey = false
 		this.Pactions = { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 		if (WLOG) console.log("PlayerManager Class Mounted!")
-		PLAYERDOM.style.left = 100 + "px"
+		// PLAYERDOM.style.left = 100 + "px"
 
 	}
 	set_Actions(actions, isPressedKey) {

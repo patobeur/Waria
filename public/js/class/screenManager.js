@@ -14,28 +14,28 @@ class ScreenManager {
 		// default -------------------------------------------------
 		this.nbPan = leveldatas.nbpan;
 		this.OriginalMoovingSpeed = 2 // pixels per refresh
-		this.OriginalScreenW = 640 // pixels
-		this.OriginalScreenH = 480 // pixels
-		this.OriginalPanW = this.OriginalScreenW // pixels
-		this.OriginalPanH = 350 // pixels
+		this.OriginalScreenW = 640
+		this.OriginalScreenH = 480
+		this.OriginalPanW = this.OriginalScreenW
+		this.OriginalPanH = 350
 
-		this.OriginalroadTop = 0 // pixels per refresh
+		this.OriginalroadTop = 0
 		this.OriginalPlayerW = 64 * 2
 		this.OriginalPlayerH = 44 * 2
-		this.OriginalPlayerTop = 0 // pixels from top
-		this.OriginalPlayerX = 0 // pixels from top
+		this.OriginalPlayerX = 0 // pixels from left
 		this.OriginalroadFloorY = 272// pixels from top
 		// Init ----------------------------------------------------
-		this.ScreenRatio = 1
 		this.ScreenW = this.OriginalScreenW
 		this.ScreenH = this.OriginalScreenH
 		this.roadTop = this.OriginalroadTop
 		this.roadFloorY = this.OriginalroadFloorY
-		this.MoovingSpeed = this.OriginalMoovingSpeed// pixels
-		this.PlayerW = this.OriginalPlayerW// pixels
-		this.PlayerH = this.OriginalPlayerH// pixels
-
-		this.playerTop = this.roadFloorY // pixels from top
+		this.MoovingSpeed = this.OriginalMoovingSpeed
+		this.PlayerW = this.OriginalPlayerW
+		this.PlayerH = this.OriginalPlayerH
+		this.playerTop = this.roadFloorY - this.PlayerH
+		this.PlayerX = this.OriginalPlayerX
+		this.ScreenRatio = 1 // <---------------------- SCREEN RATIO
+		this.ScreenDisplayVertical = false // <------ SCREEN DISPLAY
 		this.calcWinSizeRatio()
 		ROADDOM.style.backgroundSize = "auto 100%"
 		// BOARDDOM.style.width = "100%"
@@ -60,33 +60,39 @@ class ScreenManager {
 
 	}
 	AdjustScreenManagerDomInfo() {
+		this.MoovingSpeed = parseInt(this.OriginalMoovingSpeed * this.ScreenRatio)
 		this.ScreenW = parseInt(this.OriginalScreenW * this.ScreenRatio)
 		this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
-		this.PlayerW = parseInt(this.OriginalPlayerW * this.ScreenRatio) // pixels
-		this.PlayerH = parseInt(this.OriginalPlayerH * this.ScreenRatio) // pixels
-		this.roadFloorY = parseInt(this.OriginalroadFloorY * this.ScreenRatio) // pixels from top
-		this.MoovingSpeed = parseInt(this.OriginalMoovingSpeed * this.ScreenRatio) // pixels
-		this.playerTop = this.roadFloorY - this.PlayerH // pixels from top
+		this.PlayerW = parseInt(this.OriginalPlayerW * this.ScreenRatio)
+		this.PlayerH = parseInt(this.OriginalPlayerH * this.ScreenRatio)
+		this.roadFloorY = parseInt(this.OriginalroadFloorY * this.ScreenRatio)
 		this.roadTop = parseInt(((this.OriginalScreenH - this.OriginalPanH) / 2) * this.ScreenRatio)
+		this.PlayerX = parseInt(this.OriginalPlayerX * this.ScreenRatio)
 		// ------------------------------
-		BOARDDOM.style.height = this.ScreenH + "px"
-		BOARDDOM.style.width = this.ScreenW + "px"
+		this.playerTop = this.roadFloorY - this.PlayerH
 		// ------------------------------
-		ROADDOM.style.width = parseInt(this.nbPan * this.OriginalScreenW * this.ScreenRatio) + "px"
-		ROADDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + "px"
+		let px = "px"
+		BOARDDOM.style.height = "100vh" //this.ScreenH + px
+		BOARDDOM.style.width = (this.ScreenDisplayVertical ? this.ScreenH : this.ScreenW) + px
 		// ------------------------------
-		PLAYERDOM.style.top = this.playerTop + "px"
-		PLAYERDOM.style.width = this.PlayerW + "px"
-		PLAYERDOM.style.height = this.PlayerH + "px"
-		// PLAYERDOM.classList.add('idle')
-		console.log('window.innerHeight:' + window.innerHeight)
-		console.log('this.OriginalScreenH:' + this.OriginalScreenH)
-		console.log('this.ScreenRatio:' + this.ScreenRatio)
-
+		ROADDOM.style.width = parseInt(this.nbPan * this.OriginalScreenW * this.ScreenRatio) + px
+		ROADDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + px
+		// ------------------------------
+		PLAYERDOM.style.top = this.playerTop + px
+		PLAYERDOM.style.width = this.PlayerW + px
+		PLAYERDOM.style.height = this.PlayerH + px
+		PLAYERDOM.style.left = this.PlayerX + px
+		// SET DISPLAY ------------------
+		this.ScreenDisplayVertical ? BOARDDOM.classList.add('vertical') : BOARDDOM.classList.remove('vertical')
 	}
+
 	calcWinSizeRatio = () => {
-		this.ScreenRatio = window.innerHeight / this.OriginalScreenH
-		// this.ScreenRatio = window.innerWidth / this.OriginalScreenW
+		this.ScreenDisplayVertical = (window.innerHeight < window.innerWidth) ? false : true
+		if (this.ScreenDisplayVertical) {
+			this.ScreenRatio = window.innerWidth / this.OriginalScreenW
+		} else {
+			this.ScreenRatio = window.innerHeight / this.OriginalScreenH
+		}
 		this.AdjustScreenManagerDomInfo()
 	};
 }
