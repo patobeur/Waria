@@ -83,16 +83,16 @@ class ScreenManager {
 		PLAYERDOM.style.height = this.PlayerH + px
 		PLAYERDOM.style.left = this.PlayerX + px
 		// SET DISPLAY ------------------
-		this.ScreenDisplayVertical ? BOARDDOM.classList.add('vertical') : BOARDDOM.classList.remove('vertical')
+		this.ScreenDisplayVertical
+			? BOARDDOM.classList.add('vertical') // vetical ratio
+			: BOARDDOM.classList.remove('vertical') // horizontal ratio
 	}
 
 	calcWinSizeRatio = () => {
 		this.ScreenDisplayVertical = (window.innerHeight < window.innerWidth) ? false : true
-		if (this.ScreenDisplayVertical) {
-			this.ScreenRatio = window.innerWidth / this.OriginalScreenW
-		} else {
-			this.ScreenRatio = window.innerHeight / this.OriginalScreenH
-		}
+		this.ScreenRatio = this.ScreenDisplayVertical
+			? window.innerHeight / this.OriginalScreenH // vetical ratio
+			: window.innerWidth / this.OriginalScreenW // horizontal ratio
 		this.AdjustScreenManagerDomInfo()
 	};
 }
