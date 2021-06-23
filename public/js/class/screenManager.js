@@ -10,7 +10,7 @@ const ROADDOM = document.getElementById('road-slider')
 // creating and adjusting the board to screen
 class ScreenManager {
 	constructor(leveldatas) {
-		if (WLOG) console.log('ScreenManagerleveldatas:'+leveldatas)
+		if (WLOG) console.log('ScreenManagerleveldatas:' + leveldatas)
 		// default -------------------------------------------------
 		this.nbPan = leveldatas.nbpan;
 		this.OriginalMoovingSpeed = 2 // pixels per refresh
@@ -23,6 +23,7 @@ class ScreenManager {
 		this.OriginalPlayerW = 64 * 2
 		this.OriginalPlayerH = 44 * 2
 		this.OriginalPlayerTop = 0 // pixels from top
+		this.OriginalPlayerX = 0 // pixels from top
 		this.OriginalroadFloorY = 272// pixels from top
 		// Init ----------------------------------------------------
 		this.ScreenRatio = 1
@@ -59,16 +60,6 @@ class ScreenManager {
 
 	}
 	AdjustScreenManagerDomInfo() {
-		ROADDOM.style.width = parseInt(this.nbPan * this.OriginalScreenW * this.ScreenRatio) + "px"
-		ROADDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + "px"
-		PLAYERDOM.style.top = this.playerTop + "px"
-		PLAYERDOM.style.width = this.PlayerW + "px"
-		PLAYERDOM.style.height = this.PlayerH + "px"
-		BOARDDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + "px"
-
-	}
-	calcWinSizeRatio = () => {
-		this.ScreenRatio = window.innerWidth / this.OriginalScreenW
 		this.ScreenW = parseInt(this.OriginalScreenW * this.ScreenRatio)
 		this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
 		this.PlayerW = parseInt(this.OriginalPlayerW * this.ScreenRatio) // pixels
@@ -78,6 +69,24 @@ class ScreenManager {
 		this.playerTop = this.roadFloorY - this.PlayerH // pixels from top
 		this.roadTop = parseInt(((this.OriginalScreenH - this.OriginalPanH) / 2) * this.ScreenRatio)
 		// ------------------------------
+		BOARDDOM.style.height = this.ScreenH + "px"
+		BOARDDOM.style.width = this.ScreenW + "px"
+		// ------------------------------
+		ROADDOM.style.width = parseInt(this.nbPan * this.OriginalScreenW * this.ScreenRatio) + "px"
+		ROADDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + "px"
+		// ------------------------------
+		PLAYERDOM.style.top = this.playerTop + "px"
+		PLAYERDOM.style.width = this.PlayerW + "px"
+		PLAYERDOM.style.height = this.PlayerH + "px"
+		// PLAYERDOM.classList.add('idle')
+		console.log('window.innerHeight:' + window.innerHeight)
+		console.log('this.OriginalScreenH:' + this.OriginalScreenH)
+		console.log('this.ScreenRatio:' + this.ScreenRatio)
+
+	}
+	calcWinSizeRatio = () => {
+		this.ScreenRatio = window.innerHeight / this.OriginalScreenH
+		// this.ScreenRatio = window.innerWidth / this.OriginalScreenW
 		this.AdjustScreenManagerDomInfo()
 	};
 }
