@@ -1,63 +1,53 @@
 "use strict";
 // ------------------------------------- CLASS ----------------------
 class SlidingRoadManager {
-	constructor(level=1) {
+	constructor(playerdatas) {
 		if (WLOG) console.log("SlidingRoadManager Class Mounting!")
+		// if (WLOG) console.log(playerdatas)
 		this.divId = 'road-slider';
+		this.playerdatas = playerdatas;
 		// --
 		this.levelDatas = {
-			1: {nbpan:6}
+			1: { nbpan: 6 }
 		}
-		this.level = level
-		this.roadDatas = this.levelDatas[this.level]
+		this.roadDatas = this.levelDatas[playerdatas.lv]
 		// this.name = name;
 		// this.hauteur = hauteur;
 		// this.largeur = largeur;
-		this.nbPan = this.roadDatas.nbpan;
+		this.nbPan = this.roadDatas.nbpan // pan number for road width
 		this.playerX = 0;
 		this.actualX = 0;
 		this.movesize = 2 // pixels move when sliding forward or backward
 
-		const panWidth = 500 // pixels 
-		const nbPan = 6 // pan number for road width
-		const roadXMax = ((nbPan - 1) * panWidth)  // pixel to win 
-		const roadWidth = ((nbPan) * panWidth) // pixels 
+		this.panWidth = 500 // pixels 
+		this.roadXMax = ((this.nbPan - 1) * this.panWidth)  // pixel to win 
+		this.roadWidth = ((this.nbPan) * this.panWidth) // pixels 
 
 	}
-	get_LevelDatas(){
+	get_LevelDatas() {
 		return this.roadDatas
 	}
-	set_nextLevel() {
-		this.level++
-	}
-	set_LevelDatas(){
-		this.roadDatas = this.levelDatas[this.level]
-	}
-	get_RoadDomInfo_Once() {
-
-	}
-	playforward(actions, isPressedKey) {
-		// this.Screen.levelDatas()
-		if (WLOG) console.log(this.get_LevelDatas())
-		
-		// if (isPressedKey) {
-		// 	let actualX = ROADDOM.style.left
-		// 	actualX = parseInt(actualX.replace('px', ''))
-		// 	if (actions.goRight && !actions.goLeft) {
-		// 		if (this.playerX + this.playerLeft + this.playerWidth < roadXMax) {
-		// 			this.playerX = this.playerX + movesize;
-		// 			this.actualX = actualX - movesize;
-		// 			ROADDOM.style.left = this.actualX + "px"
-		// 		}
-		// 	}
-		// 	if (actions.goLeft && !actions.goRight) {
-		// 		if (actualX < 0) {
-		// 			this.playerX = this.playerX - movesize;
-		// 			this.actualX = actualX + movesize;
-		// 			ROADDOM.style.left = this.actualX + "px"
-		// 		}
-		// 	}
-		// }
+	playforward(playerdatas) {
+		if (playerdatas.isKeyPressed) {
+			let actualX = playerdatas.defaultplayerx//ROADDOM.style.left
+			if (WLOG) console.log("actualX!" + playerdatas.defaultplayerx)
+			// actualX = parseInt(actualX.replace('px', ''))
+			if (playerdatas.actions.goRight && !playerdatas.actions.goLeft) {
+				if (this.actualX < this.roadXMax) {
+					// 	this.playerX = this.playerX + playerdatas.stats.movesize;
+					this.actualX = this.actualX - playerdatas.stats.movesize;
+					ROADDOM.style.left = this.actualX + "px"
+				}
+			}
+			if (playerdatas.actions.goLeft && !playerdatas.actions.goRight) {
+				if (this.actualX < 0) {
+					this.playerX = this.playerX - playerdatas.stats.movesize;
+					this.actualX = actualX + playerdatas.stats.movesize;
+					ROADDOM.style.left = this.actualX + "px"
+				}
+			}
+			return this.actualX
+		}
 		// else {
 		// 	// do nothing ??
 		// }

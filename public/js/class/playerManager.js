@@ -3,33 +3,38 @@ const PLAYERDOM = document.getElementById('player')
 // ------------------------------------- PLAYER CLASS ---------------
 class PlayerManager {
 	constructor(playername, archetype, information) {
-		this.Pplayername = playername
-		this.Parchetype = archetype
-		this.Pinformation = information
-		this.PisPressedKey = false
-		this.Pactions = { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
+		this.archetypeActions = {
+			"Warrior": {
+				"stats": { movesize: 2, playerx: 100, health: 5 },
+				"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
+			},
+			// "Wizard": {
+			// 	"stats": { movesize: 2, playerx: 100, health: 3},
+			// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
+			// }
+		}
+		this.playerDatas = {
+			lv: 1,
+			name: playername,
+			archetype: archetype,
+			information: information,
+			actions: this.archetypeActions[archetype].actions,
+			stats: this.archetypeActions[archetype].stats,
+			defaultplayerx: 100,
+			isKeyPressed: false
+		}
+		this.playerActions = this.archetypeActions[this.playerDatas.archetype].actions
+		// this.isKeyPressed = false
 		if (WLOG) console.log("PlayerManager Class Mounted!")
-		// PLAYERDOM.style.left = 100 + "px"
 
 	}
-	set_Actions(actions, isPressedKey) {
-		this.Pactions = actions
-		this.PisPressedKey = isPressedKey
-		// console.log(this.Pactions)
-		this.get_acting()
+	set_Actions(actions, isKeyPressed) {
+		this.playerDatas.actions = actions
+		this.playerDatas.isKeyPressed = isKeyPressed
+		// this.isKeyPressed = isKeyPressed
+		// console.log(this.playerActions)
 	}
-	// set_Action(actionname, action, isPressedKey) {
-	// 	this.Pactions[actionname] = action
-	// }
-	get_acting() {
-		if (this.PisPressedKey === false) {
-			this.Pactions.acting = "idle"
-		}
-		else {
-			if (this.Pactions.acting === "") {
-				this.Pactions.acting = "idle"
-			}
-		}
-		PLAYERDOM.setAttribute("class", this.Pactions.acting + " " + this.Pactions.facing + " " + this.Pactions.standing)
-	}
+	// set_Action(actionname, action, isKeyPressed) {
+	// 	this.playerActions[actionname] = action
+	// // }
 }

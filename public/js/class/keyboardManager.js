@@ -2,8 +2,8 @@
 // ------------------------------------- CLASS ----------------------
 class KeyboardManager {
 	constructor() {
-		this.nbPressedKey = 0
-		this.isPressedKey = false
+		this.nbKeyPressed = 0
+		this.isKeyPressed = false
 		this.Wactions = { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 		this.keys = {
 			"fr_FR": [
@@ -33,11 +33,12 @@ class KeyboardManager {
 					acting: element.acting,
 					standing: "",
 				}
-				if (element.whilepressed && this.nbPressedKey < 1) {
-					this.nbPressedKey++
-					this.set_isPressedKey()
+				if (element.whilepressed && this.nbKeyPressed < 1) {
+					this.nbKeyPressed++
+					this.set_isKeyPressed()
 				}
-				NewGame.set_Actions(this.Wactions, this.isPressedKey)
+				NewGame.set_Actions(this.Wactions, this.isKeyPressed)
+				this.set_acting()
 			}
 			else if (27 === eventkeydown.keyCode) {
 				NewGame.set_Paused(true)
@@ -49,38 +50,50 @@ class KeyboardManager {
 		if (event.code === "ArrowRight" || event.code === "KeyD") {
 			this.Wactions.goRight = false
 			this.Wactions.acting = ""
-			if (this.nbPressedKey > 0) { this.nbPressedKey-- }
+			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
 		if (event.code === "ArrowLeft" || event.code === "KeyA") {
 			this.Wactions.goLeft = false
 			this.Wactions.acting = ""
-			if (this.nbPressedKey > 0) { this.nbPressedKey-- }
+			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
 		if (event.code === "ControlLeft") {
 			this.Wactions.acting = "idle"
-			if (this.nbPressedKey > 0) { this.nbPressedKey-- }
+			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
-		this.set_isPressedKey()
-		NewGame.set_Actions(this.Wactions, this.isPressedKey)
+		this.set_isKeyPressed()
+		NewGame.set_Actions(this.Wactions, this.isKeyPressed)
+		this.set_acting()
 	}
-	set_isPressedKey() {
-		if (this.nbPressedKey === 0) {
-			this.isPressedKey = false
+	set_isKeyPressed() {
+		if (this.nbKeyPressed === 0) {
+			this.isKeyPressed = false
 			if (this.Wactions.acting != "idle") {
 				this.Wactions.acting = "idle"
 			}
 		}
-		else if (this.nbPressedKey > 0) {
-			this.isPressedKey = true
+		else if (this.nbKeyPressed > 0) {
+			this.isKeyPressed = true
 		}
 		else {
 			if (WLOG) console.log("error while counting pressed key !!!")
 		}
 		this.displayConsole()
 	}
+	set_acting() {
+		if (this.isKeyPressed === false) {
+			this.Wactions.acting = "idle"
+		}
+		else {
+			if (this.Wactions.acting === "") {
+				this.Wactions.acting = "idle"
+			}
+		}
+		PLAYERDOM.setAttribute("class", this.Wactions.acting + " " + this.Wactions.facing + " " + this.Wactions.standing)
+	}
 	displayConsole() {
-		document.getElementById("isPressedKey").innerHTML = "isPressedKey:" + (this.isPressedKey ? "true" : "false");
-		document.getElementById("nbPressedKey").innerHTML = "nbPressedKey:" + this.nbPressedKey;
+		document.getElementById("isKeyPressed").innerHTML = "isKeyPressed:" + (this.isKeyPressed ? "true" : "false");
+		document.getElementById("nbKeyPressed").innerHTML = "nbKeyPressed:" + this.nbKeyPressed;
 		document.getElementById("acting").innerHTML = "acting:" + this.Wactions.acting;
 		document.getElementById("facing").innerHTML = "facing:" + this.Wactions.facing;
 		document.getElementById("standing").innerHTML = "standing:" + this.Wactions.standing;

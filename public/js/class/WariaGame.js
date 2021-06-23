@@ -5,9 +5,12 @@ class WariaGame {
 	constructor(playername, archetype, information) {
 		this.set_LocalStorage(playername, archetype, information)
 		this.levelCurrent = 0;
-		this.SlidingRoad = new SlidingRoadManager();
-		this.Screen = new ScreenManager(this.SlidingRoad.get_LevelDatas());
 		this.Player = new PlayerManager(playername, archetype, information);
+		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas);
+		this.Screen = new ScreenManager(
+			this.SlidingRoad.get_LevelDatas(),
+			this.Player.playerDatas
+		);
 		this.Keyboard = new KeyboardManager();
 		this.paused = false
 
@@ -15,14 +18,15 @@ class WariaGame {
 		setInterval(this.renderScene(), this.intervalSize)
 		if (WLOG) console.log("WariaGame Class Mounted!")
 	}
-	
-	set_nextLevel() {
-		this.levelCurrent++
-		this.SlidingRoad.nextLevel()
-	}
+
+	// set_nextLevel() {
+	// 	this.levelCurrent++
+	// 	this.SlidingRoad.nextLevel()
+	// }
 	set_Actions(actions, isPressedKey) { // call from KeyboardManager
 		this.Player.set_Actions(actions, isPressedKey)
-		this.SlidingRoad.playforward(actions, isPressedKey)
+		let newfff = this.SlidingRoad.playforward(this.Player.playerDatas) // need fallback return
+		console.log(newfff)
 	}
 	set_Action(actionname, action, isPressedKey) { // call from KeyboardManager
 		this.Player.set_Action(actionname, action, isPressedKey)

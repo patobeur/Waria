@@ -9,8 +9,9 @@ const ROADDOM = document.getElementById('road-slider')
 // ------------------------------------- CLASS ----------------------
 // creating and adjusting the board to screen
 class ScreenManager {
-	constructor(leveldatas) {
-		if (WLOG) console.log('ScreenManagerleveldatas:' + leveldatas)
+	constructor(leveldatas, playerdatas) {
+		// if (WLOG) console.log('ScreenManagerleveldatas:' + leveldatas)
+		// if (WLOG) console.log(playerdatas)
 		// default -------------------------------------------------
 		this.nbPan = leveldatas.nbpan;
 		this.OriginalMoovingSpeed = 2 // pixels per refresh
@@ -22,7 +23,8 @@ class ScreenManager {
 		this.OriginalroadTop = 0
 		this.OriginalPlayerW = 64 * 2
 		this.OriginalPlayerH = 44 * 2
-		this.OriginalPlayerX = 0 // pixels from left
+		this.OriginalPlayerX = playerdatas.defaultplayerx // pixels from left
+
 		this.OriginalroadFloorY = 272// pixels from top
 		// Init ----------------------------------------------------
 		this.ScreenW = this.OriginalScreenW
@@ -89,7 +91,7 @@ class ScreenManager {
 	}
 
 	calcWinSizeRatio = () => {
-		this.ScreenDisplayVertical = (window.innerHeight < window.innerWidth) ? false : true
+		// this.ScreenDisplayVertical = (window.innerHeight < window.innerWidth) ? false : true
 		this.ScreenRatio = this.ScreenDisplayVertical
 			? window.innerHeight / this.OriginalScreenH // vetical ratio
 			: window.innerWidth / this.OriginalScreenW // horizontal ratio
