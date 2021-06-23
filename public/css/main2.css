@@ -12,6 +12,10 @@ body {
   overflow: hidden;
 }
 
+.outlined {
+  outline: 1px dotted black;
+}
+
 #screen {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -42,6 +46,15 @@ body {
       -ms-flex-align: center;
           align-items: center;
   overflow-x: hidden;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  transition: -webkit-transform 0.5s ease-in;
+  transition: transform 0.5s ease-in;
+  transition: transform 0.5s ease-in, -webkit-transform 0.5s ease-in;
+}
+
+#screen .board.vertical {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 #screen .board #road-slider {
@@ -155,7 +168,6 @@ body {
   width: 128px;
   height: 88px;
   background-size: 100%;
-  outline: 1px dotted black;
   background-image: url("../assets/anims_Assets/waria_idle.gif");
 }
 
@@ -193,16 +205,8 @@ body {
   background-image: url("../assets/anims_Assets/waria_idle.gif");
 }
 
-#screen .board #road-slider #player.idle::before {
-  left: 3px;
-}
-
 #screen .board #road-slider #player.idle.left {
   background-image: url("../assets/anims_Assets/waria_idle_l.gif");
-}
-
-#screen .board #road-slider #player.idle.left::before {
-  left: 65%;
 }
 
 #screen .board #road-slider #player.idle.crouch {

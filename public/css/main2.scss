@@ -9,6 +9,9 @@
 body {
 	overflow: hidden;
 }
+.outlined {
+	outline: 1px dotted black;
+}
 #screen {
 	// position: absolute;
 	// top: calc(50% - 240px);
@@ -29,6 +32,10 @@ body {
 		display: flex;
 		align-items: center;
 		overflow-x: hidden;
+		transition: transform 0.5s ease-in;
+		&.vertical {
+			transform: rotate(90deg);
+		}
 		#road-slider {
 			position: absolute;
 			background-image: url("../assets/PixelsAssets/fond.jpg");
@@ -117,7 +124,6 @@ body {
 				width: 128px;
 				height: 88px;
 				background-size: 100%;
-				outline: 1px dotted black;
 				background-image: url("../assets/anims_Assets/waria_idle.gif");
 				&::after {
 					position: absolute;
@@ -146,14 +152,14 @@ body {
 				//idle {
 				&.idle {
 					background-image: url("../assets/anims_Assets/waria_idle.gif");
-					&::before {
-						left: 3px;
-					}
+					// &::before {
+					// 	left: 3px;
+					// }
 					&.left {
 						background-image: url("../assets/anims_Assets/waria_idle_l.gif");
-						&::before {
-							left: 65%;
-						}
+						// &::before {
+						// 	left: 65%;
+						// }
 					}
 				}
 				&.idle.crouch {
