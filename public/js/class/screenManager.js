@@ -9,9 +9,10 @@ const ROADDOM = document.getElementById('road-slider')
 // ------------------------------------- CLASS ----------------------
 // creating and adjusting the board to screen
 class ScreenManager {
-	constructor() {
+	constructor(leveldatas) {
+		if (WLOG) console.log('ScreenManagerleveldatas:'+leveldatas)
 		// default -------------------------------------------------
-		this.nbPan = 6;
+		this.nbPan = leveldatas.nbpan;
 		this.OriginalMoovingSpeed = 2 // pixels per refresh
 		this.OriginalScreenW = 640 // pixels
 		this.OriginalScreenH = 480 // pixels

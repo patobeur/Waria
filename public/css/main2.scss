@@ -19,7 +19,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-color: rgb(0, 0, 0);
 	.board {
 		position: relative;
@@ -204,7 +204,12 @@ body {
 				height: 100%;
 				background-color: antiquewhite;
 				color: rgb(0, 0, 0);
-			}
+				border-radius: 7px;
+				-webkit-border-radius: 7px;
+				-moz-border-radius: 7px;
+				-ms-border-radius: 7px;
+				-o-border-radius: 7px;
+}
 		}
 		#health {
 			position: absolute;

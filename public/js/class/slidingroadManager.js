@@ -1,14 +1,19 @@
 "use strict";
 // ------------------------------------- CLASS ----------------------
 class SlidingRoadManager {
-	constructor(slideDatas, name, hauteur, largeur, nbpan) {
+	constructor(level=1) {
 		if (WLOG) console.log("SlidingRoadManager Class Mounting!")
-		if (WLOG) console.log('slideDatas:' + slideDatas.nbpan)
 		this.divId = 'road-slider';
+		// --
+		this.levelDatas = {
+			1: {nbpan:6}
+		}
+		this.level = level
+		this.roadDatas = this.levelDatas[this.level]
 		// this.name = name;
 		// this.hauteur = hauteur;
 		// this.largeur = largeur;
-		this.nbPan = nbpan;
+		this.nbPan = this.roadDatas.nbpan;
 		this.playerX = 0;
 		this.actualX = 0;
 		this.movesize = 2 // pixels move when sliding forward or backward
@@ -19,12 +24,22 @@ class SlidingRoadManager {
 		const roadWidth = ((nbPan) * panWidth) // pixels 
 
 	}
+	get_LevelDatas(){
+		return this.roadDatas
+	}
+	set_nextLevel() {
+		this.level++
+	}
+	set_LevelDatas(){
+		this.roadDatas = this.levelDatas[this.level]
+	}
 	get_RoadDomInfo_Once() {
 
 	}
 	playforward(actions, isPressedKey) {
-		// this.Screen.get_slideDatas()
-		if (WLOG) console.log('slideDatas:WWWWWWWWWWW')
+		// this.Screen.levelDatas()
+		if (WLOG) console.log(this.get_LevelDatas())
+		
 		// if (isPressedKey) {
 		// 	let actualX = ROADDOM.style.left
 		// 	actualX = parseInt(actualX.replace('px', ''))
