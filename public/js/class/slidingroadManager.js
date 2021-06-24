@@ -17,29 +17,28 @@ class SlidingRoadManager {
 		this.roadXMax = ((this.roadDatas.nbpan - 1) * this.roadDatas.panW)  // pixel to win 
 		// this.roadWidth = ((this.roadDatas.nbpan) * this.roadDatas.panW) // pixels 
 	}
-	get_LevelDatas() {
+	get_LevelDatas() { // called by WariaGame _constructor in WariaGame.js
 		return this.roadDatas
 	}
-	playforward(playerdatas) {
+	playforward(playerdatas) { // called by set_ActionsAndPlay in WariaGame.js
 		// if (WLOG) console.log('playerdatas')
-		// if (WLOG) console.log(playerdatas)
-
 		if (playerdatas.isKeyPressed === true) {
 			if (playerdatas.actions.goRight && !playerdatas.actions.goLeft) {
-				if (playerdatas.playerx < (this.roadXMax + playerdatas.stats.movesize)) {
+				if (playerdatas.playerx < (this.roadXMax + playerdatas.stats.movesize - (playerdatas.stats.playerx * playerdatas.displayratio))) {
 					playerdatas.playerx = parseInt(playerdatas.playerx + playerdatas.stats.movesize)
-					ROADDOM.style.left = -(playerdatas.playerx * playerdatas.displayratio) + "px"
-					PLAYERDOM.style.left = ((playerdatas.playerx + playerdatas.defaultplayerx) * playerdatas.displayratio) + "px"
 				}
 			}
 			if (playerdatas.actions.goLeft && !playerdatas.actions.goRight) {
 				if (playerdatas.playerx > 0) {
 					playerdatas.playerx = parseInt(playerdatas.playerx - playerdatas.stats.movesize)
-					ROADDOM.style.left = -(playerdatas.playerx * playerdatas.displayratio) + "px"
-					PLAYERDOM.style.left = ((playerdatas.playerx + playerdatas.defaultplayerx) * playerdatas.displayratio) + "px"
 				}
 			}
+			ROADDOM.style.left = -(playerdatas.playerx * playerdatas.displayratio) + "px"
+			PLAYERDOM.style.left = ((playerdatas.playerx + playerdatas.defaultplayerx) * playerdatas.displayratio) + "px"
+
+			playerdatas.targetx = this.roadXMax
 			this.playerdatas = playerdatas
+			// if (WLOG) console.log(playerdatas) // ralentis le client de ouf !!!
 			return playerdatas
 		}
 		else {

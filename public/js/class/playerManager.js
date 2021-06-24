@@ -24,18 +24,19 @@ class PlayerManager {
 			archetype: archetype,
 			information: information,
 			defaultplayerx: 100,
+			displayratio: 1,
 			playerx: 0,
 			isKeyPressed: false,
-			displayratio: 1,
 			actions: this.archetypeActions[archetype].actions,
-			stats: this.archetypeActions[archetype].stats
+			stats: this.archetypeActions[archetype].stats,
+			targetx: 0
 		}
 		this.playerActions = this.archetypeActions[this.playerDatas.archetype].actions
 		// this.isKeyPressed = false
 		// if (WLOG) console.log("PlayerManager Class Mounted!")
 
 	}
-	set_Actions(actions, isKeyPressed) {
+	set_Actions(actions, isKeyPressed) { // called by set_ActionsAndPlay in WariaGame.js
 		this.playerDatas.actions = actions
 		this.playerDatas.isKeyPressed = isKeyPressed
 	}

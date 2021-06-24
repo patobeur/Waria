@@ -22,14 +22,14 @@ class WariaGame {
 	// 	this.levelCurrent++
 	// 	this.SlidingRoad.nextLevel()
 	// }
-	set_ActionsAndPlay(actions, isPressedKey) { // call from KeyboardManager
+	set_ActionsAndPlay(actions, isPressedKey) { // call from detectKeyPress() & detectKeyUnPress() in class keyboardManager.js
 		this.Player.set_Actions(actions, isPressedKey)
 		this.Player.playerDatas = this.SlidingRoad.playforward(this.Player.playerDatas) // need callback return
 		// if (WLOG) console.log(this.Player.playerDatas)
 	}
-	set_Action(actionname, action, isPressedKey) { // call from KeyboardManager
-		this.Player.set_Action(actionname, action, isPressedKey)
-	}
+	// set_Action(actionname, action, isPressedKey) { // call from KeyboardManager
+	// 	this.Player.set_Action(actionname, action, isPressedKey)
+	// }
 	set_Paused() { // call from KeyboardManager
 		this.paused = !this.paused // ???
 		// if (this.paused === true) {
@@ -46,7 +46,7 @@ class WariaGame {
 			// render scene
 			// do that
 
-			// mobil object behaviour 
+			// spam MOB -> mobile objects behaviour 
 		}
 		else {
 			console.log("game paused !")
