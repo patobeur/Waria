@@ -23,7 +23,7 @@ class KeyboardManager {
 	get_PlayerDomInfo_Once() {
 	}
 	detectKeyPress(eventkeydown) {
-		if (WLOG) console.log(eventkeydown.keyCode, eventkeydown.code)
+		// if (WLOG) console.log(eventkeydown.keyCode, eventkeydown.code)
 		this.keys[WLANG].forEach(element => {// find if pressed key exist
 			if (element.keycode === eventkeydown.keyCode) {
 				this.Wactions = {
@@ -37,16 +37,13 @@ class KeyboardManager {
 					this.nbKeyPressed++
 					this.set_isKeyPressed()
 				}
-				NewGame.set_Actions(this.Wactions, this.isKeyPressed)
+				Journey.set_ActionsAndPlay(this.Wactions, this.isKeyPressed)
 				this.set_acting()
-			}
-			else if (27 === eventkeydown.keyCode) {
-				NewGame.set_Paused(true)
 			}
 		});
 	}
 	detectKeyUnPress(event) {
-		if (WLOG) console.log(event.keyCode, event.code)
+		// if (WLOG) console.log(event.keyCode, event.code)
 		if (event.code === "ArrowRight" || event.code === "KeyD") {
 			this.Wactions.goRight = false
 			this.Wactions.acting = ""
@@ -61,8 +58,11 @@ class KeyboardManager {
 			this.Wactions.acting = "idle"
 			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
+		if (27 === event.keyCode) {
+			Journey.set_Paused(true)
+		}
 		this.set_isKeyPressed()
-		NewGame.set_Actions(this.Wactions, this.isKeyPressed)
+		Journey.set_ActionsAndPlay(this.Wactions, this.isKeyPressed)
 		this.set_acting()
 	}
 	set_isKeyPressed() {

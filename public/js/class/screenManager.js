@@ -12,9 +12,11 @@ class ScreenManager {
 	constructor(leveldatas, playerdatas) {
 		// if (WLOG) console.log('ScreenManagerleveldatas:' + leveldatas)
 		// if (WLOG) console.log(playerdatas)
+		// local playersDatas
+		this.playersDatas = playerdatas
 		// default -------------------------------------------------
 		this.nbPan = leveldatas.nbpan;
-		this.OriginalMoovingSpeed = 2 // pixels per refresh
+		this.OriginalMoovingSpeed = playerdatas.movesize // pixels per refresh
 		this.OriginalScreenW = 640
 		this.OriginalScreenH = 480
 		this.OriginalPanW = this.OriginalScreenW
@@ -23,7 +25,9 @@ class ScreenManager {
 		this.OriginalroadTop = 0
 		this.OriginalPlayerW = 64 * 2
 		this.OriginalPlayerH = 44 * 2
-		this.OriginalPlayerX = playerdatas.defaultplayerx // pixels from left
+		// player x calculation
+		this.PlayerX = playerdatas.playerx
+		this.defaultPlayerX = playerdatas.defaultplayerx
 
 		this.OriginalroadFloorY = 272// pixels from top
 		// Init ----------------------------------------------------
@@ -35,7 +39,7 @@ class ScreenManager {
 		this.PlayerW = this.OriginalPlayerW
 		this.PlayerH = this.OriginalPlayerH
 		this.playerTop = this.roadFloorY - this.PlayerH
-		this.PlayerX = this.OriginalPlayerX
+		// --
 		this.ScreenRatio = 1 // <---------------------- SCREEN RATIO
 		this.ScreenDisplayVertical = false // <------ SCREEN DISPLAY
 		this.calcWinSizeRatio()
@@ -45,6 +49,9 @@ class ScreenManager {
 		// SCREENDOM.style.height = "100vh"
 		if (WLOG) console.log("ScreenManager Class Mounted!")
 	}
+	// get_playerDatas() {
+	// 	return this.playersDatas
+	// }
 	get_slideDatas() {
 		console.log('slideDatas:')
 		console.log({
@@ -69,7 +76,8 @@ class ScreenManager {
 		this.PlayerH = parseInt(this.OriginalPlayerH * this.ScreenRatio)
 		this.roadFloorY = parseInt(this.OriginalroadFloorY * this.ScreenRatio)
 		this.roadTop = parseInt(((this.OriginalScreenH - this.OriginalPanH) / 2) * this.ScreenRatio)
-		this.PlayerX = parseInt(this.OriginalPlayerX * this.ScreenRatio)
+		// player x calculation
+		this.PlayerX = parseInt((this.playersDatas.defaultplayerx + this.playersDatas.playerx) * this.ScreenRatio)
 		// ------------------------------
 		this.playerTop = this.roadFloorY - this.PlayerH
 		// ------------------------------
@@ -88,6 +96,11 @@ class ScreenManager {
 		this.ScreenDisplayVertical
 			? BOARDDOM.classList.add('vertical') // vetical ratio
 			: BOARDDOM.classList.remove('vertical') // horizontal ratio
+		// update Player Datas
+		this.playersDatas.displayratio = this.ScreenRatio
+		// this.playersDatas.playerx = this.PlayerX * this.ScreenRatio
+		// this.playersDatas.defaultplayerx = this.defaultPlayerX * this.ScreenRatio
+
 	}
 
 	calcWinSizeRatio = () => {

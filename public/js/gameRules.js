@@ -2,8 +2,9 @@
 const WLOG = true; // console.log actif
 const WLANG = 'fr_FR';
 const WVERS = 'alpha.0.2';
+const REFRESHINTERV = 100 // microsec interval refresh
 
-let NewGame = new WariaGame("Waria", "Warrior", "what else !!")
+let Journey = new WariaGame("Waria", "Warrior", "what else !!")
 
 // Calculate the viewport size
-window.onresize = (eventResize) => { NewGame.Screen.calcWinSizeRatio() };
+window.onresize = (eventResize) => { Journey.Screen.calcWinSizeRatio() };

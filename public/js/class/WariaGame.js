@@ -14,8 +14,7 @@ class WariaGame {
 		this.Keyboard = new KeyboardManager();
 		this.paused = false
 
-		this.intervalSize = 1000; // microsec interval renderScene
-		setInterval(this.renderScene(), this.intervalSize)
+		setInterval(this.renderScene(), REFRESHINTERV)
 		if (WLOG) console.log("WariaGame Class Mounted!")
 	}
 
@@ -23,33 +22,31 @@ class WariaGame {
 	// 	this.levelCurrent++
 	// 	this.SlidingRoad.nextLevel()
 	// }
-	set_Actions(actions, isPressedKey) { // call from KeyboardManager
+	set_ActionsAndPlay(actions, isPressedKey) { // call from KeyboardManager
 		this.Player.set_Actions(actions, isPressedKey)
-		let newfff = this.SlidingRoad.playforward(this.Player.playerDatas) // need fallback return
-		console.log(newfff)
+		this.Player.playerDatas = this.SlidingRoad.playforward(this.Player.playerDatas) // need callback return
+		// if (WLOG) console.log(this.Player.playerDatas)
 	}
 	set_Action(actionname, action, isPressedKey) { // call from KeyboardManager
 		this.Player.set_Action(actionname, action, isPressedKey)
 	}
 	set_Paused() { // call from KeyboardManager
-		// this.paused = !this.paused // ???
-		if (this.paused === true) {
-			this.paused = false
-			// setInterval(this.renderScene(), this.intervalSize)
-		} else {
-			this.paused = true
-			// clearInterval(this.renderScene)
-			console.log("game paused")
-		}
-
-	}
-	get_ScreenDomInfo_Once() {
-
+		this.paused = !this.paused // ???
+		// if (this.paused === true) {
+		// 	this.paused = false
+		// 	// setInterval(this.renderScene(), REFRESHINTERV)
+		// } else {
+		// 	this.paused = true
+		// 	// clearInterval(this.renderScene)
+		// }
+		console.log("Useless -> Paused:" + (this.paused ? "true" : "false"))
 	}
 	renderScene() {
 		if (!this.paused) {
 			// render scene
 			// do that
+
+			// mobil object behaviour 
 		}
 		else {
 			console.log("game paused !")
