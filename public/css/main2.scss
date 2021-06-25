@@ -28,18 +28,19 @@ body {
 		position: relative;
 		// background-color: rgba(51, 255, 0, 0.26);
 		width: 100%;
-		height: 100%;
 		display: flex;
 		align-items: center;
 		overflow-x: hidden;
+		height: 100vh;
 		transition: transform 0.5s ease-in;
 		&.vertical {
 			transform: rotate(90deg);
 		}
 		#road-slider {
 			position: absolute;
-			background-image: url("../assets/PixelsAssets/fond.jpg");
+			// background-image: url("../assets/PixelsAssets/fond.jpg");
 			background-position: left bottom;
+			background-size: auto 100%;
 			.objet {
 				position: absolute;
 				bottom: 85px;
@@ -204,11 +205,12 @@ body {
 				}
 			}
 			#ratio {
-				position: absolute;
-				bottom: 5px;
-				left: 5px;
-				right: 5px;
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
 				height: 20px;
+				width: 100%;
+				background-color: rgb(172, 105, 17);
 				.progress {
 					position: relative;
 					width: 0%;
@@ -234,6 +236,22 @@ body {
 					color: rgb(255, 0, 0);
 				}
 			}
+		}
+	}
+	#paused {
+		display: none;
+		position: absolute;
+		background-color: brown;
+		text-transform: uppercase;
+		font-size: 3rem;
+		line-height: 3rem;
+		border-radius: 1rem;
+		padding: 1rem;
+		border: 2px solid white;
+		&.active {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 	.console {

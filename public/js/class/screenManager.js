@@ -1,113 +1,62 @@
 "use strict";
-const SCREENDOM = document.getElementById('screen')
+// const SCREENDOM = document.getElementById('screen')
 const BOARDDOM = document.getElementById('board')
 const ROADDOM = document.getElementById('road-slider')
+const IMGPATH = "assets/PixelsAssets/"
+// ------------------------------------- CLASS ----------------------
+// adjusting the board (% ?? or pixels)
+// adjusting the road centered (% ?? or pixels)
 
-// ------------------------------------- CLASS ----------------------
-// adjusting the road (% ?? or pixels)
-// and make it move when keys [->,<-,Q or D] are pressed
-// ------------------------------------- CLASS ----------------------
-// creating and adjusting the board to screen
 class ScreenManager {
 	constructor(leveldatas, playerdatas) {
-		// if (WLOG) console.log('ScreenManagerleveldatas:' + leveldatas)
-		// if (WLOG) console.log(playerdatas)
-		// local playersDatas
-		this.playersDatas = playerdatas
-		// default -------------------------------------------------
-		this.nbPan = leveldatas.nbpan;
-		this.OriginalMoovingSpeed = playerdatas.movesize // pixels per refresh
-		this.OriginalScreenW = 640
-		this.OriginalScreenH = 480
-		this.OriginalPanW = this.OriginalScreenW
-		this.OriginalPanH = 350
-
-		this.OriginalroadTop = 0
-		this.OriginalPlayerW = 64 * 2
-		this.OriginalPlayerH = 44 * 2
-		// player x calculation
-		this.PlayerX = playerdatas.playerx
-		this.defaultPlayerX = playerdatas.defaultplayerx
-
-		this.OriginalroadFloorY = 272// pixels from top
-		// Init ----------------------------------------------------
-		this.ScreenW = this.OriginalScreenW
-		this.ScreenH = this.OriginalScreenH
-		this.roadTop = this.OriginalroadTop
-		this.roadFloorY = this.OriginalroadFloorY
-		this.MoovingSpeed = this.OriginalMoovingSpeed
-		this.PlayerW = this.OriginalPlayerW
-		this.PlayerH = this.OriginalPlayerH
-		this.playerTop = this.roadFloorY - this.PlayerH
-		// --
-		this.ScreenRatio = 1 // <---------------------- SCREEN RATIO
-		this.ScreenDisplayVertical = false // <------ SCREEN DISPLAY
-		this.calcWinSizeRatio()
-		ROADDOM.style.backgroundSize = "auto 100%"
-		// BOARDDOM.style.width = "100%"
-		// SCREENDOM.style.width = "100%"
-		// SCREENDOM.style.height = "100vh"
 		if (WLOG) console.log("ScreenManager Class Mounted!")
+		// local Datas
+		this.playerDatas = playerdatas
+		this.levelDatas = leveldatas
+		// --
+		this.screenDisplayVertical = false // <------ SCREEN DISPLAY
+		// default fixed communs datas ------------------------------
+		this.screenW = 640
+		this.screenH = 480
+		this.OriginalPanH = this.levelDatas.panH
+		this.OriginalPanW = this.levelDatas.panW
+		ROADDOM.style.backgroundImage = "url('" + IMGPATH + this.levelDatas.bgimg + "')"
+		// --
+		this.getRatioAndResizeScreen()
 	}
-	// get_playerDatas() {
-	// 	return this.playersDatas
-	// }
-	get_slideDatas() {
-		console.log('slideDatas:')
-		console.log({
-			nbpan: this.nbPan,
-			panWidth: this.OriginalPanW,
-			movesize: this.MoovingSpeed
-		})
-		return {
-			nbpan: this.nbPan,
-			panWidth: this.OriginalPanW,
-			movesize: this.MoovingSpeed
-		}
-	}
-	get_ScreenDomInfo_Once() {
-
-	}
-	AdjustScreenManagerDomInfo() {
-		this.MoovingSpeed = parseInt(this.OriginalMoovingSpeed * this.ScreenRatio)
-		this.ScreenW = parseInt(this.OriginalScreenW * this.ScreenRatio)
-		this.ScreenH = parseInt(this.OriginalScreenH * this.ScreenRatio)
-		this.PlayerW = parseInt(this.OriginalPlayerW * this.ScreenRatio)
-		this.PlayerH = parseInt(this.OriginalPlayerH * this.ScreenRatio)
-		this.roadFloorY = parseInt(this.OriginalroadFloorY * this.ScreenRatio)
-		this.roadTop = parseInt(((this.OriginalScreenH - this.OriginalPanH) / 2) * this.ScreenRatio)
-		// player x calculation
-		this.PlayerX = parseInt((this.playersDatas.defaultplayerx + this.playersDatas.playerx) * this.ScreenRatio)
-		// ------------------------------
-		this.playerTop = this.roadFloorY - this.PlayerH
-		// ------------------------------
+	resizeScreenElements() {
 		let px = "px"
-		BOARDDOM.style.height = "100vh" //this.ScreenH + px
-		BOARDDOM.style.width = (this.ScreenDisplayVertical ? this.ScreenH : this.ScreenW) + px
-		// ------------------------------
-		ROADDOM.style.width = parseInt(this.nbPan * this.OriginalScreenW * this.ScreenRatio) + px
-		ROADDOM.style.height = parseInt(this.OriginalPanH * this.ScreenRatio) + px
-		// ------------------------------
-		PLAYERDOM.style.top = this.playerTop + px
-		PLAYERDOM.style.width = this.PlayerW + px
-		PLAYERDOM.style.height = this.PlayerH + px
-		PLAYERDOM.style.left = this.PlayerX + px
-		// SET DISPLAY ------------------
-		this.ScreenDisplayVertical
-			? BOARDDOM.classList.add('vertical') // vetical ratio
-			: BOARDDOM.classList.remove('vertical') // horizontal ratio
-		// update Player Datas
-		this.playersDatas.displayratio = this.ScreenRatio
-		// this.playersDatas.playerx = this.PlayerX * this.ScreenRatio
-		// this.playersDatas.defaultplayerx = this.defaultPlayerX * this.ScreenRatio
+		// Board
+		BOARDDOM.style.width = (this.screenDisplayVertical ? parseInt(this.screenH * this.playerDatas.display.displayratio) : parseInt(this.screenW * this.playerDatas.display.displayratio)) + px
+		// road sizing
+		ROADDOM.style.width = parseInt(this.levelDatas.nbpan * this.screenW * this.playerDatas.display.displayratio) + px
+		ROADDOM.style.height = parseInt(this.OriginalPanH * this.playerDatas.display.displayratio) + px
+		// road sliding
+		ROADDOM.style.left = -(this.playerDatas.display.playerx * this.playerDatas.display.displayratio) + px
+		// player
+		PLAYERDOM.style.top = parseInt((this.levelDatas.floorY - this.playerDatas.display.OriginalPlayerH) * this.playerDatas.display.displayratio) + px
+		PLAYERDOM.style.width = parseInt(this.playerDatas.display.OriginalPlayerW * this.playerDatas.display.displayratio) + px
+		PLAYERDOM.style.height = parseInt(this.playerDatas.display.OriginalPlayerH * this.playerDatas.display.displayratio) + px
+		PLAYERDOM.style.left = parseInt((this.playerDatas.display.defaultplayerx + this.playerDatas.display.playerx) * this.playerDatas.display.displayratio) + px
+		// cursor
+		// ??
+
+		// health 
+		// ??
+
+		// SET DISPLAY
+		// this.screenDisplayVertical
+		// 	? BOARDDOM.classList.add('vertical') // vetical ratio
+		// 	: BOARDDOM.classList.remove('vertical') // horizontal ratio
 
 	}
 
-	calcWinSizeRatio = () => {
-		// this.ScreenDisplayVertical = (window.innerHeight < window.innerWidth) ? false : true
-		this.ScreenRatio = this.ScreenDisplayVertical
-			? window.innerHeight / this.OriginalScreenH // vetical ratio
-			: window.innerWidth / this.OriginalScreenW // horizontal ratio
-		this.AdjustScreenManagerDomInfo()
+	getRatioAndResizeScreen = () => {
+		// update Player Datas
+		this.playerDatas.display.displayratio = this.screenDisplayVertical
+			? window.innerHeight / this.screenH // vetical ratio
+			: window.innerWidth / this.screenW // horizontal ratio
+		// refresh BoardScreen
+		this.resizeScreenElements()
 	};
 }
