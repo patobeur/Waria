@@ -1,73 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Waria !</title>
+		<title>Waria ! HTML | CSS | JS</title>
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/main.css">
 	</head>
 
 	<body>
 		<section id="screen">
-			<div class="board">
+			<div id="board" class="board">
 				<div id="road-slider" class="road">
-					<div class="info inf-0">
-						<!-- Hello ! I'am Waria<br>
-						i Have One Purpose.<br>
-						Discover Css and Js<br> -->
-						Hy ! My name is Waria !<br>
-						Do you know Kungfu ??<br>
+					<div id="player" class="outlined"></div>
+					<div id="cursor">
+						<div id="progress" class="progress">00</div>
 					</div>
-					<div class="info inf-1">
-						Press [Right] Arrow Key to move rigth.
-					</div>
-					<div class="info inf-2">
-						Press [Left] Arrow Key to move Left.
-					</div>
-					<div class="info inf-3">
-						You may use [Q] and [D] either !!
-					</div>
-					<div class="info inf-4">
-						Press [C] to Crouch...
-					</div>
-					<div class="info inf-5">
-						Try [left CTRL] to Swing yout Sword...
-					</div>
-					<div class="info inf-6">
-						Some keys to find in the futurs
-					</div>
-					<div class="info inf-7">
-						Thx for the try !<br>
-						Hope you'll find more stuff<br>
-						Next time ;)
-					</div>
-					<div id="obj_0" class="objet golden-key"></div>
-					<div id="obj_1" class="objet silver-key"></div>
-					<div id="obj_2" class="objet candle"></div>
+					<div id="health" class="health"><span>♥♥</span>♡♡♡</div>
 				</div>
-				<div id="player" class="idle"></div>
-				<div class="ratio">
-					<div id="ratio-cursor" class="progress">00</div>
-				</div>
-				<div id="health" class="health"><span>♥♥</span>♡♡♡</div>
 			</div>
-			<div class="console">
-				<div id="isPressedKey"></div>
-				<div id="nbPressedKey"></div>
-				<div id="acting"></div>
-				<div id="facing"></div>
-				<div id="standing"></div>
-
+			<div id="console" class="console">
+				<div id="isKeyPressed">isKeyPressed</div>
+				<div id="nbKeyPressed">nbKeyPressed</div>
+				<div id="acting">acting</div>
+				<div id="facing">facing</div>
+				<div id="standing">standing</div>
 			</div>
-			<div id="standing">
+			<div id="links">
 				<a href="https://github.com/patobeur/Waria" target="_blank">https://github.com/patobeur/Waria</a> ♡♡♡ !
-				<a href="fromscratch.html" target="_blank">fromscratch !</a>
 			</div>
+			<div id="paused">Game Paused ! </div>
 		</section>
-		<script id="js-main" src="js/main.js"></script>
+		<script id="js-screenManager" src="js/class/ini.js"></script>
+		<script id="js-screenManager" src="js/class/screenManager.js"></script>
+		<script id="js-playerManager" src="js/class/playerManager.js"></script>
+		<script id="js-keyboardManager" src="js/class/keyboardManager.js"></script>
+		<script id="js-slidingroadManager" src="js/class/slidingroadManager.js"></script>
+		<script id="js-colissionsManager" src="js/class/colissionsManager.js"></script>
+		<script id="js-WariaGame" src="js/class/WariaGame.js"></script>
+		<script id="js-gameRules" src="js/gameRules.js"></script>
 	</body>
 
 </html>

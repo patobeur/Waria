@@ -8,20 +8,36 @@
   --playernamespeed: 0.5789s;
 }
 
+body {
+  overflow: hidden;
+}
+
+.outlined {
+  outline: 1px dotted black;
+}
+
 #screen {
-  position: absolute;
-  top: calc(50% - 240px);
-  left: calc(50% - 320px);
-  width: 640px;
-  height: 480px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
   background-color: black;
 }
 
 #screen .board {
   position: relative;
-  background-color: rgba(16, 15, 17, 0.26);
   width: 100%;
-  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,17 +45,26 @@
       -ms-flex-align: center;
           align-items: center;
   overflow-x: hidden;
+  height: 100vh;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  transition: -webkit-transform 0.5s ease-in;
+  transition: transform 0.5s ease-in;
+  transition: transform 0.5s ease-in, -webkit-transform 0.5s ease-in;
+  overflow: hidden;
 }
 
-#screen .board .road {
+#screen .board.vertical {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+#screen .board #road-slider {
   position: absolute;
-  top: calc((480px - 350px) / 2);
-  height: 350px;
-  background-image: url("../assets/PixelsAssets/fond.jpg");
   background-position: left bottom;
+  background-size: auto 100%;
 }
 
-#screen .board .road .objet {
+#screen .board #road-slider .objet {
   position: absolute;
   bottom: 85px;
   width: 16px;
@@ -48,7 +73,7 @@
   background-position: left bottom;
 }
 
-#screen .board .road .objet::before {
+#screen .board #road-slider .objet::before {
   position: absolute;
   top: -15px;
   width: -webkit-max-content;
@@ -56,34 +81,34 @@
   width: max-content;
 }
 
-#screen .board .road .objet.golden-key {
-  background-image: url("../assets/PixelsAssets/golden-key.png");
+#screen .board #road-slider .objet.golden-key {
+  background-image: url("../PixelsAssets/golden-key.png");
   left: 2472px;
 }
 
-#screen .board .road .objet.golden-key::before {
+#screen .board #road-slider .objet.golden-key::before {
   content: "golden-key";
 }
 
-#screen .board .road .objet.silver-key {
-  background-image: url("../assets/PixelsAssets/silver-key.png");
+#screen .board #road-slider .objet.silver-key {
+  background-image: url("../PixelsAssets/silver-key.png");
   left: 2372px;
 }
 
-#screen .board .road .objet.silver-key::before {
+#screen .board #road-slider .objet.silver-key::before {
   content: "silver-key";
 }
 
-#screen .board .road .objet.candle {
-  background-image: url("../assets/PixelsAssets/candle.png");
+#screen .board #road-slider .objet.candle {
+  background-image: url("../PixelsAssets/candle.png");
   left: 50px;
 }
 
-#screen .board .road .objet.candle::before {
+#screen .board #road-slider .objet.candle::before {
   content: "Candle";
 }
 
-#screen .board .road .info {
+#screen .board #road-slider .info {
   position: absolute;
   top: calc(10%);
   width: -webkit-max-content;
@@ -96,69 +121,70 @@
   padding: 1rem;
 }
 
-#screen .board .road .info.inf-0 {
+#screen .board #road-slider .info.inf-0 {
   top: calc(10%);
   left: 1700px;
   text-align: center;
   font-size: 1.5rem;
 }
 
-#screen .board .road .info.inf-1 {
+#screen .board #road-slider .info.inf-1 {
   top: calc(10%);
   left: 100px;
 }
 
-#screen .board .road .info.inf-2 {
+#screen .board #road-slider .info.inf-2 {
   top: calc(35%);
   left: 350px;
 }
 
-#screen .board .road .info.inf-3 {
+#screen .board #road-slider .info.inf-3 {
   top: calc(15%);
   left: 650px;
 }
 
-#screen .board .road .info.inf-4 {
+#screen .board #road-slider .info.inf-4 {
   top: calc(25%);
   left: 950px;
 }
 
-#screen .board .road .info.inf-5 {
+#screen .board #road-slider .info.inf-5 {
   top: calc(5%);
   left: 1250px;
 }
 
-#screen .board .road .info.inf-6 {
+#screen .board #road-slider .info.inf-6 {
   top: calc(15%);
   left: 2300px;
 }
 
-#screen .board .road .info.inf-7 {
+#screen .board #road-slider .info.inf-7 {
   top: calc(50%);
   left: 2550px;
 }
 
-#screen .board #player {
+#screen .board #road-slider #player {
   position: absolute;
-  bottom: 150px;
+  top: 295px;
   width: 128px;
   height: 88px;
   background-size: 100%;
+  background-image: url("../assets/archetypes/warrior/waria_idle.gif");
 }
 
-#screen .board #player::after {
+#screen .board #road-slider #player::after {
   position: absolute;
   content: "div#player";
   top: -1.2rem;
   right: 0;
 }
 
-#screen .board #player::before {
+#screen .board #road-slider #player::before {
   position: absolute;
   font-size: 0.8rem;
   content: "Waria [1]";
   top: -5px;
-  left: 30px;
+  left: 30%;
   border: 1px solid black;
   background-color: rgba(255, 255, 255, 0.877);
   border-radius: 5px;
@@ -176,74 +202,86 @@
   /* IE 10+, Fx 29+ */
 }
 
-#screen .board #player.idle {
-  background-image: url("../assets/anims_Assets/waria_idle.gif");
+#screen .board #road-slider #player.idle {
+  background-image: url("../assets/archetypes/warrior/waria_idle.gif");
 }
 
-#screen .board #player.idle.left {
-  background-image: url("../assets/anims_Assets/waria_idle_l.gif");
+#screen .board #road-slider #player.idle.left {
+  background-image: url("../assets/archetypes/warrior/waria_idle_l.gif");
 }
 
-#screen .board #player.idle.crouch {
-  background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
+#screen .board #road-slider #player.idle.crouch {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
 }
 
-#screen .board #player.idle.crouch.left {
-  background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
+#screen .board #road-slider #player.idle.crouch.left {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
 }
 
-#screen .board #player.run {
-  background-image: url("../assets/anims_Assets/waria_run.gif");
+#screen .board #road-slider #player.run {
+  background-image: url("../assets/archetypes/warrior/waria_run.gif");
 }
 
-#screen .board #player.run::before {
-  left: -5px;
+#screen .board #road-slider #player.run::before {
+  left: 3px;
 }
 
-#screen .board #player.run.left {
-  background-image: url("../assets/anims_Assets/waria_run_l.gif");
+#screen .board #road-slider #player.run.left {
+  background-image: url("../assets/archetypes/warrior/waria_run_l.gif");
 }
 
-#screen .board #player.run.left::before {
-  left: 65px;
+#screen .board #road-slider #player.run.left::before {
+  left: 65%;
 }
 
-#screen .board #player.jump {
-  background-image: url("../assets/anims_Assets/waria_jump.gif");
+#screen .board #road-slider #player.jump {
+  background-image: url("../assets/archetypes/warrior/waria_jump.gif");
 }
 
-#screen .board #player.jump.left {
-  background-image: url("../assets/anims_Assets/waria_jump_l.gif");
+#screen .board #road-slider #player.jump.left {
+  background-image: url("../assets/archetypes/warrior/waria_jump_l.gif");
 }
 
-#screen .board #player.attack {
-  background-image: url("../assets/anims_Assets/waria_dask_attack.gif");
+#screen .board #road-slider #player.attack {
+  background-image: url("../assets/archetypes/warrior/waria_dask_attack.gif");
 }
 
-#screen .board #player.attack.left {
-  background-image: url("../assets/anims_Assets/waria_dask_attack_l.gif");
+#screen .board #road-slider #player.attack.left {
+  background-image: url("../assets/archetypes/warrior/waria_dask_attack_l.gif");
 }
 
-#screen .board #player.gocrouch {
-  background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
+#screen .board #road-slider #player.gocrouch {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
 }
 
-#screen .board #player.gocrouch.left {
-  background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
+#screen .board #road-slider #player.gocrouch.left {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
 }
 
-#screen .board .ratio {
+#screen .board #road-slider #cursor {
   position: absolute;
-  bottom: 5px;
-  left: 5px;
-  right: 5px;
-  height: 20px;
+  bottom: 8px;
+  left: 8px;
+  height: 25px;
+  width: 200px;
+  background-color: black;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#screen .board .ratio .progress {
-  position: relative;
-  width: 0%;
-  height: 100%;
+#screen .board #road-slider #cursor .progress {
+  position: absolute;
+  left: 0;
+  height: 1rem;
   background-color: antiquewhite;
   color: black;
   border-radius: 7px;
@@ -253,13 +291,52 @@
   -o-border-radius: 7px;
 }
 
-#screen .board #health {
+#screen .board #road-slider #health {
   position: absolute;
-  left: 5px;
-  top: 75px;
+  left: 16px;
+  top: 8px;
   color: white;
-  color: rgba(247, 6, 127, 0.562);
-  font-size: 2rem;
+  font-size: 3rem;
+  text-shadow: 5px 5px 5px black;
+}
+
+#screen .board #road-slider #health span {
+  color: red;
+}
+
+#screen #paused {
+  display: none;
+  position: absolute;
+  background-color: brown;
+  text-transform: uppercase;
+  font-size: 3rem;
+  line-height: 3rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 2px solid white;
+}
+
+#screen #paused.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#screen .console {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  z-index: 10;
 }
 
 #screen .console div {

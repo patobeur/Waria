@@ -4,31 +4,44 @@
 	line-height: 1rem;
 }
 :root {
-	--playernamespeed: 0.5789s;
+	--playernamespeed: 0.5789s; // floating name over Waria
+}
+body {
+	overflow: hidden;
+}
+.outlined {
+	outline: 1px dotted black;
 }
 #screen {
-	position: absolute;
-	top: calc(50% - 240px);
-	left: calc(50% - 320px);
-	width: 640px;
-	height: 480px;
-	background-color: black;
-	// transform: scale(1.2);
+	// position: absolute;
+	// top: calc(50% - 240px);
+	// left: calc(50% - 320px);
+	// background-color: black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0);
 	.board {
 		position: relative;
-		background-color: rgba(16, 15, 17, 0.26);
+		// background-color: rgba(51, 255, 0, 0.26);
 		width: 100%;
-		height: 100%;
 		display: flex;
 		align-items: center;
 		overflow-x: hidden;
-		.road {
+		height: 100vh;
+		transition: transform 0.5s ease-in;
+		overflow: hidden;
+		&.vertical {
+			transform: rotate(90deg);
+		}
+		#road-slider {
 			position: absolute;
-			// width: 400%;
-			top: calc((480px - 350px) / 2);
-			height: 350px;
-			background-image: url("../assets/PixelsAssets/fond.jpg");
+			// background-image: url("../assets/PixelsAssets/fond.jpg");
 			background-position: left bottom;
+			background-size: auto 100%;
 			.objet {
 				position: absolute;
 				bottom: 85px;
@@ -42,21 +55,21 @@
 					width: max-content;
 				}
 				&.golden-key {
-					background-image: url("../assets/PixelsAssets/golden-key.png");
+					background-image: url("../PixelsAssets/golden-key.png");
 					left: 2472px;
 					&::before {
 						content: "golden-key";
 					}
 				}
 				&.silver-key {
-					background-image: url("../assets/PixelsAssets/silver-key.png");
+					background-image: url("../PixelsAssets/silver-key.png");
 					left: 2372px;
 					&::before {
 						content: "silver-key";
 					}
 				}
 				&.candle {
-					background-image: url("../assets/PixelsAssets/candle.png");
+					background-image: url("../PixelsAssets/candle.png");
 					left: 50px;
 					&::before {
 						content: "Candle";
@@ -107,119 +120,156 @@
 					left: 2550px;
 				}
 			}
-		}
-		#player {
-			position: absolute;
-			bottom: 150px;
-			width: 128px;
-			height: 88px;
-			background-size: 100%;
-			// outline: 1px dotted black;
-			&::after {
+			#player {
 				position: absolute;
-				content: "div#player";
-				top: -1.2rem;
-				right: 0;
-			}
-			&::before {
-				position: absolute;
-				font-size: 0.8rem;
-				content: "Waria [1]";
-				top: -5px;
-				left: 30px;
-				border: 1px solid black;
-				background-color: rgba(255, 255, 255, 0.877);
-				border-radius: 5px;
-				padding: 1px 5px;
-				transition: left 0.5s ease-out;
-				width: max-content;
-
-				-webkit-animation: playernamefloating var(--playernamespeed) infinite; /* Safari 4+ */
-				-moz-animation: playernamefloating var(--playernamespeed) infinite; /* Fx 5+ */
-				-o-animation: playernamefloating var(--playernamespeed) infinite; /* Opera 12+ */
-				animation: playernamefloating var(--playernamespeed) infinite; /* IE 10+, Fx 29+ */
-			}
-			//idle {
-			&.idle {
-				background-image: url("../assets/anims_Assets/waria_idle.gif");
-
-				&.left {
-					background-image: url("../assets/anims_Assets/waria_idle_l.gif");
+				top: 295px;
+				width: 128px;
+				height: 88px;
+				background-size: 100%;
+				background-image: url("../assets/archetypes/warrior/waria_idle.gif");
+				&::after {
+					position: absolute;
+					content: "div#player";
+					top: -1.2rem;
+					right: 0;
 				}
-			}
-			&.idle.crouch {
-				background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
-				&.left {
-					background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
-				}
-			}
-			//run
-			&.run {
-				background-image: url("../assets/anims_Assets/waria_run.gif");
 				&::before {
-					left: -5px;
+					position: absolute;
+					font-size: 0.8rem;
+					content: "Waria [1]";
+					top: -5px;
+					left: 30%;
+					border: 1px solid black;
+					background-color: rgba(255, 255, 255, 0.877);
+					border-radius: 5px;
+					padding: 1px 5px;
+					transition: left 0.5s ease-out;
+					width: max-content;
+
+					-webkit-animation: playernamefloating var(--playernamespeed) infinite; /* Safari 4+ */
+					-moz-animation: playernamefloating var(--playernamespeed) infinite; /* Fx 5+ */
+					-o-animation: playernamefloating var(--playernamespeed) infinite; /* Opera 12+ */
+					animation: playernamefloating var(--playernamespeed) infinite; /* IE 10+, Fx 29+ */
 				}
-				&.left {
-					background-image: url("../assets/anims_Assets/waria_run_l.gif");
+				//idle {
+				&.idle {
+					background-image: url("../assets/archetypes/warrior/waria_idle.gif");
+					// &::before {
+					// 	left: 3px;
+					// }
+					&.left {
+						background-image: url("../assets/archetypes/warrior/waria_idle_l.gif");
+						// &::before {
+						// 	left: 65%;
+						// }
+					}
+				}
+				&.idle.crouch {
+					background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
+					&.left {
+						background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
+					}
+				}
+				//run
+				&.run {
+					background-image: url("../assets/archetypes/warrior/waria_run.gif");
 					&::before {
-						left: 65px;
+						left: 3px;
+					}
+					&.left {
+						background-image: url("../assets/archetypes/warrior/waria_run_l.gif");
+						&::before {
+							left: 65%;
+						}
+					}
+				}
+				//jump
+				&.jump {
+					background-image: url("../assets/archetypes/warrior/waria_jump.gif");
+					&.left {
+						background-image: url("../assets/archetypes/warrior/waria_jump_l.gif");
+					}
+				}
+				//attack
+				&.attack {
+					background-image: url("../assets/archetypes/warrior/waria_dask_attack.gif");
+					&.left {
+						background-image: url("../assets/archetypes/warrior/waria_dask_attack_l.gif");
+					}
+				}
+				//gocrouch
+				&.gocrouch {
+					background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
+					&.left {
+						background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
 					}
 				}
 			}
-			//jump
-			&.jump {
-				background-image: url("../assets/anims_Assets/waria_jump.gif");
-				&.left {
-					background-image: url("../assets/anims_Assets/waria_jump_l.gif");
-				}
-			}
-			//attack
-			&.attack {
-				background-image: url("../assets/anims_Assets/waria_dask_attack.gif");
-				&.left {
-					background-image: url("../assets/anims_Assets/waria_dask_attack_l.gif");
-				}
-			}
-			//gocrouch
-			&.gocrouch {
-				background-image: url("../assets/anims_Assets/waria_gocrouch.gif");
-				&.left {
-					background-image: url("../assets/anims_Assets/waria_gocrouch_l.gif");
-				}
-			}
-		}
-		.ratio {
-			position: absolute;
-			bottom: 5px;
-			left: 5px;
-			right: 5px;
-			height: 20px;
-			.progress {
-				position: relative;
-				width: 0%;
-				height: 100%;
-				background-color: antiquewhite;
-				color: rgb(0, 0, 0);
+			#cursor {
+				position: absolute;
+				bottom: 8px;
+				left: 8px;
+				height: 25px;
+				width: 200px;
+				background-color: rgb(0, 0, 0);
 				border-radius: 7px;
 				-webkit-border-radius: 7px;
 				-moz-border-radius: 7px;
 				-ms-border-radius: 7px;
 				-o-border-radius: 7px;
+				display: flex;
+				// justify-content: center;
+				align-items: center;
+				.progress {
+					position: absolute;
+					left: 0;
+					height: 1rem;
+					background-color: antiquewhite;
+					color: rgb(0, 0, 0);
+					border-radius: 7px;
+					-webkit-border-radius: 7px;
+					-moz-border-radius: 7px;
+					-ms-border-radius: 7px;
+					-o-border-radius: 7px;
+				}
 			}
-		}
-		#health {
-			position: absolute;
-			left: 5px;
-			top: 75px;
-			color: white;
-			color: rgba(247, 6, 127, 0.562);
-			font-size: 2rem;
-			span {
-				// 📋
+			#health {
+				position: absolute;
+				left: 16px;
+				top: 8px;
+				color: white;
+				font-size: 3rem;
+				text-shadow: 5px 5px 5px black;
+				span {
+					// 📋
+					color: rgb(255, 0, 0);
+				}
 			}
 		}
 	}
+	#paused {
+		display: none;
+		position: absolute;
+		background-color: brown;
+		text-transform: uppercase;
+		font-size: 3rem;
+		line-height: 3rem;
+		border-radius: 1rem;
+		padding: 1rem;
+		border: 2px solid white;
+		&.active {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
 	.console {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		height: 100px;
+		width: max-content;
+		z-index: 10;
 		div {
 			background-color: rgb(214, 214, 214);
 		}
