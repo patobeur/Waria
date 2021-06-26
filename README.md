@@ -1,9 +1,7 @@
 # Waria
 Why not an humble and fun game using Css and Js only
 
-V1 demo : https://patobeur.github.io/Waria/public/
-
-V2 class ! https://patobeur.github.io/Waria/public/fromscratch.html (dealing with class tech !!)
+demo : https://patobeur.github.io/Waria/public/
 
 # inspiration/objectives :
 https://www.youtube.com/watch?v=IQjzFt8Sqpk
