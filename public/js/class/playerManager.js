@@ -1,21 +1,4 @@
 "use strict";
-const PLAYERDOM = document.getElementById('player')
-const RATIOCURSORDOM = document.getElementById('ratio')
-const PLAYERARCHETYPES = {
-	"Warrior": {
-		"stats": { movesize: 4, playerx: 100, health: 5, range: 1 },
-		"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
-	},
-	// "Wizard": {
-	// 	"stats": { movesize: 3, playerx: 100, health: 3, range: 10 },
-	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
-	// },
-	// "Ranger": {
-	// 	"stats": { movesize: 4, playerx: 100, health: 4, range: 5 },
-	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
-	// }
-}
-// ------------------------------------- PLAYER CLASS ---------------
 class PlayerManager {
 	constructor(playername, archetype, information) {
 		// if (WLOG) console.log("PlayerManager Class Mounted!")
@@ -34,7 +17,8 @@ class PlayerManager {
 				defaultplayerx: 100, // test
 				displayratio: 1, // test
 			},
-			targetx: 0 // px limit to win this lv /// refreshed by sliderroad
+			targetx: 0, // px limit to win this lv /// refreshed by sliderroad
+			coins: 0
 		}
 	}
 	set_Actions(actions) { // called by set_ActionsAndPlay in WariaGame.js

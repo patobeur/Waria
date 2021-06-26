@@ -1,16 +1,7 @@
 "use strict";
-const LEVELDATAS = {
-	1: { nbpan: 2, name: "#NiceDaytoBoot !", bossname: "HashTagmHell", panW: 1000, panH: 350, floorY: 305, bgimg: "fond5.jpg" },
-	2: { nbpan: 8, name: "Falling Shit Cascading", bossname: "SeeDouble Ace", panW: 500, panH: 350, floorY: 330, bgimg: "fond2.gif" },
-	3: { nbpan: 8, name: "Bottom:Root Path", bossname: "Silver Ass", panW: 1000, panH: 350, floorY: 325, bgimg: "fond3.png" },
-	4: { nbpan: 8, name: "Java's Crypte", bossname: "JiAce", panW: 626, panH: 375, floorY: 332, bgimg: "fond4.jpg" },
-	5: { nbpan: 8, name: "Last Level", bossname: "ConsoleLog", panW: 1000, panH: 350, floorY: 330, bgimg: "fond.jpg" },
-}
-// ------------------------------------- CLASS ----------------------
 class SlidingRoadManager {
 	constructor(playerdatas) {
-		// if (WLOG) console.log("SlidingRoadManager Class Mounting!")
-		this.divId = 'road-slider';
+		if (WLOG) console.log("SlidingRoadManager Class Mounting!")
 		this.playerDatas = playerdatas;
 		// --
 		this.roadDatas = LEVELDATAS[this.playerDatas.lv]
@@ -32,15 +23,16 @@ class SlidingRoadManager {
 					this.playerDatas.display.playerx = parseInt(this.playerDatas.display.playerx - this.playerDatas.stats.movesize)
 				}
 			}
-			ROADDOM.style.left = -(this.playerDatas.display.playerx * this.playerDatas.display.displayratio) + "px"
-			PLAYERDOM.style.left = ((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) * this.playerDatas.display.displayratio) + "px"
+			ROADDOM.style.left = -(this.playerDatas.display.playerx * this.playerDatas.display.displayratio) + PX
+			PLAYERDOM.style.left = ((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) * this.playerDatas.display.displayratio) + PX
 
-			// if (WLOG) console.log(playerdatas) // ralentis le client de ouf !!!
+			HEALTHDOM.style.left = parseInt((this.playerDatas.display.playerx * this.playerDatas.display.displayratio) + (8 * this.playerDatas.display.displayratio)) + PX
+			CURSORDOM.style.left = parseInt((this.playerDatas.display.playerx * this.playerDatas.display.displayratio) + (8 * this.playerDatas.display.displayratio)) + PX
 			return this.playerDatas
 		}
 		else {
-			// 	// do nothing ??
-			// return false
+			// do nothing ??
+			// return false ??
 			return playerdatas
 		}
 	}

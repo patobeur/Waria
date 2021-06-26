@@ -1,5 +1,4 @@
 "use strict";
-// ------------------------------------- CLASS ----------------------
 class KeyboardManager {
 	constructor() {
 		this.nbKeyPressed = 0

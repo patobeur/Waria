@@ -1,10 +1,9 @@
 "use strict";
-const PAUSEDDOM = document.getElementById('paused')
 // ------------------------------------- CLASS ----------------------
 // creating and adjusting the board to screen
 class WariaGame {
 	constructor(playername, archetype, information) {
-		this.set_LocalStorage(playername, archetype, information)
+		// this.set_LocalStorage(playername, archetype, information)
 		this.levelCurrent = 0;
 		this.Player = new PlayerManager(playername, archetype, information);
 		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas);
@@ -48,14 +47,14 @@ class WariaGame {
 			// spam MOB -> mobile objects behaviour 
 		}
 	}
-	set_LocalStorage(playername, archetype, information) {
-		// initialize
-		if (!(localStorage.WCoin && localStorage.WCoin >= 0)) {
-			localStorage.WCoin = 0
-			localStorage.WLv = 1
-			localStorage.WName = playername
-			localStorage.WArchetype = archetype
-			localStorage.Winfo = information
-		}
-	}
+	// set_LocalStorage(playername, archetype, information) {
+	// 	// initialize
+	// 	if (!(localStorage.WCoin && localStorage.WCoin >= 0)) {
+	// 		localStorage.WCoin = 0
+	// 		localStorage.WLv = 1
+	// 		localStorage.WName = playername
+	// 		localStorage.WArchetype = archetype
+	// 		localStorage.Winfo = information
+	// 	}
+	// }
 }
