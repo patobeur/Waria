@@ -16,16 +16,16 @@ https://www.vecteezy.com/vector-art/455691-seamless-western-desert-landscape-for
 # Testing Background slider so far !
 
 map1
-![map1](/bg_lvl_1.jpg?raw=true "map1")
+![map1](bg_lvl_1.jpg?raw=true "map1")
 
 map2
-![map2](/bg_lvl_2.gif?raw=true "map2")
+![map2](bg_lvl_2.gif?raw=true "map2")
 
 map3
-![map3](/bg_lvl_3.jpg?raw=true "map3")
+![map3](bg_lvl_3.jpg?raw=true "map3")
 
 map4
-![map4](/bg_lvl_4.jpg?raw=true "map4")
+![map4](bg_lvl_4.jpg?raw=true "map4")
 
 map5
-![map5](/bg_lvl_5.jpg?raw=true "map5")
+![map5](bg_lvl_5.jpg?raw=true "map5")
