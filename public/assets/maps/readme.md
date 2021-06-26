@@ -19,7 +19,7 @@ Level 1 - #NiceDayToRun ! / bossname: "HashTagMHell"
 
 ![map1](bg_lvl_1.jpg?raw=true "map1")
 
-Level 2 - Falling Shit Cascading / bossname: "SeeDouble Ace"
+Level 2 - Falling Sheet Cascading / bossname: "SeeDouble Ace"
 
 ![map2](bg_lvl_2.gif?raw=true "map2")
 

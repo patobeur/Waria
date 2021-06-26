@@ -8,7 +8,7 @@ const PX = "px"
 // slidingroadmanager
 const LEVELDATAS = {
 	1: { nbpan: 2, name: "#NiceDayToRun !", bossname: "HashTagMHell", panW: 1000, panH: 350, floorY: 270, bgimg: "bg_lvl_1.jpg" },
-	2: { nbpan: 8, name: "Falling Shit Cascading", bossname: "SeeDouble Ace", panW: 500, panH: 350, floorY: 330, bgimg: "fond2.gif" },
+	2: { nbpan: 8, name: "Falling Sheet Cascading", bossname: "SeeDouble Ace", panW: 500, panH: 350, floorY: 330, bgimg: "fond2.gif" },
 	3: { nbpan: 8, name: "Bottom:Root Path", bossname: "Silver Ass", panW: 1000, panH: 350, floorY: 325, bgimg: "fond3.png" },
 	4: { nbpan: 8, name: "Java's Crypte", bossname: "JiAce", panW: 626, panH: 375, floorY: 332, bgimg: "fond4.jpg" },
 	5: { nbpan: 8, name: "Last Level", bossname: "ConsoleLog", panW: 1000, panH: 350, floorY: 330, bgimg: "fond.jpg" },
