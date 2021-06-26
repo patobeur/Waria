@@ -11,6 +11,12 @@ body {
 }
 .outlined {
 	outline: 1px dotted black;
+	&::after {
+		position: absolute;
+		content: "div#player";
+		top: -1.2rem;
+		right: 0;
+	}
 }
 #screen {
 	// position: absolute;
@@ -127,12 +133,6 @@ body {
 				height: 88px;
 				background-size: 100%;
 				background-image: url("../assets/archetypes/warrior/waria_idle.gif");
-				&::after {
-					position: absolute;
-					content: "div#player";
-					top: -1.2rem;
-					right: 0;
-				}
 				&::before {
 					position: absolute;
 					font-size: 0.8rem;

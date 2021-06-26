@@ -15,17 +15,22 @@ https://www.vecteezy.com/vector-art/455691-seamless-western-desert-landscape-for
 
 # Testing Background slider so far !
 
-map1
+Level 1 - #NiceDayToRun ! / bossname: "HashTagMHell"
+
 ![map1](bg_lvl_1.jpg?raw=true "map1")
 
-map2
+Level 2 - Falling Shit Cascading / bossname: "SeeDouble Ace"
+
 ![map2](bg_lvl_2.gif?raw=true "map2")
 
-map3
+Level 3 - Bottom:Root Path / bossname: "Silver Ass"
+
 ![map3](bg_lvl_3.jpg?raw=true "map3")
 
-map4
+Level 4 - Java's Crypte / bossname: "JiAce"
+
 ![map4](bg_lvl_4.jpg?raw=true "map4")
 
-map5
+Level 5 - Last Level / bossname: "ConsoleLog"
+
 ![map5](bg_lvl_5.jpg?raw=true "map5")

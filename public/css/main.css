@@ -16,6 +16,13 @@ body {
   outline: 1px dotted black;
 }
 
+.outlined::after {
+  position: absolute;
+  content: "div#player";
+  top: -1.2rem;
+  right: 0;
+}
+
 #screen {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -170,13 +177,6 @@ body {
   height: 88px;
   background-size: 100%;
   background-image: url("../assets/archetypes/warrior/waria_idle.gif");
-}
-
-#screen .board #road-slider #player::after {
-  position: absolute;
-  content: "div#player";
-  top: -1.2rem;
-  right: 0;
 }
 
 #screen .board #road-slider #player::before {
