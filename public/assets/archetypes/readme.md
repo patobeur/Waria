@@ -22,7 +22,7 @@ waria_jump
 waria_jump left
 ![waria_jump_l](public/assets/archetypes/warrior/waria_jump_l.gif?raw=true "waria_jump_l")
 
-waria_attack left
+waria_attack right
 ![waria_dask_attack](public/assets/archetypes/warrior/waria_dask_attack.gif?raw=true "waria_dask_attack")
 
 waria_attack left
