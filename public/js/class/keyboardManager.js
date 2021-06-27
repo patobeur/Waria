@@ -82,7 +82,7 @@ class KeyboardManager {
 		else {
 			if (WLOG) console.log("error while counting pressed key !!!")
 		}
-		this.displayConsole()
+		this.displayConsole(false)
 	}
 	set_acting() {
 		if (this.isKeyPressed === false) {
@@ -101,6 +101,7 @@ class KeyboardManager {
 		document.getElementById("acting").innerHTML = "acting:" + this.Wactions.acting;
 		document.getElementById("facing").innerHTML = "facing:" + this.Wactions.facing;
 		document.getElementById("standing").innerHTML = "standing:" + this.Wactions.standing;
+		document.getElementById("hp").innerHTML = "hp:" + this.playerDatas.stats.hp;
 	}
 }
 CONSOLE.addEventListener('click', (e) => {

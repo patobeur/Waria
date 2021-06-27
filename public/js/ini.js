@@ -2,8 +2,9 @@
 const WLOG = true;
 const WLANG = 'fr_FR';
 const WVERS = 'alpha.0.3';
-const REFRESHINTERV = 200 // microsec interval refresh
+const REFRESHINTERV = 50 // microsec interval refresh
 const PAUSEDDOM = document.getElementById('paused')
+const ENDDOM = document.getElementById('end')
 const PX = "px"
 
 // console
@@ -23,15 +24,15 @@ const SCREEN = { w: 640, h: 480 }
 const PLAYERDOM = document.getElementById('player')
 const PLAYERARCHETYPES = {
 	"Warrior": {
-		"stats": { movesize: 4, playerx: 100, health: 5, range: 1 },
+		"stats": { movesize: 4, playerx: 100, hp: 250, range: 1 },
 		"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	},
 	// "Wizard": {
-	// 	"stats": { movesize: 3, playerx: 100, health: 3, range: 10 },
+	// 	"stats": { movesize: 3, playerx: 100, hp: 150, range: 10 },
 	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	// },
 	// "Ranger": {
-	// 	"stats": { movesize: 4, playerx: 100, health: 4, range: 5 },
+	// 	"stats": { movesize: 4, playerx: 100, hp: 200, range: 5 },
 	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	// }
 }
@@ -49,7 +50,7 @@ const LEVELDATAS = {
 // OriginalPlayerH: 44 * 2,
 // mobsManager
 const MOBSDOM = document.getElementById('mobs')
-const MOBS = {
-	1: { name: "lambdaMob", spawned: false, triggerx: 300, x: 400, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 4, bgimg: "idle.gif" },
-	2: { name: "lambdaMob", spawned: false, triggerx: 300, x: 500, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 4, bgimg: "idle.gif" }
-}
+const MOBS = [
+	{ name: "lambdaMob", spawned: false, triggerx: 300, x: 400, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 2, xp: 100, hit: 5, bgimg: "idle.gif" },
+	{ name: "lambdaMob", spawned: false, triggerx: 300, x: 500, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 4, xp: 200, hit: 10, bgimg: "idle.gif" }
+]

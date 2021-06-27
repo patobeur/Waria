@@ -7,6 +7,7 @@ class ScreenManager {
 		// local Datas
 		this.playerDatas = playerdatas
 		this.roadDatas = roaddatas
+		this.mobsDatas = false
 		// --
 		this.screenDisplayVertical = false // <------ SCREEN DISPLAY
 		this.OriginalPanH = this.roadDatas.panH
@@ -31,7 +32,7 @@ class ScreenManager {
 		// cursor
 		// ??
 		CURSORDOM.style.left = (8 * this.playerDatas.display.displayratio) + PX
-		// health 
+		// hp 
 		// ??
 		HEALTHDOM.style.top = parseInt((16 * this.playerDatas.display.displayratio)) + PX
 		HEALTHDOM.style.left = parseInt((this.playerDatas.display.playerx * this.playerDatas.display.displayratio) + (8 * this.playerDatas.display.displayratio)) + PX
@@ -47,7 +48,13 @@ class ScreenManager {
 		this.playerDatas.display.displayratio = this.screenDisplayVertical
 			? window.innerHeight / SCREEN.h // vetical ratio
 			: window.innerWidth / SCREEN.w // horizontal ratio
+
 		// refresh BoardScreen
 		this.resizeScreenElements()
+
+		// resizeScreenmobs
+		// to do
+		// this.resizeScreenMobs()
+
 	};
 }

@@ -6,36 +6,36 @@ class MobsManager {
 		this.playerDatas = playerdatas
 		this.roadDatas = roaddatas
 
-		this.nbmob = this.roadDatas.nbmob
-		this.ratio = this.playerDatas.display.displayratio
-		this.roadwidth = this.roadDatas.nbpan * this.roadDatas.panW
+		// this.nbmob = this.roadDatas.nbmob
+		// this.ratio = this.playerDatas.display.displayratio
+		// this.roadwidth = this.roadDatas.nbpan * this.roadDatas.panW
 
-		this.mobsDatas = { mobs: [MOBS[1], MOBS[2]] }
-		// 1: { name: "lambdaMob", spawned: false, triggerx: 300, x: 400, aoe: 20, hp: 1, h: 88, w: 150, speed: 4, bgimg: "idle.gif" }
+		this.mobsDatas = { mobs: [MOBS[0], MOBS[1]] }
 
-		console.log("----------------")
-		console.log(this.mobsDatas)
-		// console.log("player roadlv:" + this.playerDatas.roadlv)
-		// console.log("player lv:" + this.playerDatas.lv)
-		// console.log("this.nbmob:" + this.nbmob)
-		// console.log("this.ratio:" + this.ratio)
-		// console.log("this.roadwidth:" + this.roadwidth)
 		this.mobDivGenerator()
 	}
 	mobs_refresh() {
-		console.log(this.mobsDatas)
-	}
-	add_mobDiv() {
-		console.log(this.mobsDatas)
+		let collide = false
+		for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
+			const element = this.mobsDatas.mobs[index];
+			if (this.mobsDatas.mobs[index].x > this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) {
+				this.mobsDatas.mobs[index].x = (this.mobsDatas.mobs[index].x - this.mobsDatas.mobs[index].speed)
+				MOBSDOM.querySelector("#mob-" + index).style.left = (this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX
+			}
+			if (this.mobsDatas.mobs[index].x === this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) {
+				// colliding X return hit point
+				collide = this.mobsDatas.mobs[index].hit
+			}
+		}
+		return collide
 	}
 	mobDivGenerator() {
-		console.log(this.mobsDatas.mobs)
-		this.mobsDatas.mobs.forEach(element => {
-			let nbm = 0
+		for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
+			const element = this.mobsDatas.mobs[index];
+			console.log(element)
 			if (!element.spawned) {
-				nbm++
 				let mob = document.createElement('div')
-				mob.id = 'mob-' + nbm
+				mob.id = 'mob-' + index
 				mob.classList.add('mob')
 				mob.style.position = "absolute"
 				console.log(this.roadDatas)
@@ -48,6 +48,6 @@ class MobsManager {
 				mob.style.backgroundImage = "url(" + MOBIMGPATH + element.bgimg + ")"
 				MOBSDOM.prepend(mob)
 			}
-		});
+		}
 	}
 }

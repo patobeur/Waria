@@ -51,22 +51,6 @@ body {
 			background-size: auto 100%;
 		}
 	}
-	#paused {
-		display: none;
-		position: absolute;
-		background-color: brown;
-		text-transform: uppercase;
-		font-size: 3rem;
-		line-height: 3rem;
-		border-radius: 1rem;
-		padding: 1rem;
-		border: 2px solid white;
-		&.active {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-	}
 }
 
 .objet {
@@ -292,6 +276,24 @@ body {
 	}
 }
 
+#paused,
+#end {
+	display: none;
+	position: absolute;
+	background-color: brown;
+	text-transform: uppercase;
+	font-size: 3rem;
+	line-height: 3rem;
+	border-radius: 1rem;
+	padding: 1rem;
+	border: 2px solid white;
+	text-align: center;
+	&.active {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
 .console {
 	position: absolute;
 	top: 25%;
@@ -329,9 +331,24 @@ body {
 		right: 0;
 	}
 }
-.mob {
-	// background-color: chartreuse;
-	outline: 1px dotted black;
-	background-size: 100%;
-	background-repeat: no-repeat;
+#mobs {
+	width: 100%;
+	background-color: rgba(194, 11, 11, 0.849);
+	.mob {
+		// background-color: chartreuse;
+		outline: 1px dotted black;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		&::before {
+			position: absolute;
+			font-size: 0.8rem;
+			content: "Mob";
+			top: -10px;
+			right: 0;
+			background-color: rgba(255, 255, 255, 0.315);
+			border-radius: 5px;
+			padding: 1px 5px;
+			width: max-content;
+		}
+	}
 }

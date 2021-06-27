@@ -5,24 +5,24 @@ class WariaGame {
 	constructor(playername, archetype, information) {
 		if (WLOG) console.log("WariaGame Class Mounted!")
 		// this.set_LocalStorage(playername, archetype, information)
-		this.levelCurrent = 0;
-		this.Player = new PlayerManager(playername, archetype, information);
-		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas);
+		this.levelCurrent = 0
+		this.Player = new PlayerManager(playername, archetype, information)
+		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas)
 		// if (WLOG) console.log(this.SlidingRoad.roadDatas)
 		// if (WLOG) console.log(this.Player.playerDatas)
 		// if (WLOG) console.log("------------------------------------")
 		this.Screen = new ScreenManager(
 			this.SlidingRoad.roadDatas,
 			this.Player.playerDatas
-		);
-		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas);
-
-		this.Keyboard = new KeyboardManager(this.Player.playerDatas);
+		)
+		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas)
+		this.Screen.mobsData = this.Mobs
+		this.Keyboard = new KeyboardManager(this.Player.playerDatas)
 
 
 		// this.Collisions = new collisionsManager(this.Mobs);
-		this.paused = false;
-		this.Iteration = 1;
+		this.paused = false
+		this.Iteration = 1
 		setInterval(this.renderScene, REFRESHINTERV)
 	}
 
@@ -39,22 +39,37 @@ class WariaGame {
 			this.paused = false
 			// this.Player.playerDatas.actions.standing = ""
 			PAUSEDDOM.classList.remove('active')
-			clearInterval(this.renderScene)
+			// clearInterval(this.renderScene)
 		}
 		else {
 			this.paused = true
 			PAUSEDDOM.classList.add('active')
-			setInterval(this.renderScene, REFRESHINTERV)
+			// setInterval(this.renderScene, REFRESHINTERV)
 		}
 	}
+	set_End() { // call from KeyboardManager
+		console.log('you die')
+		// this.paused = !this.paused // ???
+		// PAUSEDDOM.classList.remove('active')
+		ENDDOM.classList.add('active')
+		// clearInterval(this.renderScene)
+	}
+	// SCENE RENDER
 	renderScene = () => {
-		if (this.paused === true) {
-		}
-		else {
+		if (!this.paused & this.Player.playerDatas.stats.hp >= 1) {
 			this.Iteration++
 			if (WLOG) console.log("iteration:")// + this.Iteration)
-			// do that
-			// spam MOB -> mobile objects behaviour 
+			// mobile objects  
+			let collide = this.Mobs.mobs_refresh()
+			if (collide) {
+				// not in the good scope ;( ??? good place neither ;(
+				this.Player.playerDatas.stats.hp -= collide
+			}
+			if (this.Player.playerDatas.stats.hp < 1) {
+				// you die ;(
+				this.set_End()
+			}
+			this.Keyboard.displayConsole()
 		}
 	}
 	// set_LocalStorage(playername, archetype, information) {
