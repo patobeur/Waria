@@ -1,6 +1,7 @@
 "use strict";
 class KeyboardManager {
 	constructor(playerdatas) {
+		if (WLOG) console.log("KeyboardManager Class Mounted!")
 		this.nbKeyPressed = 0
 		this.isKeyPressed = false
 		this.playerDatas = playerdatas

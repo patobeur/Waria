@@ -16,6 +16,7 @@ const HEALTHDOM = document.getElementById('health')
 const CURSORDOM = document.getElementById('cursor')
 const PROGRESSDOM = document.getElementById('progress')
 const IMGPATH = "assets/maps/"
+const MOBIMGPATH = "assets/mobs/"
 const SCREEN = { w: 640, h: 480 }
 
 // PlayerManager
@@ -37,14 +38,18 @@ const PLAYERARCHETYPES = {
 
 // slidingroadmanager
 const LEVELDATAS = {
-	1: { nbpan: 2, name: "#NiceDayToRun !", bossname: "HashTagMHell", panW: 1000, panH: 350, floorY: 270, bgimg: "bg_lvl_1.jpg", nbmob: 10 },
-	2: { nbpan: 8, name: "Falling Sheet Cascading", bossname: "SeeDouble Ace", panW: 500, panH: 350, floorY: 330, bgimg: "fond2.gif", nbmob: 10 },
-	3: { nbpan: 8, name: "Bottom:Root Path", bossname: "Silver Ass", panW: 1000, panH: 350, floorY: 325, bgimg: "fond3.png", nbmob: 10 },
-	4: { nbpan: 8, name: "Java's Crypte", bossname: "JiAce", panW: 626, panH: 375, floorY: 332, bgimg: "fond4.jpg", nbmob: 10 },
-	5: { nbpan: 8, name: "Last Level", bossname: "ConsoleLog", panW: 1000, panH: 350, floorY: 330, bgimg: "fond.jpg", nbmob: 10 },
+	1: { nbpan: 2, lv: 1, name: "#NiceDayToRun !", bossname: "HashTagMHell", panW: 1000, panH: 350, floorY: 270, bgimg: "bg_lvl_1.jpg", nbmob: 10 },
+	2: { nbpan: 8, lv: 2, name: "Falling Sheet Cascading", bossname: "SeeDouble Ace", panW: 500, panH: 350, floorY: 330, bgimg: "fond2.gif", nbmob: 10 },
+	3: { nbpan: 8, lv: 3, name: "Bottom:Root Path", bossname: "Silver Ass", panW: 1000, panH: 350, floorY: 325, bgimg: "fond3.png", nbmob: 10 },
+	4: { nbpan: 8, lv: 4, name: "Java's Crypte", bossname: "JiAce", panW: 626, panH: 375, floorY: 332, bgimg: "fond4.jpg", nbmob: 10 },
+	5: { nbpan: 8, lv: 5, name: "Last Level", bossname: "ConsoleLog", panW: 1000, panH: 350, floorY: 330, bgimg: "fond.jpg", nbmob: 10 },
 }
 
-// mobs
+// OriginalPlayerW: 64 * 2,
+// OriginalPlayerH: 44 * 2,
+// mobsManager
+const MOBSDOM = document.getElementById('mobs')
 const MOBS = {
-	1: { name: "lambdaMob", aoe: 20, helath: 1, x: 0, h: 350, w: 270, speed: 4, bgimg: "mob1.gif" }
+	1: { name: "lambdaMob", spawned: false, triggerx: 300, x: 400, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 4, bgimg: "idle.gif" },
+	2: { name: "lambdaMob", spawned: false, triggerx: 300, x: 500, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 4, bgimg: "idle.gif" }
 }
