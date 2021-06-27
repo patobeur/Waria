@@ -3,17 +3,20 @@
 // creating and adjusting the board to screen
 class WariaGame {
 	constructor(playername, archetype, information) {
+		if (WLOG) console.log("WariaGame Class Mounted!")
 		// this.set_LocalStorage(playername, archetype, information)
 		this.levelCurrent = 0;
 		this.Player = new PlayerManager(playername, archetype, information);
 		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas);
-
-		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas);
-
+		// if (WLOG) console.log(this.SlidingRoad.roadDatas)
+		// if (WLOG) console.log(this.Player.playerDatas)
+		// if (WLOG) console.log("------------------------------------")
 		this.Screen = new ScreenManager(
 			this.SlidingRoad.roadDatas,
 			this.Player.playerDatas
 		);
+		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas);
+
 		this.Keyboard = new KeyboardManager(this.Player.playerDatas);
 
 
@@ -21,7 +24,6 @@ class WariaGame {
 		this.paused = false;
 		this.Iteration = 1;
 		setInterval(this.renderScene, REFRESHINTERV)
-		if (WLOG) console.log("WariaGame Class Mounted!")
 	}
 
 	set_ActionsAndPlay(actions, isPressedKey) { // call from detectKeyPress() & detectKeyUnPress() in class keyboardManager.js
