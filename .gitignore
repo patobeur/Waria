@@ -3,5 +3,8 @@ docs/
 trash/
 public.zip
 *.code-workspace
+<<<<<<< HEAD
 *.zip
+=======
+>>>>>>> 4ea5097f733939cf12d4d87c7c462fc65b372163
 *.psd

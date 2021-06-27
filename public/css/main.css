@@ -387,4 +387,10 @@ body {
 .console:hover, .console.active {
   right: 0;
 }
+
+.mob {
+  outline: 1px dotted black;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
 /*# sourceMappingURL=main.css.map */

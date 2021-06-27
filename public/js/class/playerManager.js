@@ -1,9 +1,10 @@
 "use strict";
 class PlayerManager {
 	constructor(playername, archetype, information) {
-		// if (WLOG) console.log("PlayerManager Class Mounted!")
+		if (WLOG) console.log("PlayerManager Class Mounted!")
 		this.playerDatas = {
 			lv: 1,
+			roadlv: 1,
 			name: playername,
 			archetype: archetype,
 			information: information,
