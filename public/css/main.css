@@ -4,10 +4,6 @@
   line-height: 1rem;
 }
 
-:root {
-  --playernamespeed: 0.5789s;
-}
-
 body {
   overflow: hidden;
 }
@@ -71,239 +67,6 @@ body {
   background-size: auto 100%;
 }
 
-#screen .board #road-slider .objet {
-  position: absolute;
-  bottom: 85px;
-  width: 16px;
-  height: 16px;
-  outline: 1px dotted black;
-  background-position: left bottom;
-}
-
-#screen .board #road-slider .objet::before {
-  position: absolute;
-  top: -15px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-}
-
-#screen .board #road-slider .objet.golden-key {
-  background-image: url("../PixelsAssets/golden-key.png");
-  left: 2472px;
-}
-
-#screen .board #road-slider .objet.golden-key::before {
-  content: "golden-key";
-}
-
-#screen .board #road-slider .objet.silver-key {
-  background-image: url("../PixelsAssets/silver-key.png");
-  left: 2372px;
-}
-
-#screen .board #road-slider .objet.silver-key::before {
-  content: "silver-key";
-}
-
-#screen .board #road-slider .objet.candle {
-  background-image: url("../PixelsAssets/candle.png");
-  left: 50px;
-}
-
-#screen .board #road-slider .objet.candle::before {
-  content: "Candle";
-}
-
-#screen .board #road-slider .info {
-  position: absolute;
-  top: calc(10%);
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  font-size: 1rem;
-  line-height: 100%;
-  background-color: rgba(255, 255, 255, 0.588);
-  border-radius: 9px;
-  padding: 1rem;
-}
-
-#screen .board #road-slider .info.inf-0 {
-  top: calc(10%);
-  left: 1700px;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-#screen .board #road-slider .info.inf-1 {
-  top: calc(10%);
-  left: 100px;
-}
-
-#screen .board #road-slider .info.inf-2 {
-  top: calc(35%);
-  left: 350px;
-}
-
-#screen .board #road-slider .info.inf-3 {
-  top: calc(15%);
-  left: 650px;
-}
-
-#screen .board #road-slider .info.inf-4 {
-  top: calc(25%);
-  left: 950px;
-}
-
-#screen .board #road-slider .info.inf-5 {
-  top: calc(5%);
-  left: 1250px;
-}
-
-#screen .board #road-slider .info.inf-6 {
-  top: calc(15%);
-  left: 2300px;
-}
-
-#screen .board #road-slider .info.inf-7 {
-  top: calc(50%);
-  left: 2550px;
-}
-
-#screen .board #road-slider #player {
-  position: absolute;
-  top: 295px;
-  width: 128px;
-  height: 88px;
-  background-size: 100%;
-  background-image: url("../assets/archetypes/warrior/waria_idle.gif");
-}
-
-#screen .board #road-slider #player::before {
-  position: absolute;
-  font-size: 0.8rem;
-  content: "Waria [1]";
-  top: -5px;
-  left: 30%;
-  border: 1px solid black;
-  background-color: rgba(255, 255, 255, 0.877);
-  border-radius: 5px;
-  padding: 1px 5px;
-  -webkit-transition: left 0.5s ease-out;
-  transition: left 0.5s ease-out;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  -webkit-animation: playernamefloating var(--playernamespeed) infinite;
-  /* Safari 4+ */
-  /* Fx 5+ */
-  /* Opera 12+ */
-  animation: playernamefloating var(--playernamespeed) infinite;
-  /* IE 10+, Fx 29+ */
-}
-
-#screen .board #road-slider #player.idle {
-  background-image: url("../assets/archetypes/warrior/waria_idle.gif");
-}
-
-#screen .board #road-slider #player.idle.left {
-  background-image: url("../assets/archetypes/warrior/waria_idle_l.gif");
-}
-
-#screen .board #road-slider #player.idle.crouch {
-  background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
-}
-
-#screen .board #road-slider #player.idle.crouch.left {
-  background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
-}
-
-#screen .board #road-slider #player.run {
-  background-image: url("../assets/archetypes/warrior/waria_run.gif");
-}
-
-#screen .board #road-slider #player.run::before {
-  left: 3px;
-}
-
-#screen .board #road-slider #player.run.left {
-  background-image: url("../assets/archetypes/warrior/waria_run_l.gif");
-}
-
-#screen .board #road-slider #player.run.left::before {
-  left: 65%;
-}
-
-#screen .board #road-slider #player.jump {
-  background-image: url("../assets/archetypes/warrior/waria_jump.gif");
-}
-
-#screen .board #road-slider #player.jump.left {
-  background-image: url("../assets/archetypes/warrior/waria_jump_l.gif");
-}
-
-#screen .board #road-slider #player.attack {
-  background-image: url("../assets/archetypes/warrior/waria_dask_attack.gif");
-}
-
-#screen .board #road-slider #player.attack.left {
-  background-image: url("../assets/archetypes/warrior/waria_dask_attack_l.gif");
-}
-
-#screen .board #road-slider #player.gocrouch {
-  background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
-}
-
-#screen .board #road-slider #player.gocrouch.left {
-  background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
-}
-
-#screen .board #road-slider #cursor {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  height: 25px;
-  width: 200px;
-  background-color: black;
-  border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#screen .board #road-slider #cursor .progress {
-  position: absolute;
-  left: 0;
-  height: 1rem;
-  background-color: antiquewhite;
-  color: black;
-  border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
-}
-
-#screen .board #road-slider #health {
-  position: absolute;
-  left: 16px;
-  top: 8px;
-  color: white;
-  font-size: 3rem;
-  text-shadow: 5px 5px 5px black;
-}
-
-#screen .board #road-slider #health span {
-  color: red;
-}
-
 #screen #paused {
   display: none;
   position: absolute;
@@ -328,19 +91,237 @@ body {
           align-items: center;
 }
 
-#screen .console {
+.objet {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 100px;
+  bottom: 85px;
+  width: 16px;
+  height: 16px;
+  outline: 1px dotted black;
+  background-position: left bottom;
+}
+
+.objet::before {
+  position: absolute;
+  top: -15px;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  z-index: 10;
 }
 
-#screen .console div {
-  background-color: #d6d6d6;
+.objet.golden-key {
+  background-image: url("../assets/objects/golden-key.png");
+  left: 2472px;
+}
+
+.objet.golden-key::before {
+  content: "golden-key";
+}
+
+.objet.silver-key {
+  background-image: url("../assets/objects/silver-key.png");
+  left: 2372px;
+}
+
+.objet.silver-key::before {
+  content: "silver-key";
+}
+
+.objet.candle {
+  background-image: url("../assets/objects/candle.png");
+  left: 50px;
+}
+
+.objet.candle::before {
+  content: "Candle";
+}
+
+.info {
+  position: absolute;
+  top: calc(10%);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 1rem;
+  line-height: 100%;
+  background-color: rgba(255, 255, 255, 0.588);
+  border-radius: 9px;
+  padding: 1rem;
+}
+
+.info.inf-0 {
+  top: calc(10%);
+  left: 1700px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.info.inf-1 {
+  top: calc(10%);
+  left: 100px;
+}
+
+.info.inf-2 {
+  top: calc(35%);
+  left: 350px;
+}
+
+.info.inf-3 {
+  top: calc(15%);
+  left: 650px;
+}
+
+.info.inf-4 {
+  top: calc(25%);
+  left: 950px;
+}
+
+.info.inf-5 {
+  top: calc(5%);
+  left: 1250px;
+}
+
+.info.inf-6 {
+  top: calc(15%);
+  left: 2300px;
+}
+
+.info.inf-7 {
+  top: calc(50%);
+  left: 2550px;
+}
+
+#player {
+  position: absolute;
+  top: 295px;
+  width: 128px;
+  height: 88px;
+  background-size: 100%;
+  background-image: url("../assets/archetypes/warrior/waria_idle.gif");
+}
+
+#player:hover::before {
+  position: absolute;
+  font-size: 0.8rem;
+  content: "Waria [1]";
+  top: -5px;
+  left: 30%;
+  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.877);
+  border-radius: 5px;
+  padding: 1px 5px;
+  -webkit-transition: left 0.5s ease-out;
+  transition: left 0.5s ease-out;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-animation: playernamefloating 0.5789s infinite;
+  /* Safari 4+ */
+  /* Fx 5+ */
+  /* Opera 12+ */
+  animation: playernamefloating 0.5789s infinite;
+  /* IE 10+, Fx 29+ */
+}
+
+#player.idle {
+  background-image: url("../assets/archetypes/warrior/waria_idle.gif");
+}
+
+#player.idle.left {
+  background-image: url("../assets/archetypes/warrior/waria_idle_l.gif");
+}
+
+#player.idle.crouch {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
+}
+
+#player.idle.crouch.left {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
+}
+
+#player.run {
+  background-image: url("../assets/archetypes/warrior/waria_run.gif");
+}
+
+#player.run::before {
+  left: 3px;
+}
+
+#player.run.left {
+  background-image: url("../assets/archetypes/warrior/waria_run_l.gif");
+}
+
+#player.run.left::before {
+  left: 65%;
+}
+
+#player.jump {
+  background-image: url("../assets/archetypes/warrior/waria_jump.gif");
+}
+
+#player.jump.left {
+  background-image: url("../assets/archetypes/warrior/waria_jump_l.gif");
+}
+
+#player.attack {
+  background-image: url("../assets/archetypes/warrior/waria_dask_attack.gif");
+}
+
+#player.attack.left {
+  background-image: url("../assets/archetypes/warrior/waria_dask_attack_l.gif");
+}
+
+#player.gocrouch {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch.gif");
+}
+
+#player.gocrouch.left {
+  background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
+}
+
+#cursor {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  height: 25px;
+  width: 200px;
+  background-color: black;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#cursor .progress {
+  position: absolute;
+  left: 0;
+  height: 1rem;
+  background-color: antiquewhite;
+  color: black;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+
+#health {
+  position: absolute;
+  left: 16px;
+  top: 8px;
+  color: white;
+  font-size: 3rem;
+  text-shadow: 5px 5px 5px black;
+}
+
+#health span {
+  color: red;
 }
 
 @-webkit-keyframes playernamefloating {
@@ -365,5 +346,45 @@ body {
   100% {
     top: -10px;
   }
+}
+
+.console {
+  position: absolute;
+  top: 25%;
+  right: -200px;
+  width: 200px;
+  z-index: 10;
+}
+
+.console #informations {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  outline: 2px solid black;
+  padding: 0.5rem;
+  background-color: white;
+}
+
+.console #informations ::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -20px;
+  width: 30px;
+  background-color: black;
+  outline: 2px solid black;
+  border-radius: 7px;
+  color: blanchedalmond;
+  content: "K";
+  z-index: -1;
+  padding: 0.5rem 0 0 0.2rem;
+}
+
+.console #informations div {
+  width: 100%;
+}
+
+.console:hover, .console.active {
+  right: 0;
 }
 /*# sourceMappingURL=main.css.map */

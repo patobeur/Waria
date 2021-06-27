@@ -24,9 +24,11 @@ class PlayerManager {
 	set_Actions(actions) { // called by set_ActionsAndPlay in WariaGame.js
 		this.playerDatas.actions = actions
 	}
-	// set_Action(actionname, action) {
-	// 	this.playerActions[actionname] = action
-	// }
+	set_Action(actionname, action) {
+		this.playerDatas.actions[actionname] = action
+		console.log(this.playerDatas.actions[actionname])
+		console.log(this.playerDatas)
+	}
 	set_IsKeyPressed(isKeyPressed) { // called by set_ActionsAndPlay in WariaGame.js
 		this.playerDatas.isKeyPressed = isKeyPressed
 	}

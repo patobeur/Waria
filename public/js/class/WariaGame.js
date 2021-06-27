@@ -8,11 +8,16 @@ class WariaGame {
 		this.Player = new PlayerManager(playername, archetype, information);
 		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas);
 
+		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas);
+
 		this.Screen = new ScreenManager(
 			this.SlidingRoad.roadDatas,
 			this.Player.playerDatas
 		);
-		this.Keyboard = new KeyboardManager();
+		this.Keyboard = new KeyboardManager(this.Player.playerDatas);
+
+
+		// this.Collisions = new collisionsManager(this.Mobs);
 		this.paused = false;
 		this.Iteration = 1;
 		setInterval(this.renderScene, REFRESHINTERV)
@@ -30,17 +35,20 @@ class WariaGame {
 		// this.paused = !this.paused // ???
 		if (this.paused === true) {
 			this.paused = false
+			// this.Player.playerDatas.actions.standing = ""
 			PAUSEDDOM.classList.remove('active')
-			setInterval(this.renderScene, REFRESHINTERV)
-		} else {
-			this.paused = true
-			PAUSEDDOM.classList.add('active')
 			clearInterval(this.renderScene)
 		}
-		console.log("Useless -> Paused:" + (this.paused ? "true" : "false"))
+		else {
+			this.paused = true
+			PAUSEDDOM.classList.add('active')
+			setInterval(this.renderScene, REFRESHINTERV)
+		}
 	}
 	renderScene = () => {
-		if (!this.paused) {
+		if (this.paused === true) {
+		}
+		else {
 			this.Iteration++
 			if (WLOG) console.log("iteration:")// + this.Iteration)
 			// do that
