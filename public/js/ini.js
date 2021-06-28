@@ -51,6 +51,20 @@ const LEVELDATAS = {
 // mobsManager
 const MOBSDOM = document.getElementById('mobs')
 const MOBS = [
-	{ name: "lambdaMob", spawned: false, triggerx: 300, x: 400, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 2, xp: 100, hit: 5, bgimg: "idle.gif" },
-	{ name: "lambdaMob", spawned: false, triggerx: 300, x: 500, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 4, xp: 200, hit: 10, bgimg: "idle.gif" }
+	{
+		name: "lambdaMob", // mob name
+		spawned: false, // become true if spawned
+		triggerx: 300, // when x = triggerx something is trigered.. or not
+		x: 400,  // starting x pos
+		aoe: 20, // area of effect, hurting distance in pixels ( must be ratio converted )
+		hp: 1,
+		h: 96, // div heigth ( ratio converted )
+		w: 96, // div width ( ratio converted )
+		speed: 2, // pixel to move each scene iteration
+		xp: 100, // player's xp win when mob die
+		hit: 5, // hit damage to player
+		revert: false, // run back when limite x=0 reach or is teleported to end road
+		bgimg: "idle.gif" // default background img idle
+	},
+	{ name: "lambdaMob", spawned: false, triggerx: 300, x: 500, aoe: 20, hp: 1, h: 48 * 2, w: 48 * 2, speed: 4, xp: 200, hit: 10, revert: false, bgimg: "idle.gif" }
 ]

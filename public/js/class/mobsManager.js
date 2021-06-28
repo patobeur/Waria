@@ -19,9 +19,11 @@ class MobsManager {
 		for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
 			const element = this.mobsDatas.mobs[index];
 			if (this.mobsDatas.mobs[index].x > this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) {
-				this.mobsDatas.mobs[index].x = (this.mobsDatas.mobs[index].x - this.mobsDatas.mobs[index].speed)
-				MOBSDOM.querySelector("#mob-" + index).style.left = (this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX
+				this.mobsDatas.mobs[index].x = parseInt(this.mobsDatas.mobs[index].x - this.mobsDatas.mobs[index].speed)
+				MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX
+				MOBSDOM.querySelector("#mob-" + index).innerHTML = parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX
 			}
+
 			if (this.mobsDatas.mobs[index].x === this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) {
 				// colliding X return hit point
 				collide = this.mobsDatas.mobs[index].hit
@@ -47,6 +49,7 @@ class MobsManager {
 				mob.style.height = (element.h * this.playerDatas.display.displayratio) + PX
 				mob.style.backgroundImage = "url(" + MOBIMGPATH + element.bgimg + ")"
 				MOBSDOM.prepend(mob)
+				this.mobsDatas.mobs[index].spawned = true
 			}
 		}
 	}

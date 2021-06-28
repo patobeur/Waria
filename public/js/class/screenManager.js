@@ -41,6 +41,10 @@ class ScreenManager {
 		// 	? BOARDDOM.classList.add('vertical') // vetical ratio
 		// 	: BOARDDOM.classList.remove('vertical') // horizontal ratio
 
+		if (this.mobsDatas) {
+			console.log(this.mobsDatas)
+		}
+
 	}
 
 	getRatioAndResizeScreen = () => {

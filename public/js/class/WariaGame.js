@@ -8,13 +8,12 @@ class WariaGame {
 		this.levelCurrent = 0
 		this.Player = new PlayerManager(playername, archetype, information)
 		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas)
-		// if (WLOG) console.log(this.SlidingRoad.roadDatas)
-		// if (WLOG) console.log(this.Player.playerDatas)
-		// if (WLOG) console.log("------------------------------------")
+
 		this.Screen = new ScreenManager(
 			this.SlidingRoad.roadDatas,
 			this.Player.playerDatas
 		)
+
 		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas)
 		this.Screen.mobsData = this.Mobs
 		this.Keyboard = new KeyboardManager(this.Player.playerDatas)
@@ -27,11 +26,11 @@ class WariaGame {
 	}
 
 	set_ActionsAndPlay(actions, isPressedKey) { // call from detectKeyPress() & detectKeyUnPress() in class keyboardManager.js
-		this.Player.set_Actions(actions)
-		this.Player.set_IsKeyPressed(isPressedKey)
-		this.Player.set_PlayerDatas(
-			this.SlidingRoad.playforward(this.Player.playerDatas)
-		)
+		this.Player.playerDatas.actions = actions
+		// this.Player.playerDatas.isKeyPressed = isPressedKey
+		this.SlidingRoad.playerDatas = this.Player.playerDatas
+		let moove = this.SlidingRoad.playforward()
+		this.Player.playerDatas = moove ? moove : this.Player.playerDatas
 	}
 	set_Paused() { // call from KeyboardManager
 		// this.paused = !this.paused // ???
@@ -71,6 +70,12 @@ class WariaGame {
 			}
 			this.Keyboard.displayConsole()
 		}
+	}
+	// SCENE RENDER
+	getRatioAndResizeScreen() {
+		this.Screen.playerDatas = this.Player.playerDatas
+		this.Screen.mobsDatas = this.Mobs.mobsDatas
+		this.Screen.getRatioAndResizeScreen()
 	}
 	// set_LocalStorage(playername, archetype, information) {
 	// 	// initialize

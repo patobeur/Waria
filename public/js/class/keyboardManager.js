@@ -5,7 +5,7 @@ class KeyboardManager {
 		this.nbKeyPressed = 0
 		this.isKeyPressed = false
 		this.playerDatas = playerdatas
-		this.Wactions = { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
+		//this.Wactions = { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 		this.keys = {
 			"fr_FR": [
 				{ key: 'ArrowDown', eventcode: 'ArrowDown', keycode: 40, facing: "", acting: "", standing: "crouch", whilepressed: true },
@@ -26,12 +26,12 @@ class KeyboardManager {
 	detectKeyPress(eventkeydown) {
 		this.keys[WLANG].forEach(element => {// find if pressed key exist
 			if (element.keycode === eventkeydown.keyCode) {
-				this.Wactions = {
+				this.playerDatas.actions = {
 					goRight: (element.acting === "run") ? (element.facing === "right" ? true : false) : false,
 					goLeft: (element.acting === "run") ? (element.facing === "left" ? true : false) : false,
-					facing: (element.facing != "") ? element.facing : this.Wactions.facing,
-					acting: (element.acting != "") ? element.acting : this.Wactions.acting,
-					standing: (element.standing != "") ? element.standing : this.Wactions.standing,
+					facing: (element.facing != "") ? element.facing : this.playerDatas.actions.facing,
+					acting: (element.acting != "") ? element.acting : this.playerDatas.actions.acting,
+					standing: (element.standing != "") ? element.standing : this.playerDatas.actions.standing,
 				}
 				if (element.whilepressed && this.nbKeyPressed < 1) {
 					this.nbKeyPressed++
@@ -40,44 +40,44 @@ class KeyboardManager {
 				if (element.actionF) {
 					Journey.set_Paused()
 				}
-				Journey.set_ActionsAndPlay(this.Wactions, this.isKeyPressed)
+				Journey.set_ActionsAndPlay(this.playerDatas.actions, this.isKeyPressed)
 				this.set_acting()
 			}
 		});
 	}
 	detectKeyUnPress(event) {
 		if (event.code === "ArrowRight" || event.code === "KeyD") {
-			this.Wactions.goRight = false
-			this.Wactions.acting = ""
-			this.Wactions.standing = "" // stand up when run
+			this.playerDatas.actions.goRight = false
+			this.playerDatas.actions.acting = ""
+			this.playerDatas.actions.standing = "" // stand up when run
 			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
 		if (event.code === "ArrowLeft" || event.code === "KeyA") {
-			this.Wactions.goLeft = false
-			this.Wactions.acting = ""
-			this.Wactions.standing = "" // stand up when run
+			this.playerDatas.actions.goLeft = false
+			this.playerDatas.actions.acting = ""
+			this.playerDatas.actions.standing = "" // stand up when run
 			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
 		if (event.code === "ControlLeft") {
-			this.Wactions.acting = ""
+			this.playerDatas.actions.acting = ""
 			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
 		// if (27 === event.keyCode) {
 		// 	Journey.set_Paused()
 		// }
 		this.set_isKeyPressed()
-		Journey.set_ActionsAndPlay(this.Wactions, this.isKeyPressed)
+		Journey.set_ActionsAndPlay(this.playerDatas.actions, this.isKeyPressed)
 		this.set_acting()
 	}
 	set_isKeyPressed() {
 		if (this.nbKeyPressed === 0) {
-			this.isKeyPressed = false
-			if (this.Wactions.acting != "idle") {
-				this.Wactions.acting = "idle"
+			this.playerDatas.isKeyPressed = false
+			if (this.playerDatas.actions.acting != "idle") {
+				this.playerDatas.actions.acting = "idle"
 			}
 		}
 		else if (this.nbKeyPressed > 0) {
-			this.isKeyPressed = true
+			this.playerDatas.isKeyPressed = true
 		}
 		else {
 			if (WLOG) console.log("error while counting pressed key !!!")
@@ -85,25 +85,26 @@ class KeyboardManager {
 		this.displayConsole(false)
 	}
 	set_acting() {
-		if (this.isKeyPressed === false) {
-			this.Wactions.acting = "idle"
+		if (this.playerDatas.isKeyPressed === false) {
+			this.playerDatas.actions.acting = "idle"
 		}
 		else {
-			if (this.Wactions.acting === "") {
-				this.Wactions.acting = "idle"
+			if (this.playerDatas.actions.acting === "") {
+				this.playerDatas.actions.acting = "idle"
 			}
 		}
-		PLAYERDOM.setAttribute("class", this.Wactions.acting + " " + this.Wactions.facing + " " + this.Wactions.standing)
+		PLAYERDOM.setAttribute("class", this.playerDatas.actions.acting + " " + this.playerDatas.actions.facing + " " + this.playerDatas.actions.standing)
 	}
 	displayConsole() {
-		document.getElementById("isKeyPressed").innerHTML = "isKeyPressed:" + (this.isKeyPressed ? "true" : "false");
+		document.getElementById("isKeyPressed").innerHTML = "isKeyPressed:" + (this.playerDatas.isKeyPressed ? "true" : "false");
 		document.getElementById("nbKeyPressed").innerHTML = "nbKeyPressed:" + this.nbKeyPressed;
-		document.getElementById("acting").innerHTML = "acting:" + this.Wactions.acting;
-		document.getElementById("facing").innerHTML = "facing:" + this.Wactions.facing;
-		document.getElementById("standing").innerHTML = "standing:" + this.Wactions.standing;
+		document.getElementById("acting").innerHTML = "acting:" + this.playerDatas.actions.acting;
+		document.getElementById("facing").innerHTML = "facing:" + this.playerDatas.actions.facing;
+		document.getElementById("standing").innerHTML = "standing:" + this.playerDatas.actions.standing;
 		document.getElementById("hp").innerHTML = "hp:" + this.playerDatas.stats.hp;
 	}
 }
+// display console on/off
 CONSOLE.addEventListener('click', (e) => {
 	CONSOLE.classList.contains('active')
 		? CONSOLE.classList.remove('active')
