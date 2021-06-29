@@ -71,4 +71,9 @@ waria_attack left
 
 ## Arcade's Games
 ![image](https://user-images.githubusercontent.com/48214878/123779467-7d309600-d8d2-11eb-9ea1-9a0024ef996b.png)
-source http://www.digitpress.com/library/magazines/electronic_games/computer_entertainment_jul85.pdf#page=64
+
+source : 
+
+http://www.digitpress.com/library/magazines/electronic_games/computer_entertainment_jul85.pdf#page=64
+
+https://archive.org/details/Computer_Video_Games_Issue_042_1985-04_EMAP_Publishing_GB/page/n91/mode/2up?view=theater&q=star+wars
