@@ -69,3 +69,6 @@ waria_attack right
 waria_attack left
 ![waria_dask_attack_l](public/assets/archetypes/warrior/waria_dask_attack_l.gif?raw=true "waria_dask_attack_l")
 
+## Arcade's Games
+![image](https://user-images.githubusercontent.com/48214878/123779467-7d309600-d8d2-11eb-9ea1-9a0024ef996b.png)
+source http://www.digitpress.com/library/magazines/electronic_games/computer_entertainment_jul85.pdf#page=64
