@@ -1,11 +1,27 @@
 # Waria
 Why not an humble and fun game using Css and Js only
 
+"Kung-Fu Master connaît un succès énorme et reste comme un pilier de l'arcade. Il est considéré comme le premier jeu de combat à progression."
+
 # Demo
 https://patobeur.github.io/Waria/public/
 
 ## inspiration/objectives :
+Un playTrhought du jeu : 
 https://www.youtube.com/watch?v=IQjzFt8Sqpk
+
+le wiki du jeu : 
+https://fr.wikipedia.org/wiki/Kung-Fu_Master
+
+le wiki du film : 
+https://fr.wikipedia.org/wiki/Soif_de_justice
+
+le film : (Jacky Chan)
+https://www.youtube.com/watch?v=o7M4b3Wrm04
+
+le film : (Bruce Lee)
+https://www.youtube.com/watch?v=kH9tobPHEKY
+
 
 ## Test Responsive
 https://ready.mobi/#1973954-p3g2
