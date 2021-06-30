@@ -47,22 +47,24 @@ const MOBS = [
 		name: "lambdaMob", // mob name
 		spawned: false, // become true if spawned
 		triggerx: 300, // when x = triggerx something is trigered.. or not
-		x: 400,  // starting x pos
+		posx: [1000, 2000],
+		x: 0,  // starting x pos
 		aoe: 20, // area of effect, hurting distance in pixels ( must be ratio converted )
 		hp: 1,
 		h: 96, // div heigth ( ratio converted )
 		w: 96, // div width ( ratio converted )
-		speed: 2, // pixel to move each scene iteration
+		speed: 1, // pixel to move each scene iteration
 		xp: 100, // player's xp win when mob die
 		hit: 5, // hit damage to player
 		mode: 0, // 0: run to player , 1: stick to player, 2 run to end road; 
-		bgimg: "idle.gif" // default background img idle
+		bgimg: "run_l.gif" // default background img idle
 	},
 	{
 		name: "lambdaMob2", // mob name
 		spawned: false, // become true if spawned
 		triggerx: 300, // when x = triggerx something is trigered.. or not
-		x: 800,  // starting x pos
+		posx: [1000, 2000],
+		x: 0,  // starting x pos
 		aoe: 20, // area of effect, hurting distance in pixels ( must be ratio converted )
 		hp: 1,
 		h: 96, // div heigth ( ratio converted )
@@ -71,12 +73,14 @@ const MOBS = [
 		xp: 100, // player's xp win when mob die
 		hit: 5, // hit damage to player
 		mode: 0, // 0: run to player , 1: stick to player, 2 run to end road; 
-		bgimg: "idle.gif" // default background img idle
+		bgimg: "run_l.gif" // default background img idle
 	}
 ]
 const LEVELMOBS = [
 	{
 		mobs: [ // mob list level 1 (0)
+			MOBS[0],
+			MOBS[0],
 			MOBS[0],
 			MOBS[0],
 			MOBS[0]
