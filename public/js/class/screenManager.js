@@ -8,9 +8,6 @@ class ScreenManager {
 		this.playerDatas = playerdatas
 		this.roadDatas = roaddatas
 		this.mobsDatas = mobsdatas
-		console.log('>>>>>>>>>>>>>>>>>>>>>>')
-		console.log(this.mobsDatas)
-
 		// --
 		this.OriginalPanH = this.roadDatas.panH
 		this.OriginalPanW = this.roadDatas.panW
@@ -55,16 +52,8 @@ class ScreenManager {
 		HEALTHDOM.style.left = parseInt((this.playerDatas.display.playerx * this.playerDatas.display.displayratio) + (8 * this.playerDatas.display.displayratio)) + PX
 	}
 	resizeMobsElements(firsttime) {
-		console.log('resizeMobsElements')
-		console.log(this.mobsDatas)
 		if (this.mobsDatas) {
 			for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
-				// console.log("--> ReSIZE Mob:" + index + " = " + this.mobsDatas.mobs[index].x)
-				// console.log('Ntop' + parseInt((this.roadDatas.floorY - this.mobsDatas.mobs[index].h) * this.playerDatas.display.displayratio) + PX)
-				// console.log('Nleft' + parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX)
-				// console.log('Nheight' + parseInt(this.mobsDatas.mobs[index].h * this.playerDatas.display.displayratio) + PX)
-				// console.log('Nwidth' + parseInt(this.mobsDatas.mobs[index].w * this.playerDatas.display.displayratio) + PX)
-
 				document.getElementById("mob-" + index).style.left = parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX
 				document.getElementById("mob-" + index).style.top = parseInt((this.roadDatas.floorY - this.mobsDatas.mobs[index].h) * this.playerDatas.display.displayratio) + PX
 
