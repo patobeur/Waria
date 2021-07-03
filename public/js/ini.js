@@ -1,5 +1,6 @@
 "use strict";
-const WLOG = true;
+const WLOG = false;
+const WDEV = true;
 const WLANG = 'fr_FR';
 const WVERS = 'alpha.0.3';
 const REFRESHINTERV = 50 // microsec interval refresh
@@ -44,10 +45,11 @@ const PLAYERARCHETYPES = {
 // OriginalPlayerH: 44 * 2,
 // mobsManager
 const MOBSDOM = document.getElementById('mobs')
-const MOBS = [
-	{
+const MOBS = {
+	1: {
+		xx: 0,  // starting x pos
 		x: 0,  // starting x pos
-		name: "lambdaMob", // mob name
+		name: "lambdaMoab", // mob name
 		spawned: false, // become true if spawned
 		triggerx: 300, // when x = triggerx something is trigered.. or not
 		posx: [1000, 2000],
@@ -61,7 +63,8 @@ const MOBS = [
 		mode: 0, // 0: run to player , 1: stick to player, 2 run to end road; 
 		bgimg: "run_l.gif" // default background img idle
 	},
-	{
+	2: {
+		xx: 0,  // starting x pos
 		x: 0,  // starting x pos
 		name: "lambdaMob2", // mob name
 		spawned: false, // become true if spawned
@@ -77,19 +80,21 @@ const MOBS = [
 		mode: 0, // 0: run to player , 1: stick to player, 2 run to end road; 
 		bgimg: "run_l.gif" // default background img idle
 	}
-]
-const LEVELMOBS = [
-	{
+}
+const LEVELMOBS = {
+	1: {
 		mobs: [ // mob list level 1 (0)
-			MOBS[0],
-			MOBS[0]
+			MOBS[1],
+			MOBS[1]
 		],
 		boss: [ // boss level 1 (0)
-			MOBS[1]
+			MOBS[2]
 		]
 	},
-	{ mobs: [MOBS[1], MOBS[1], MOBS[1]] }
-]
+	2: {
+		mobs: [MOBS[2], MOBS[2], MOBS[2]], boss: [MOBS[2]]
+	}
+}
 
 // slidingroadmanager
 const LEVELDATAS = {
