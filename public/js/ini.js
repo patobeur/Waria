@@ -80,13 +80,26 @@ const MOBSDOM = document.getElementById('mobs')
 // 	}
 // }
 const MOBS = {
-	1:[0,"lambdaMoab", false, 300, [1000, 2000], 20,1, 96, 96, 1, 100, 5, 0, "run_l.gif"], 
-	2:[0,"lambdaMob2", false, 300, [1000, 2000], 20,1, 96, 96, 2, 100, 5, 0, "run_l.gif"], 
-	3:[0,"lambdaMob2", false, 300, [1000, 2000], 20,1, 96, 96, 3, 100, 5, 0, "run_l.gif"], 
+	// x, name ,spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg
+	1: [0, "lambdaMoab", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],
+	2: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 2, 100, 5, 0, "run_l.gif"],
+	3: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],
 }
 const LEVELMOBS = {
 	1: {
 		mobs: [ // mob list level 1 (0)
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
 		],
@@ -95,7 +108,7 @@ const LEVELMOBS = {
 		]
 	},
 	2: {
-		mobs: [new Mob(...MOBS[2]),new Mob(...MOBS[2]),new Mob(...MOBS[2])], boss: [new Mob(...MOBS[3])]
+		mobs: [new Mob(...MOBS[2]), new Mob(...MOBS[2]), new Mob(...MOBS[2])], boss: [new Mob(...MOBS[3])]
 	}
 }
 
