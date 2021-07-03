@@ -31,7 +31,7 @@ class MobsManager {
 		mob.style.left = newposX + PX
 		mob.style.width = parseInt(this.WTFmobsDatas.mobs[index].w * this.playerDatas.display.displayratio) + PX
 		mob.style.height = parseInt(this.WTFmobsDatas.mobs[index].h * this.playerDatas.display.displayratio) + PX
-		mob.style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].bgimg + ")"
+		mob.style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].name + "/" + this.WTFmobsDatas.mobs[index].bgimg + ")"
 		MOBSDOM.prepend(mob)
 
 		this.WTFmobsDatas.mobs[index].spawned = true
@@ -50,37 +50,50 @@ class MobsManager {
 		let actualRatio = this.playerDatas.display.displayratio
 		let collide = false
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
-			let marge = (((this.WTFmobsDatas.mobs[index].w / 2)))// + (this.WTFmobsDatas.mobs[index].w * index * actualRatio)
+			// comment gerer la marge ???
+			let marge = (((this.WTFmobsDatas.mobs[index].w / 1.5)))// + (this.WTFmobsDatas.mobs[index].w * index * actualRatio)
 			// let actualMobX = parseInt(this.WTFmobsDatas.mobs[index].x * actualRatio)
 			// let actualMode = this.WTFmobsDatas.mobs[index].mode
 			let actualPlayerX = parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx))
 
 			//this.mobs_refreshMobInfoDiv(index)
 
-
+			let distanceContact = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx + marge)
+			let distanceHorsPortee = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx)
 			// stop runningmob in front of player
-			if (this.WTFmobsDatas.mobs[index].x > (
-				this.playerDatas.display.playerx
-				+ this.playerDatas.display.defaultplayerx
-				+ marge
-			)) {
+			if (this.WTFmobsDatas.mobs[index].x > distanceContact) {
+				this.WTFmobsDatas.mobs[index].mode = 0
+			}
+			if (this.WTFmobsDatas.mobs[index].x <= distanceContact
+				&& this.WTFmobsDatas.mobs[index].x > distanceHorsPortee
+			) {
+				this.WTFmobsDatas.mobs[index].mode = 1
+			}
+			if (this.WTFmobsDatas.mobs[index].x < distanceHorsPortee) {
+				this.WTFmobsDatas.mobs[index].mode = 0
+			}
 
+
+			//  MODE RULES
+			if (this.WTFmobsDatas.mobs[index].mode === 0) {
 				this.WTFmobsDatas.mobs[index].x = parseInt(this.WTFmobsDatas.mobs[index].x - (this.WTFmobsDatas.mobs[index].speed))
 				MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(this.WTFmobsDatas.mobs[index].x * actualRatio) + PX
+				MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].name + "/run_l.gif)"
+
 				// teleporte to end right when run out left side
 				if (this.WTFmobsDatas.mobs[index].x < -200) {
 					this.WTFmobsDatas.mobs[index].x = (this.roadDatas.nbpan * this.roadDatas.panW * actualRatio)
 				}
 			}
+			if (this.WTFmobsDatas.mobs[index].mode === 1) {
+				MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].name + "/attack_l.gif)"
 
-			//  MODE RULES
-			// if (this.WTFmobsDatas.mobs[index].mode === 0) {
-			// }
-			// this.WTFmobsDatas.mobs[index].mode = actualMode
-
-			if (this.WTFmobsDatas.mobs[index].x > actualPlayerX && this.WTFmobsDatas.mobs[index].x < actualPlayerX + marge) {//this.playerDatas.display.defaultplayerx) {
-				// colliding X return hit point
-				collide = this.WTFmobsDatas.mobs[index].hit
+				// COLLIDING HEALTH LOSS
+				// --
+				if (this.WTFmobsDatas.mobs[index].x > actualPlayerX && this.WTFmobsDatas.mobs[index].x < actualPlayerX + marge) {//this.playerDatas.display.defaultplayerx) {
+					// colliding X return hit point
+					collide = this.WTFmobsDatas.mobs[index].hit
+				}
 			}
 		}
 		return collide
