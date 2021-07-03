@@ -20,7 +20,8 @@ class MobsManager {
 			let NewAlea = this.aleaEntreBornes(300, 500);
 			if (WDEV) console.log('--- before -- Mob#' + index + " x set from  " + WTFHORDE[index].x + " to NewAlea:" + NewAlea + "");
 			WTFHORDE[index].x = NewAlea; // <-------------------- BUG ????????
-			// this.creatediv(index, aleaX)
+			this.WTFmobsDatas.mobs.x = NewAlea; // <-------------------- BUG ????????
+			this.creatediv(index, NewAlea)
 		}
 		if (WDEV) console.log("------------- DISPLAY DONE LEVELMOBS  -------------")
 		for (let index = 0; index < WTFHORDE.length; index++) {
