@@ -9,8 +9,10 @@ class MobsManager {
 		this.mobDivGenerator()
 	}
 	mobDivGenerator() {
+		console.log(this.roadDatas)
+		console.log((this.roadDatas.nbpan * this.roadDatas.panW) + 500)
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
-			let NewAlea = this.aleaEntreBornes(300, 500);
+			let NewAlea = this.aleaEntreBornes(500, 1500);
 			this.WTFmobsDatas.mobs[index].x = NewAlea;
 			this.creatediv(index, NewAlea)
 		}
