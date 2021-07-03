@@ -97,11 +97,7 @@ const LEVELMOBS = {
 			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
+			new Mob(...MOBS[1])
 		],
 		boss: [ // boss level 1 (0)
 			new Mob(...MOBS[2]),
