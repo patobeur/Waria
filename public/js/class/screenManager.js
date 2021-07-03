@@ -53,6 +53,8 @@ class ScreenManager {
 	}
 	resizeMobsElements(firsttime) {
 		if (this.mobsDatas) {
+			// console.log('resizeMobsElements')
+			// console.log(this.mobsDatas)
 			for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
 				// console.log("--> ReSIZE Mob:" + index + " = " + this.mobsDatas.mobs[index].x)
 				// console.log('Ntop' + parseInt((this.roadDatas.floorY - this.mobsDatas.mobs[index].h) * this.playerDatas.display.displayratio) + PX)
@@ -60,7 +62,7 @@ class ScreenManager {
 				// console.log('Nheight' + parseInt(this.mobsDatas.mobs[index].h * this.playerDatas.display.displayratio) + PX)
 				// console.log('Nwidth' + parseInt(this.mobsDatas.mobs[index].w * this.playerDatas.display.displayratio) + PX)
 
-				document.getElementById("mob-" + index).style.left = parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX
+				// document.getElementById("mob-" + index).style.left = parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX
 				document.getElementById("mob-" + index).style.top = parseInt((this.roadDatas.floorY - this.mobsDatas.mobs[index].h) * this.playerDatas.display.displayratio) + PX
 
 				document.getElementById("mob-" + index).style.width = parseInt(this.mobsDatas.mobs[index].w * this.playerDatas.display.displayratio) + PX

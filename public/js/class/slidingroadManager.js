@@ -4,9 +4,9 @@ class SlidingRoadManager {
 		if (WLOG) console.log("SlidingRoadManager Class Mounting!")
 		this.playerDatas = playerdatas;
 		// --
-		this.roadDatas = LEVELDATAS[this.playerDatas.lv]
+		this.roadDatas = LEVELDATAS[this.playerDatas.roadlv]
 		this.playerDatas.display.targetx = ((this.roadDatas.nbpan - 1) * this.roadDatas.panW)  // pixel limite to win 
-		this.roadWidth = this.playerDatas.display.targetx - this.playerDatas.display.playerx //((this.roadDatas.nbpan) * this.roadDatas.panW) // pixels 
+		this.roadWidth = this.playerDatas.targetx - this.playerDatas.display.playerx //((this.roadDatas.nbpan) * this.roadDatas.panW) // pixels 
 
 	}
 	playforward() { // called by set_ActionsAndPlay in WariaGame.js
