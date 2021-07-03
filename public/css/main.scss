@@ -5,8 +5,11 @@
 	padding: 0;
 	line-height: 1rem;
 }
-// :root {
-// }
+:root {
+	--healthW: 640;
+	--ratio: 1;
+}
+
 body {
 	overflow: hidden;
 }
@@ -138,6 +141,7 @@ body {
 	height: 88px;
 	background-size: 100%;
 	background-image: url("../assets/archetypes/warrior/waria_idle.gif");
+	z-index: 1;
 	&:hover::before {
 		position: absolute;
 		font-size: 0.8rem;
@@ -245,9 +249,20 @@ body {
 	color: white;
 	font-size: 3rem;
 	text-shadow: 5px 5px 5px black;
-	span {
+	outline: 1px dotted black;
+	width: calc(var(--healthW) / 3);
+	#heart {
+		position: relative;
+		width: 20%;
+		min-width: 64px;
+		height: 100%;
 		// 📋
 		color: rgb(255, 0, 0);
+		background-color: blanchedalmond;
+		background-image: url("../assets/health/heart_18.png");
+		background-position: left top;
+		background-size: auto 100%;
+		background-repeat: no-repeat;
 	}
 }
 @keyframes playernamefloating {

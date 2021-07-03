@@ -14,25 +14,27 @@ const CONSOLE = document.getElementById('console')
 const BOARDDOM = document.getElementById('board')
 const ROADDOM = document.getElementById('road-slider')
 const HEALTHDOM = document.getElementById('health')
+const HEARTDOM = document.getElementById('heart')
 const CURSORDOM = document.getElementById('cursor')
 const PROGRESSDOM = document.getElementById('progress')
 const IMGPATH = "assets/maps/"
 const MOBIMGPATH = "assets/mobs/"
 const SCREEN = { w: 640, h: 480 }
+const HEALTH = { w: 250, h: 32 }
 
 // PlayerManager
 const PLAYERDOM = document.getElementById('player')
 const PLAYERARCHETYPES = {
 	"Warrior": {
-		"stats": { movesize: 4, playerx: 100, hp: 250, range: 1 },
+		"stats": { movesize: 4, playerx: 100, hp: 250, maxhp: 250, range: 1 },
 		"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	},
 	// "Wizard": {
-	// 	"stats": { movesize: 3, playerx: 100, hp: 150, range: 10 },
+	// 	"stats": { movesize: 3, playerx: 100, hp: 150, maxhp: 250, range: 10 },
 	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	// },
 	// "Ranger": {
-	// 	"stats": { movesize: 4, playerx: 100, hp: 200, range: 5 },
+	// 	"stats": { movesize: 4, playerx: 100, hp: 200, maxhp: 250, range: 5 },
 	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	// }
 }
@@ -44,11 +46,11 @@ const PLAYERARCHETYPES = {
 const MOBSDOM = document.getElementById('mobs')
 const MOBS = [
 	{
+		x: 0,  // starting x pos
 		name: "lambdaMob", // mob name
 		spawned: false, // become true if spawned
 		triggerx: 300, // when x = triggerx something is trigered.. or not
 		posx: [1000, 2000],
-		x: 0,  // starting x pos
 		aoe: 20, // area of effect, hurting distance in pixels ( must be ratio converted )
 		hp: 1,
 		h: 96, // div heigth ( ratio converted )
@@ -60,11 +62,11 @@ const MOBS = [
 		bgimg: "run_l.gif" // default background img idle
 	},
 	{
+		x: 0,  // starting x pos
 		name: "lambdaMob2", // mob name
 		spawned: false, // become true if spawned
 		triggerx: 300, // when x = triggerx something is trigered.. or not
 		posx: [1000, 2000],
-		x: 0,  // starting x pos
 		aoe: 20, // area of effect, hurting distance in pixels ( must be ratio converted )
 		hp: 1,
 		h: 96, // div heigth ( ratio converted )
@@ -80,10 +82,10 @@ const LEVELMOBS = [
 	{
 		mobs: [ // mob list level 1 (0)
 			MOBS[0],
-			MOBS[0],
-			MOBS[0],
-			MOBS[0],
 			MOBS[0]
+		],
+		boss: [ // boss level 1 (0)
+			MOBS[1]
 		]
 	},
 	{ mobs: [MOBS[1], MOBS[1], MOBS[1]] }

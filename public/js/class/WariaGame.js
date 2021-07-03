@@ -15,6 +15,8 @@ class WariaGame {
 		)
 
 		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas)
+		// console.log('*******************************')
+		// console.log(this.Mobs)
 		this.Screen.mobsData = this.Mobs
 		this.Keyboard = new KeyboardManager(this.Player.playerDatas)
 
@@ -59,18 +61,24 @@ class WariaGame {
 			this.Iteration++
 			if (WLOG) console.log("iteration:")// + this.Iteration)
 			// mobile objects  
-			let collide = this.Mobs.mobs_refresh()
-			if (collide) {
-				// not in the good scope ;( ??? good place neither ;(
-				this.Player.playerDatas.stats.hp -= collide
-			}
-			if (this.Player.playerDatas.stats.hp < 1) {
-				// you die ;(
-				this.set_End()
-			}
+			this.getCollision()
+
 			this.Keyboard.displayConsole()
 		}
 	}
+	getCollision() {
+		let collide = false //this.Mobs.mobs_refresh()
+		if (collide) {
+			// not in the good scope ;( ??? good place neither ;(
+			this.Player.playerDatas.stats.hp -= collide
+		}
+		if (this.Player.playerDatas.stats.hp < 1) {
+			// you die ;(
+			this.set_End()
+		}
+	}
+
+
 	// SCENE RENDER
 	getRatioAndResizeScreen() {
 		this.Screen.playerDatas = this.Player.playerDatas

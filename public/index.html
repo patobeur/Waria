@@ -12,32 +12,62 @@
 
 	<body>
 		<section id="screen">
+
+			<!-- Game Board -->
 			<div id="board" class="board">
+
+				<!-- sliding map -->
 				<div id="road-slider" class="road">
+
+					<!-- Player Div -->
 					<div id="player" class="outlined"></div>
+
+					<!-- progress of player in road with  -->
 					<div id="cursor">
-						<div id="progress" class="progress">00</div>
+						<div id="progress" class="progress">0%</div>
 					</div>
-					<div id="health" class="health"><span>♥♥</span>♡♡♡</div>
+
+					<!-- health pan -->
+					<div id="health" class="health">
+						<div id="heart"></div>
+					</div>
+
+					<!-- Mob container - all mobs goes here -->
 					<div id="mobs"></div>
+
 				</div>
 			</div>
+
+			<!-- dev tools will be remove  -->
 			<div id="console" class="console">
 				<div id="informations">
-					<div id="isKeyPressed">isKeyPressed</div>
-					<div id="nbKeyPressed">nbKeyPressed</div>
-					<div id="acting">acting</div>
-					<div id="facing">facing</div>
-					<div id="standing">standing</div>
-					<div id="hp">hp</div>
+					<div id="isKeyPressed">isKeyPressed:</div>
+					<div id="nbKeyPressed">nbKeyPressed:</div>
+					<div id="acting">acting:</div>
+					<div id="facing">facing:</div>
+					<div id="standing">standing:</div>
+					<div id="hp">hp:</div>
+					<div id="maxhp">maxHP:</div>
+					<div id="px">playerx:</div>
+					<div id="py">playery:</div>
+					<div id="nbmob">NbMob:</div>
 				</div>
 			</div>
+
+			<!-- Github links  -->
 			<div id="links">
 				<a href="https://github.com/patobeur/Waria" target="_blank">https://github.com/patobeur/Waria</a> ♡♡♡ !
 			</div>
+
+			<!-- splash screens -->
 			<div id="paused">Game Paused !</div>
 			<div id="end">You die !<br>[F5] to replay.</div>
+
 		</section>
+
+		<!-- demo sticker -->
+		<div class="demo">Demo</div>
+
 		<script id="js-screenManager" src="js/ini.js"></script>
 		<script id="js-slidingroadManager" src="js/class/slidingroadManager.js"></script>
 		<script id="js-keyboardManager" src="js/class/keyboardManager.js"></script>
@@ -46,6 +76,7 @@
 		<script id="js-screenManager" src="js/class/screenManager.js"></script>
 		<script id="js-WariaGame" src="js/class/WariaGame.js"></script>
 		<script id="js-gameRules" src="js/gameRules.js"></script>
+
 	</body>
 
 </html>

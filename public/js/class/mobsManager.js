@@ -20,31 +20,71 @@ class MobsManager {
 		this.mobsDatas = LEVELMOBS[0]
 		this.mobDivGenerator()
 	}
+	mobDivGenerator() {
+		for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
+			let aleaX = this.aleaEntreBornes(300, 500)
+			console.log('avant:' + index)
+			console.log(this.mobsDatas.mobs[index])
+			this.mobsDatas.mobs[index].x = aleaX
+			this.creatediv(index, aleaX)
+			console.log(this.mobsDatas.mobs[index])
+		}
+	}
+	creatediv(index, aleaX) {
+		// console.log(parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX)
+		// console.log((this.mobsDatas.mobs[index]))
+		let mob = document.createElement('div')
+		mob.id = 'mob-' + index
+		mob.setAttribute("data-mob", this.mobsDatas.mobs[index].name)
+		mob.classList.add('mob')
+		mob.style.position = "absolute"
+		mob.style.top = parseInt((this.roadDatas.floorY - this.mobsDatas.mobs[index].h) * this.playerDatas.display.displayratio) + PX
+
+		let newposX = parseInt((aleaX * this.playerDatas.display.displayratio))
+		mob.style.left = newposX + PX
+		mob.style.width = parseInt(this.mobsDatas.mobs[index].w * this.playerDatas.display.displayratio) + PX
+		mob.style.height = parseInt(this.mobsDatas.mobs[index].h * this.playerDatas.display.displayratio) + PX
+		mob.style.backgroundImage = "url(" + MOBIMGPATH + this.mobsDatas.mobs[index].bgimg + ")"
+		MOBSDOM.prepend(mob)
+		console.log('après:' + index)
+		console.log(this.mobsDatas.mobs[index])
+		// BUGUED
+		// this.mobsDatas.mobs[index].spawned = true
+	}
+	aleaEntreBornes(minimum, maximum) {
+		return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+	}
 	mobs_refresh() {
 		let collide = false
 		let actualRatio = this.playerDatas.display.displayratio
-		let actualPlayerX = parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx))
+		//let actualPlayerX = parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx))
 
 		for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
 			// let actualMobX = parseInt(this.mobsDatas.mobs[index].x * actualRatio)
 			// let actualMode = this.mobsDatas.mobs[index].mode
 
 
-			MOBSDOM.querySelector("#mob-" + index).innerHTML = parseInt(this.mobsDatas.mobs[index].x) + PX + "<br/>mode:" + this.mobsDatas.mobs[index].mode + "<br/>P:" + parseInt((this.playerDatas.display.defaultplayerx + this.playerDatas.display.playerx) * actualRatio)
+			MOBSDOM.querySelector("#mob-" + index).innerHTML = "#:" + index + "<br/>" +
+				parseInt(this.mobsDatas.mobs[index].x) + PX +
+				"<br/>mode:" + this.mobsDatas.mobs[index].mode + "<br/>P:" +
+				parseInt((this.playerDatas.display.defaultplayerx + this.playerDatas.display.playerx) * actualRatio)
 
 			if (this.mobsDatas.mobs[index].x >
 				(
 					this.playerDatas.display.playerx
 					+ this.playerDatas.display.defaultplayerx
-					+ (this.mobsDatas.mobs[index].w)
+					+ (this.mobsDatas.mobs[index].w / 2)
 				)
 			) {
 				// margin mob in front of player
 				let marge = ((this.mobsDatas.mobs[index].w * actualRatio))// + (this.mobsDatas.mobs[index].w * index * actualRatio)
 
-				this.mobsDatas.mobs[index].x = parseInt(this.mobsDatas.mobs[index].x - (this.mobsDatas.mobs[index].speed))
+				// this.mobsDatas.mobs[index].x = parseInt(this.mobsDatas.mobs[index].x - (this.mobsDatas.mobs[index].speed))
 				MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(this.mobsDatas.mobs[index].x * actualRatio) + PX
-				if (this.mobsDatas.mobs[index].x < -200) { this.mobsDatas.mobs[index].x = (this.roadDatas.nbpan * this.roadDatas.panW * actualRatio) }
+				// teleporte to end right when run out left side
+				if (this.mobsDatas.mobs[index].x < -200) {
+					this.mobsDatas.mobs[index].x = (this.roadDatas.nbpan * this.roadDatas.panW * actualRatio)
+				}
 			}
 			//  MODE RULES
 			if (this.mobsDatas.mobs[index].mode === 0) {
@@ -126,62 +166,5 @@ class MobsManager {
 			// this.mobsDatas.mobs[index].mode = actualMode
 		}
 		return collide
-	}
-	mobDivGenerator() {
-
-		for (let index = 0; index < this.mobsDatas.mobs.length; index++) {
-			// this is bugged
-			// console.log(this.mobsDatas.mobs[index].spawned)
-			// console.log("------------------")
-			// console.log(this.playerDatas.display.playerx)
-			// console.log(this.playerDatas.display.defaultplayerx)
-			// console.log(this.roadDatas.panW)
-			// console.log(this.playerDatas.display.displayratio)
-			// if (!this.mobsDatas.mobs[index].spawned) {
-			// let newMobx = parseInt(
-			// 	(
-			// 		this.playerDatas.display.playerx
-			// 		+ this.playerDatas.display.defaultplayerx
-			// 		+ this.roadDatas.panW
-			// 		+ this.aleaEntreBornes(0, this.roadDatas.panW)
-			// 	)
-			// 	* this.playerDatas.display.displayratio
-			// )
-			// // console.log("newMobx:" + newMobx)
-			// this.mobsDatas.mobs[index].x = newMobx
-			this.creatediv(index)
-			// }
-		}
-	}
-	creatediv(index) {
-		// console.log(parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio) + PX)
-		// console.log((this.mobsDatas.mobs[index]))
-		let mob = document.createElement('div')
-		mob.id = 'mob-' + index
-		mob.setAttribute("data-mob", this.mobsDatas.mobs[index].name)
-		mob.classList.add('mob')
-		mob.style.position = "absolute"
-		// console.log(this.roadDatas)
-		// console.log(this.mobsDatas.mobs[index].h)
-		// console.log(this.playerDatas.display.displayratio)
-		mob.style.top = parseInt((this.roadDatas.floorY - this.mobsDatas.mobs[index].h) * this.playerDatas.display.displayratio) + PX
-
-		this.mobsDatas.mobs[index].x = this.aleaEntreBornes(150, 1000)
-		// console.log("left mob #" + index + ":" + parseInt(this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio))
-		// console.log(index)
-		console.log('kkk' + parseInt((this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio)) + PX)
-		// console.log(this.playerDatas.display.displayratio)
-		// this.mobsDatas.mobs[index].x = parseInt((this.mobsDatas.mobs[index].x) * this.playerDatas.display.displayratio) + PX
-		mob.style.left = parseInt((this.mobsDatas.mobs[index].x * this.playerDatas.display.displayratio)) + PX
-
-		mob.style.width = parseInt(this.mobsDatas.mobs[index].w * this.playerDatas.display.displayratio) + PX
-		mob.style.height = parseInt(this.mobsDatas.mobs[index].h * this.playerDatas.display.displayratio) + PX
-		mob.style.backgroundImage = "url(" + MOBIMGPATH + this.mobsDatas.mobs[index].bgimg + ")"
-		MOBSDOM.prepend(mob)
-		// BUGUED
-		// this.mobsDatas.mobs[index].spawned = true
-	}
-	aleaEntreBornes(minimum, maximum) {
-		return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 	}
 }

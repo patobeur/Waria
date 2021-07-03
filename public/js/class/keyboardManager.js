@@ -102,6 +102,9 @@ class KeyboardManager {
 		document.getElementById("facing").innerHTML = "facing:" + this.playerDatas.actions.facing;
 		document.getElementById("standing").innerHTML = "standing:" + this.playerDatas.actions.standing;
 		document.getElementById("hp").innerHTML = "hp:" + this.playerDatas.stats.hp;
+		document.getElementById("maxhp").innerHTML = "maxhp:" + this.playerDatas.stats.maxhp;
+		document.getElementById("px").innerHTML = "playerx:" + parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) * this.playerDatas.display.displayratio)
+		document.getElementById("py").innerHTML = "playery:" + parseInt((this.playerDatas.display.playery + this.playerDatas.display.defaultplayery) * this.playerDatas.display.displayratio)
 	}
 }
 // display console on/off
