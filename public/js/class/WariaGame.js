@@ -8,23 +8,11 @@ class WariaGame {
 		this.Player = new PlayerManager(playername, archetype, information)
 		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas)
 		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas)
-
-		if (WDEV) console.log("------------- ALL MOBS -------------")
-
-		for (let index = 0; index < this.Mobs.WTFmobsDatas.mobs.length; index++) {
-			if (WDEV) console.log(this.Mobs.WTFmobsDatas.mobs[index])
-		}
-		if (WDEV) console.log("------------- ALL MOBS -------------")
-
-
-
-
 		this.Screen = new ScreenManager(
 			this.SlidingRoad.roadDatas,
-			this.Player.playerDatas
+			this.Player.playerDatas,
+			this.Mobs.WTFmobsDatas
 		)
-
-		this.Screen.mobsData = this.Mobs.mobsDatasLOCAL
 
 		this.Keyboard = new KeyboardManager(this.Player.playerDatas)
 
@@ -69,15 +57,13 @@ class WariaGame {
 			this.Iteration++
 			if (WLOG) console.log("iteration:")// + this.Iteration)
 			// mobile objects  
-			this.getCollision()
-
+			let collide = this.Mobs.mobs_refresh()
+			this.getCollision(collide)
 			this.Keyboard.displayConsole()
 		}
 	}
-	getCollision() {
-		let collide = false //this.Mobs.mobs_refresh()
+	getCollision(collide) {
 		if (collide) {
-			// not in the good scope ;( ??? good place neither ;(
 			this.Player.playerDatas.stats.hp -= collide
 		}
 		if (this.Player.playerDatas.stats.hp < 1) {
@@ -86,13 +72,13 @@ class WariaGame {
 		}
 	}
 
-
 	// SCENE RENDER
 	getRatioAndResizeScreen() {
 		this.Screen.playerDatas = this.Player.playerDatas
-		this.Screen.mobsDatas = this.Mobs.mobsDatas
+		this.Screen.mobsDatas = this.Mobs.WTFmobsDatas
 		this.Screen.getRatioAndResizeScreen()
 	}
+
 	// set_LocalStorage(playername, archetype, information) {
 	// 	// initialize
 	// 	if (!(localStorage.WCoin && localStorage.WCoin >= 0)) {
