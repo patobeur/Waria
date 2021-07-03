@@ -46,10 +46,10 @@ const PLAYERARCHETYPES = {
 // mobsManager
 const MOBSDOM = document.getElementById('mobs')
 const MOBS = {
-	// x, name ,spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg
-	1: [0, "lambdaMoab", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],
-	2: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 2, 100, 5, 0, "run_l.gif"],
-	3: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],
+	// x,   name,		spawned,triggerx, posx,   aoe,hp,h,   w,   speed,xp,hit, mode, bgimg
+	1: [0, "lambdaMoab", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "guard1/run_l.gif"],
+	2: [0, "lambdaMob2", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 6, 100, 10, 0, "guard2/run_l.gif"],
+	3: [0, "lambdaMob2", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "guard1/run_l.gif"]
 }
 const LEVELMOBS = {
 	1: {
@@ -62,7 +62,7 @@ const LEVELMOBS = {
 			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
+			new Mob(...MOBS[2]),
 			new Mob(...MOBS[1])
 		],
 		boss: [ // boss level 1 (0)

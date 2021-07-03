@@ -11,6 +11,7 @@ class MobsManager {
 	mobDivGenerator() {
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
 			let NewAlea = this.aleaEntreBornes(500, 1500);
+			console.log("ff" + this.WTFmobsDatas.mobs[index].x)
 			this.WTFmobsDatas.mobs[index].x = NewAlea;
 			this.creatediv(index, NewAlea)
 		}
