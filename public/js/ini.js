@@ -47,7 +47,6 @@ const PLAYERARCHETYPES = {
 const MOBSDOM = document.getElementById('mobs')
 const MOBS = {
 	1: {
-		xx: 0,  // starting x pos
 		x: 0,  // starting x pos
 		name: "lambdaMoab", // mob name
 		spawned: false, // become true if spawned
@@ -64,7 +63,6 @@ const MOBS = {
 		bgimg: "run_l.gif" // default background img idle
 	},
 	2: {
-		xx: 0,  // starting x pos
 		x: 0,  // starting x pos
 		name: "lambdaMob2", // mob name
 		spawned: false, // become true if spawned

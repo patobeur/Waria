@@ -11,10 +11,11 @@ class WariaGame {
 
 		if (WDEV) console.log("------------- ALL MOBS -------------")
 
-		for (let index = 0; index < this.Mobs.mobsDatasLOCAL.mobs.length; index++) {
-			if (WDEV) console.log(this.Mobs.mobsDatasLOCAL.mobs[index])
+		for (let index = 0; index < this.Mobs.WTFmobsDatas.mobs.length; index++) {
+			if (WDEV) console.log(this.Mobs.WTFmobsDatas.mobs[index])
 		}
 		if (WDEV) console.log("------------- ALL MOBS -------------")
+
 
 
 
