@@ -25,12 +25,12 @@ class WariaGame {
 
 	// SCENE RENDER
 	renderScene = () => {
-		if (!this.paused & this.Player.playerDatas.stats.hp >= 1) {
+		if (!this.paused) {//& this.Player.playerDatas.stats.hp >= 1) {
 			this.Iteration++
 			if (WLOG) console.log("iteration:")// + this.Iteration)
-			// mobile objects  
-			let collide = this.Mobs.mobs_refresh()
-			this.getCollision(collide)
+			if (this.Mobs.WTFmobsDatas.mobs.length > 0) {
+				this.getCollision(this.Mobs.mobs_refresh())
+			}
 			this.Keyboard.displayConsole()
 		}
 	}
@@ -67,7 +67,7 @@ class WariaGame {
 		if (collide) {
 			this.Player.playerDatas.stats.hp -= collide
 			let hpPercent = parseInt((this.Player.playerDatas.stats.hp / this.Player.playerDatas.stats.maxhp) * 100)
-			console.log(hpPercent)
+			// console.log(hpPercent)
 			HEARTDOM.style.width = hpPercent + "%"
 
 		}

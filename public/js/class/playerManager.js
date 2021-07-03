@@ -24,16 +24,4 @@ class PlayerManager {
 			coins: 0
 		}
 	}
-
-	// set_Action(actionname, action) {
-	// 	this.playerDatas.actions[actionname] = action
-	// 	// console.log(this.playerDatas.actions[actionname])
-	// 	// console.log(this.playerDatas)
-	// }
-
-	// set_nextlv() {
-	// 	this.playerDatas.lv = this.playerDatas.lv +1
-	// 	this.SlidingRoad.nextLevel(this.playerDatas.lv)
-	// }
-
 }

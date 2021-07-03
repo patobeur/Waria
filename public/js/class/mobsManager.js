@@ -11,7 +11,6 @@ class MobsManager {
 	mobDivGenerator() {
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
 			let NewAlea = this.aleaEntreBornes(500, 1500);
-			console.log("ff" + this.WTFmobsDatas.mobs[index].x)
 			this.WTFmobsDatas.mobs[index].x = NewAlea;
 			this.creatediv(index, NewAlea)
 		}
@@ -47,6 +46,7 @@ class MobsManager {
 
 
 	mobs_refresh() {
+		console.log('mobs_refresh')
 		let actualRatio = this.playerDatas.display.displayratio
 		let collide = false
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
@@ -61,15 +61,18 @@ class MobsManager {
 			let distanceContact = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx + marge)
 			let distanceHorsPortee = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx)
 			// stop runningmob in front of player
-			if (this.WTFmobsDatas.mobs[index].x > distanceContact) {
-				this.WTFmobsDatas.mobs[index].mode = 0
+			if (this.playerDatas.stats.hp < 1) {
+				this.WTFmobsDatas.mobs[index].mode = 2
 			}
-			if (this.WTFmobsDatas.mobs[index].x <= distanceContact
+			else if (this.WTFmobsDatas.mobs[index].x <= distanceContact
 				&& this.WTFmobsDatas.mobs[index].x > distanceHorsPortee
 			) {
 				this.WTFmobsDatas.mobs[index].mode = 1
 			}
-			if (this.WTFmobsDatas.mobs[index].x < distanceHorsPortee) {
+			else if (this.WTFmobsDatas.mobs[index].x < distanceHorsPortee) {
+				this.WTFmobsDatas.mobs[index].mode = 0
+			}
+			else if (this.WTFmobsDatas.mobs[index].x > distanceContact) {
 				this.WTFmobsDatas.mobs[index].mode = 0
 			}
 
@@ -82,7 +85,7 @@ class MobsManager {
 
 				// teleporte to end right when run out left side
 				if (this.WTFmobsDatas.mobs[index].x < -200) {
-					this.WTFmobsDatas.mobs[index].x = (this.roadDatas.nbpan * this.roadDatas.panW * actualRatio)
+					this.WTFmobsDatas.mobs[index].x = 2500//(this.roadDatas.nbpan * this.roadDatas.panW * actualRatio)
 				}
 			}
 			if (this.WTFmobsDatas.mobs[index].mode === 1) {
@@ -92,8 +95,13 @@ class MobsManager {
 				// --
 				if (this.WTFmobsDatas.mobs[index].x > actualPlayerX && this.WTFmobsDatas.mobs[index].x < actualPlayerX + marge) {//this.playerDatas.display.defaultplayerx) {
 					// colliding X return hit point
-					collide = this.WTFmobsDatas.mobs[index].hit
+					collide = HEALTHLOSS ? this.WTFmobsDatas.mobs[index].hit : 0
 				}
+			}
+			if (this.WTFmobsDatas.mobs[index].mode === 2) {
+				this.WTFmobsDatas.mobs[index].x = parseInt(this.WTFmobsDatas.mobs[index].x - (this.WTFmobsDatas.mobs[index].speed))
+				MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].name + "/run.gif)"
+
 			}
 		}
 		return collide

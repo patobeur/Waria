@@ -1,8 +1,9 @@
 "use strict";
-const WLOG = false;
-const WDEV = true;
-const WLANG = 'fr_FR';
-const WVERS = 'alpha.0.3';
+const HEALTHLOSS = true
+const WLOG = false
+const WDEV = true
+const WLANG = 'fr_FR'
+const WVERS = 'alpha.0.3'
 const REFRESHINTERV = 50 // microsec interval refresh
 const PAUSEDDOM = document.getElementById('paused')
 const ENDDOM = document.getElementById('end')
