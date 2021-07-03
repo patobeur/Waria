@@ -99,7 +99,8 @@ class MobsManager {
 				}
 			}
 			if (this.WTFmobsDatas.mobs[index].mode === 2) {
-				this.WTFmobsDatas.mobs[index].x = parseInt(this.WTFmobsDatas.mobs[index].x - (this.WTFmobsDatas.mobs[index].speed))
+				this.WTFmobsDatas.mobs[index].x = parseInt(this.WTFmobsDatas.mobs[index].x + (this.WTFmobsDatas.mobs[index].speed))
+				MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(this.WTFmobsDatas.mobs[index].x * actualRatio) + PX
 				MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].name + "/run.gif)"
 
 			}
