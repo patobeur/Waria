@@ -23,6 +23,18 @@ class WariaGame {
 		setInterval(this.renderScene, REFRESHINTERV)
 	}
 
+	// SCENE RENDER
+	renderScene = () => {
+		if (!this.paused & this.Player.playerDatas.stats.hp >= 1) {
+			this.Iteration++
+			if (WLOG) console.log("iteration:")// + this.Iteration)
+			// mobile objects  
+			let collide = this.Mobs.mobs_refresh()
+			this.getCollision(collide)
+			this.Keyboard.displayConsole()
+		}
+	}
+
 	set_ActionsAndPlay(actions, isPressedKey) { // call from detectKeyPress() & detectKeyUnPress() in class keyboardManager.js
 		this.Player.playerDatas.actions = actions
 		// this.Player.playerDatas.isKeyPressed = isPressedKey
@@ -51,20 +63,12 @@ class WariaGame {
 		ENDDOM.classList.add('active')
 		// clearInterval(this.renderScene)
 	}
-	// SCENE RENDER
-	renderScene = () => {
-		if (!this.paused & this.Player.playerDatas.stats.hp >= 1) {
-			this.Iteration++
-			if (WLOG) console.log("iteration:")// + this.Iteration)
-			// mobile objects  
-			let collide = this.Mobs.mobs_refresh()
-			this.getCollision(collide)
-			this.Keyboard.displayConsole()
-		}
-	}
 	getCollision(collide) {
 		if (collide) {
 			this.Player.playerDatas.stats.hp -= collide
+			let hpPercent = parseInt(this.Player.playerDatas.stats.hp / this.Player.playerDatas.stats.maxhp)
+			HEARTDOM.style.width = hpPercent + "%"
+
 		}
 		if (this.Player.playerDatas.stats.hp === 0) {
 			// you die ;(
