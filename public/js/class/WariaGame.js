@@ -5,19 +5,26 @@ class WariaGame {
 	constructor(playername, archetype, information) {
 		if (WLOG) console.log("WariaGame Class Mounted!")
 		// this.set_LocalStorage(playername, archetype, information)
-		this.levelCurrent = 0
 		this.Player = new PlayerManager(playername, archetype, information)
 		this.SlidingRoad = new SlidingRoadManager(this.Player.playerDatas)
+		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas)
+
+		if (WDEV) console.log("------------- ALL MOBS -------------")
+
+		for (let index = 0; index < this.Mobs.mobsDatasLOCAL.mobs.length; index++) {
+			if (WDEV) console.log(this.Mobs.mobsDatasLOCAL.mobs[index])
+		}
+		if (WDEV) console.log("------------- ALL MOBS -------------")
+
+
 
 		this.Screen = new ScreenManager(
 			this.SlidingRoad.roadDatas,
 			this.Player.playerDatas
 		)
 
-		this.Mobs = new MobsManager(this.SlidingRoad.roadDatas, this.Player.playerDatas)
-		// console.log('*******************************')
-		// console.log(this.Mobs)
-		this.Screen.mobsData = this.Mobs
+		this.Screen.mobsData = this.Mobs.mobsDatasLOCAL
+
 		this.Keyboard = new KeyboardManager(this.Player.playerDatas)
 
 
@@ -49,7 +56,7 @@ class WariaGame {
 		}
 	}
 	set_End() { // call from KeyboardManager
-		console.log('you die')
+		if (WLOG) ('you die')
 		// this.paused = !this.paused // ???
 		// PAUSEDDOM.classList.remove('active')
 		ENDDOM.classList.add('active')
