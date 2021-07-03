@@ -260,6 +260,14 @@ body {
   background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
 }
 
+#player.death {
+  background-image: url("../assets/archetypes/warrior/waria_death.gif");
+}
+
+#player.death.left {
+  background-image: url("../assets/archetypes/warrior/waria_death_l.gif");
+}
+
 #cursor {
   position: absolute;
   bottom: 8px;

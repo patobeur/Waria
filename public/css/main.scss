@@ -213,6 +213,13 @@ body {
 			background-image: url("../assets/archetypes/warrior/waria_gocrouch_l.gif");
 		}
 	}
+	//godeath
+	&.death {
+		background-image: url("../assets/archetypes/warrior/waria_death.gif");
+		&.left {
+			background-image: url("../assets/archetypes/warrior/waria_death_l.gif");
+		}
+	}
 }
 #cursor {
 	position: absolute;

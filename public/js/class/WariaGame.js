@@ -66,8 +66,9 @@ class WariaGame {
 		if (collide) {
 			this.Player.playerDatas.stats.hp -= collide
 		}
-		if (this.Player.playerDatas.stats.hp < 1) {
+		if (this.Player.playerDatas.stats.hp === 0) {
 			// you die ;(
+			PLAYERDOM.classList = 'death ' + this.Player.playerDatas.actions.facing
 			this.set_End()
 		}
 	}

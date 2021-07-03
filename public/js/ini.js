@@ -79,8 +79,8 @@ const MOBSDOM = document.getElementById('mobs')
 // 		bgimg: "run_l.gif" // default background img idle
 // 	}
 // }
+// x, name ,spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg
 const MOBS = {
-	// x, name ,spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg
 	1: [0, "lambdaMoab", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],
 	2: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 2, 100, 5, 0, "run_l.gif"],
 	3: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],
