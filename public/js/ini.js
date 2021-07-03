@@ -45,42 +45,8 @@ const PLAYERARCHETYPES = {
 // OriginalPlayerH: 44 * 2,
 // mobsManager
 const MOBSDOM = document.getElementById('mobs')
-// const MOBS = {
-// 	1: {
-// 		x: 0,  // starting x pos
-// 		name: "lambdaMoab", // mob name
-// 		spawned: false, // become true if spawned
-// 		triggerx: 300, // when x = triggerx something is trigered.. or not
-// 		posx: [1000, 2000],
-// 		aoe: 20, // area of effect, hurting distance in pixels ( must be ratio converted )
-// 		hp: 1,
-// 		h: 96, // div heigth ( ratio converted )
-// 		w: 96, // div width ( ratio converted )
-// 		speed: 1, // pixel to move each scene iteration
-// 		xp: 100, // player's xp win when mob die
-// 		hit: 5, // hit damage to player
-// 		mode: 0, // 0: run to player , 1: stick to player, 2 run to end road; 
-// 		bgimg: "run_l.gif" // default background img idle
-// 	},
-// 	2: {
-// 		x: 0,  // starting x pos
-// 		name: "lambdaMob2", // mob name
-// 		spawned: false, // become true if spawned
-// 		triggerx: 300, // when x = triggerx something is trigered.. or not
-// 		posx: [1000, 2000],
-// 		aoe: 20, // area of effect, hurting distance in pixels ( must be ratio converted )
-// 		hp: 1,
-// 		h: 96, // div heigth ( ratio converted )
-// 		w: 96, // div width ( ratio converted )
-// 		speed: 2, // pixel to move each scene iteration
-// 		xp: 100, // player's xp win when mob die
-// 		hit: 5, // hit damage to player
-// 		mode: 0, // 0: run to player , 1: stick to player, 2 run to end road; 
-// 		bgimg: "run_l.gif" // default background img idle
-// 	}
-// }
-// x, name ,spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg
 const MOBS = {
+	// x, name ,spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg
 	1: [0, "lambdaMoab", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],
 	2: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 2, 100, 5, 0, "run_l.gif"],
 	3: [0, "lambdaMob2", false, 300, [1000, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif"],

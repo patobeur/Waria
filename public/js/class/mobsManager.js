@@ -35,6 +35,16 @@ class MobsManager {
 
 		this.WTFmobsDatas.mobs[index].spawned = true
 	}
+
+
+	mobs_refreshMobInfoDiv(ref) {
+		MOBSDOM.querySelector("#mob-" + ref).innerHTML = "#:" + ref + "<br/>" +
+			parseInt(this.WTFmobsDatas.mobs[ref].x) + PX +
+			"<br/>mode:" + this.WTFmobsDatas.mobs[ref].mode + "<br/>P:" +
+			parseInt((this.playerDatas.display.defaultplayerx + this.playerDatas.display.playerx) * this.playerDatas.display.displayratio)
+	}
+
+
 	mobs_refresh() {
 		let actualRatio = this.playerDatas.display.displayratio
 		let collide = false
@@ -44,10 +54,8 @@ class MobsManager {
 			// let actualMode = this.WTFmobsDatas.mobs[index].mode
 			let actualPlayerX = parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx))
 
-			MOBSDOM.querySelector("#mob-" + index).innerHTML = "#:" + index + "<br/>" +
-				parseInt(this.WTFmobsDatas.mobs[index].x) + PX +
-				"<br/>mode:" + this.WTFmobsDatas.mobs[index].mode + "<br/>P:" +
-				parseInt((this.playerDatas.display.defaultplayerx + this.playerDatas.display.playerx) * actualRatio)
+			//this.mobs_refreshMobInfoDiv(index)
+
 
 			// stop runningmob in front of player
 			if (this.WTFmobsDatas.mobs[index].x > (

@@ -66,7 +66,8 @@ class WariaGame {
 	getCollision(collide) {
 		if (collide) {
 			this.Player.playerDatas.stats.hp -= collide
-			let hpPercent = parseInt(this.Player.playerDatas.stats.hp / this.Player.playerDatas.stats.maxhp)
+			let hpPercent = parseInt((this.Player.playerDatas.stats.hp / this.Player.playerDatas.stats.maxhp) * 100)
+			console.log(hpPercent)
 			HEARTDOM.style.width = hpPercent + "%"
 
 		}
