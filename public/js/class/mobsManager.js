@@ -21,7 +21,6 @@ class MobsManager {
 		return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 	}
 	creatediv(index, aleaX) {
-		console.log('creation de div')
 		let mob = document.createElement('div')
 		mob.id = 'mob-' + index
 		mob.setAttribute("data-mob", this.WTFmobsDatas.mobs[index].name)
@@ -50,7 +49,7 @@ class MobsManager {
 
 	mobs_refresh_ifMobs() {
 		if (this.counterRefreshAfterDeath < this.nbRefreshAfterDeath) {
-			console.log('mobs_refresh')
+
 			return this.mobs_refresh()
 		}
 		return false;
