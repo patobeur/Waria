@@ -29,7 +29,7 @@ class WariaGame {
 			this.Iteration++
 			if (WLOG) console.log("iteration:")// + this.Iteration)
 			if (this.Mobs.WTFmobsDatas.mobs.length > 0) {
-				this.getCollision(this.Mobs.mobs_refresh())
+				this.getCollision(this.Mobs.mobs_refresh_ifMobs())
 			}
 			this.Keyboard.displayConsole()
 		}
