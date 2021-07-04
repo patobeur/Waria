@@ -49,6 +49,7 @@ class MobsManager {
 		console.log('mobs_refresh')
 		let actualRatio = this.playerDatas.display.displayratio
 		let collide = false
+		let mobsToRemove = []
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
 			// comment gerer la marge ???
 			let marge = (((this.WTFmobsDatas.mobs[index].w / 1.5)))// + (this.WTFmobsDatas.mobs[index].w * index * actualRatio)
@@ -62,7 +63,14 @@ class MobsManager {
 			let distanceHorsPortee = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx)
 			// stop runningmob in front of player
 			if (this.playerDatas.stats.hp < 1) {
-				this.WTFmobsDatas.mobs[index].mode = 2
+				if (this.WTFmobsDatas.mobs[index].mode === 2 &&
+					this.WTFmobsDatas.mobs[index].x >= 1000 &&
+					mobsToRemove.length < this.WTFmobsDatas.mobs.length) {
+					mobsToRemove.push(index)
+				}
+				else {
+					this.WTFmobsDatas.mobs[index].mode = 2
+				}
 			}
 			else if (this.WTFmobsDatas.mobs[index].x <= distanceContact
 				&& this.WTFmobsDatas.mobs[index].x > distanceHorsPortee
@@ -104,6 +112,15 @@ class MobsManager {
 				MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].name + "/run.gif)"
 
 			}
+		}
+
+		if (mobsToRemove.length > 0) {
+			for (let index2 = 0; index2 < mobsToRemove.length; index2++) {
+				console.log("remove id:" + mobsToRemove[index2])
+				MOBSDOM.querySelector("#mob-" + mobsToRemove[index2]).remove
+				this.WTFmobsDatas.mobs.splice(mobsToRemove[index2], 1);
+			}
+			mobsToRemove = []
 		}
 		return collide
 	}

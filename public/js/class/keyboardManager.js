@@ -24,54 +24,54 @@ class KeyboardManager {
 	get_PlayerDomInfo_Once() {
 	}
 	detectKeyPress(eventkeydown) {
-		if (this.playerDatas.stats.hp > 0) {
-			this.keys[WLANG].forEach(element => {// find if pressed key exist
-				if (element.keycode === eventkeydown.keyCode) {
-					this.playerDatas.actions = {
-						goRight: (element.acting === "run") ? (element.facing === "right" ? true : false) : false,
-						goLeft: (element.acting === "run") ? (element.facing === "left" ? true : false) : false,
-						facing: (element.facing != "") ? element.facing : this.playerDatas.actions.facing,
-						acting: (element.acting != "") ? element.acting : this.playerDatas.actions.acting,
-						standing: (element.standing != "") ? element.standing : this.playerDatas.actions.standing,
-					}
-					if (element.whilepressed && this.nbKeyPressed < 1) {
-						this.nbKeyPressed++
-						this.set_isKeyPressed()
-					}
-					if (element.actionF) {
-						Journey.set_Paused()
-					}
-					Journey.set_ActionsAndPlay(this.playerDatas.actions, this.isKeyPressed)
-					this.set_acting()
+		// if (this.playerDatas.stats.hp > 0) {
+		this.keys[WLANG].forEach(element => {// find if pressed key exist
+			if (element.keycode === eventkeydown.keyCode) {
+				this.playerDatas.actions = {
+					goRight: (element.acting === "run") ? (element.facing === "right" ? true : false) : false,
+					goLeft: (element.acting === "run") ? (element.facing === "left" ? true : false) : false,
+					facing: (element.facing != "") ? element.facing : this.playerDatas.actions.facing,
+					acting: (element.acting != "") ? element.acting : this.playerDatas.actions.acting,
+					standing: (element.standing != "") ? element.standing : this.playerDatas.actions.standing,
 				}
-			});
-		}
+				if (element.whilepressed && this.nbKeyPressed < 1) {
+					this.nbKeyPressed++
+					this.set_isKeyPressed()
+				}
+				if (element.actionF) {
+					Journey.set_Paused()
+				}
+				Journey.set_ActionsAndPlay(this.playerDatas.actions, this.isKeyPressed)
+				this.set_acting()
+			}
+		});
+		// }
 	}
 	detectKeyUnPress(event) {
-		if (this.playerDatas.stats.hp > 0) {
-			if (event.code === "ArrowRight" || event.code === "KeyD") {
-				this.playerDatas.actions.goRight = false
-				this.playerDatas.actions.acting = ""
-				this.playerDatas.actions.standing = "" // stand up when run
-				if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
-			}
-			if (event.code === "ArrowLeft" || event.code === "KeyA") {
-				this.playerDatas.actions.goLeft = false
-				this.playerDatas.actions.acting = ""
-				this.playerDatas.actions.standing = "" // stand up when run
-				if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
-			}
-			if (event.code === "ControlLeft") {
-				this.playerDatas.actions.acting = ""
-				if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
-			}
-			// if (27 === event.keyCode) {
-			// 	Journey.set_Paused()
-			// }
-			this.set_isKeyPressed()
-			Journey.set_ActionsAndPlay(this.playerDatas.actions, this.isKeyPressed)
-			this.set_acting()
+		// if (this.playerDatas.stats.hp > 0) {
+		if (event.code === "ArrowRight" || event.code === "KeyD") {
+			this.playerDatas.actions.goRight = false
+			this.playerDatas.actions.acting = ""
+			this.playerDatas.actions.standing = "" // stand up when run
+			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
 		}
+		if (event.code === "ArrowLeft" || event.code === "KeyA") {
+			this.playerDatas.actions.goLeft = false
+			this.playerDatas.actions.acting = ""
+			this.playerDatas.actions.standing = "" // stand up when run
+			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
+		}
+		if (event.code === "ControlLeft") {
+			this.playerDatas.actions.acting = ""
+			if (this.nbKeyPressed > 0) { this.nbKeyPressed-- }
+		}
+		// if (27 === event.keyCode) {
+		// 	Journey.set_Paused()
+		// }
+		this.set_isKeyPressed()
+		Journey.set_ActionsAndPlay(this.playerDatas.actions, this.isKeyPressed)
+		this.set_acting()
+		// }
 	}
 	set_isKeyPressed() {
 		if (this.nbKeyPressed === 0) {

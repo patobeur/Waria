@@ -1,7 +1,7 @@
 "use strict";
 
 class Mob {
-	constructor(x, name, spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg) {
+	constructor(x, name, spawned, triggerx, posx, aoe, hp, h, w, speed, xp, hit, mode, bgimg, out) {
 		this.x = x,  // starting x pos
 			this.name = name, // mob name
 			this.spawned = spawned, // become true if spawned
@@ -16,5 +16,6 @@ class Mob {
 			this.hit = hit, // hit damage to player
 			this.mode = mode, // 0: run to player , 1: stick to player, 2 hurt, 3 run to end road, 4 run back at player death; 
 			this.bgimg = bgimg // default background img idle
+		this.out = out // despawn if true
 	}
 }
