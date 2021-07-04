@@ -5,7 +5,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 100vw;
 	#hitbutt {
 		.hit {
 			position: absolute;
@@ -43,7 +43,7 @@
 		justify-content: space-around;
 		align-items: center;
 		#mobile-actions {
-			height: 100%;
+			height: 100vh;
 			width: 100%;
 			display: flex;
 			justify-content: space-around;
