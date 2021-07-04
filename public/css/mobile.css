@@ -1,0 +1,109 @@
+:root {
+  --mobileW: 100vw;
+}
+
+#mobileparts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#mobileparts #hitbutt .hit {
+  position: absolute;
+  top: 0;
+  left: 60px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-position: left top;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.205);
+  border: 3px solid rgba(255, 255, 255, 0.377);
+}
+
+#mobileparts #hitbutt .hit.pause {
+  background-image: url("../assets/buttons/pause.png");
+}
+
+#mobileparts #hitbutt .hit.end {
+  left: 50%;
+  background-image: url("../assets/buttons/end.png");
+}
+
+#mobileparts #hitbutt .hit.fullscreen {
+  left: unset;
+  right: 0;
+  background-image: url("../assets/buttons/fullscreen.png");
+}
+
+#mobileparts #mobile {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mobileparts #mobile #mobile-actions {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mobileparts #mobile #mobile-actions .mobact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mobileparts #mobile #mobile-actions .mobact button {
+  height: 100%;
+  border-radius: 50%;
+  padding: 100%;
+  margin: 1rem;
+  background-color: rgba(255, 255, 255, 0.205);
+  border: 3px solid rgba(255, 255, 255, 0.377);
+  color: white;
+  background-position: left top;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+#mobileparts #mobile #mobile-actions .mobact button.left {
+  background-image: url("../assets/buttons/arrow_left.png");
+}
+
+#mobileparts #mobile #mobile-actions .mobact button.right {
+  background-image: url("../assets/buttons/arrow_right.png");
+}
+
+#mobileparts #mobile #mobile-actions .mobact button.swing {
+  background-image: url("../assets/buttons/hit_up.png");
+}
+
+#mobileparts #mobile #mobile-actions .mobact button.crouch {
+  background-image: url("../assets/buttons/arrow_down.png");
+}
+/*# sourceMappingURL=mobile.css.map */

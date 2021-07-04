@@ -20,8 +20,10 @@ class KeyboardManager {
 		}
 		document.onkeydown = (eventkeydown) => { this.detectKeyPress(eventkeydown) };
 		document.onkeyup = (eventkeydown) => { this.detectKeyUnPress(eventkeydown) };
+		document.onclick = (eventClick) => { this.detectClick(eventClick) };
 	}
-	get_PlayerDomInfo_Once() {
+	detectClick(eventClick) {
+		console.log(eventClick.target.id)
 	}
 	detectKeyPress(eventkeydown) {
 		// if (this.playerDatas.stats.hp > 0) {
