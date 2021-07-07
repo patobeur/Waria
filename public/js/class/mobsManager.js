@@ -79,6 +79,7 @@ class MobsManager {
 			// monkey business ;()
 			// -----------------------
 			if (this.WTFmobsDatas.mobs[index].out === false) {
+				let playeract = this.playerDatas.actions.acting
 				// stop runningmob in front of player
 				if (this.playerDatas.stats.hp < 1) {
 					if (this.WTFmobsDatas.mobs[index].mode > 1 &&

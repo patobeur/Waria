@@ -12,6 +12,7 @@
 
 body {
 	overflow: hidden;
+	background-color: rgb(0, 0, 0);
 }
 .outlined {
 	outline: 1px dotted black;
@@ -31,19 +32,21 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
-	height: 100%;
-	background-color: rgb(0, 0, 0);
+	width: 100vw;
+	height: 100vh;
+	border-radius: 5%;
+	background-color: rgb(71, 71, 71);
+	overflow: hidden;
 	.board {
 		position: relative;
-		// background-color: rgba(51, 255, 0, 0.26);
-		width: 100%;
+		background-color: rgb(51, 51, 51);
+		width: 98%;
+		height: 98%;
 		display: flex;
 		align-items: center;
-		overflow-x: hidden;
-		height: 100vh;
 		transition: transform 0.5s ease-in;
 		overflow: hidden;
+		border-radius: 5%;
 		&.vertical {
 			transform: rotate(90deg);
 		}
@@ -300,7 +303,7 @@ body {
 #paused,
 #end {
 	display: none;
-	position: absolute;
+	position: relative;
 	background-color: rgba(255, 0, 0, 0.473);
 	text-transform: uppercase;
 	font-size: 1.5rem;
@@ -310,19 +313,23 @@ body {
 	border: 2px solid white;
 	text-align: center;
 	color: rgb(255, 255, 255);
+	width: 40%;
+	margin: auto;
 	&.active {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		display: initial;
 	}
 }
 .console {
 	position: absolute;
+	display: none;
 	top: 25%;
 	right: -200px;
 	width: 200px;
 	z-index: 10;
 	// background-color: rgb(53, 204, 23);
+	&.active {
+		display: initial;
+	}
 	#informations {
 		position: relative;
 		width: 100%;
@@ -373,4 +380,12 @@ body {
 		// 	width: max-content;
 		// }
 	}
+}
+.demo {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100px;
+	height: 100px;
+	transform: rotate(-45deg);
 }

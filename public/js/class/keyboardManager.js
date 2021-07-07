@@ -24,6 +24,9 @@ class KeyboardManager {
 	}
 	detectClick(eventClick) {
 		console.log(eventClick.target.id)
+		if (eventClick.target.id === "act-swing") {
+
+		}
 	}
 	detectKeyPress(eventkeydown) {
 		// if (this.playerDatas.stats.hp > 0) {
@@ -101,21 +104,34 @@ class KeyboardManager {
 		}
 		PLAYERDOM.setAttribute("class", this.playerDatas.actions.acting + " " + this.playerDatas.actions.facing + " " + this.playerDatas.actions.standing)
 	}
-	displayConsole() {
-		document.getElementById("isKeyPressed").innerHTML = "isKeyPressed:" + (this.playerDatas.isKeyPressed ? "true" : "false");
-		document.getElementById("nbKeyPressed").innerHTML = "nbKeyPressed:" + this.nbKeyPressed;
-		document.getElementById("acting").innerHTML = "acting:" + this.playerDatas.actions.acting;
-		document.getElementById("facing").innerHTML = "facing:" + this.playerDatas.actions.facing;
-		document.getElementById("standing").innerHTML = "standing:" + this.playerDatas.actions.standing;
-		document.getElementById("hp").innerHTML = "hp:" + this.playerDatas.stats.hp;
-		document.getElementById("maxhp").innerHTML = "maxhp:" + this.playerDatas.stats.maxhp;
-		document.getElementById("px").innerHTML = "playerx:" + parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) * this.playerDatas.display.displayratio)
-		document.getElementById("py").innerHTML = "playery:" + parseInt((this.playerDatas.display.playery + this.playerDatas.display.defaultplayery) * this.playerDatas.display.displayratio)
+	activeConsole(bool) {
+		if (CONSOLEON) {
+			if (bool && !CONSOLE.classList.contains('active')) {
+				CONSOLE.classList.add("active")
+			} else if (!bool && CONSOLE.classList.contains('active')) {
+				CONSOLE.classList.remove("active")
+			}
+		}
+	}
+	displayConsole(bool) {
+		if (CONSOLEON) {
+			document.getElementById("isKeyPressed").innerHTML = "isKeyPressed:" + (this.playerDatas.isKeyPressed ? "true" : "false");
+			document.getElementById("nbKeyPressed").innerHTML = "nbKeyPressed:" + this.nbKeyPressed;
+			document.getElementById("acting").innerHTML = "acting:" + this.playerDatas.actions.acting;
+			document.getElementById("facing").innerHTML = "facing:" + this.playerDatas.actions.facing;
+			document.getElementById("standing").innerHTML = "standing:" + this.playerDatas.actions.standing;
+			document.getElementById("hp").innerHTML = "hp:" + this.playerDatas.stats.hp;
+			document.getElementById("maxhp").innerHTML = "maxhp:" + this.playerDatas.stats.maxhp;
+			document.getElementById("px").innerHTML = "playerx:" + parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx) * this.playerDatas.display.displayratio)
+			document.getElementById("py").innerHTML = "playery:" + parseInt((this.playerDatas.display.playery + this.playerDatas.display.defaultplayery) * this.playerDatas.display.displayratio)
+		}
 	}
 }
 // display console on/off
-CONSOLE.addEventListener('click', (e) => {
-	CONSOLE.classList.contains('active')
-		? CONSOLE.classList.remove('active')
-		: CONSOLE.classList.add('active')
-})
+if (CONSOLEON) {
+	CONSOLE.addEventListener('click', (e) => {
+		CONSOLE.classList.contains('active')
+			? CONSOLE.classList.remove('active')
+			: CONSOLE.classList.add('active')
+	})
+}

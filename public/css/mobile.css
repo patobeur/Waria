@@ -4,7 +4,7 @@
 
 #mobileparts {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100vw;
 }
@@ -12,9 +12,9 @@
 #mobileparts #hitbutt .hit {
   position: absolute;
   top: 0;
-  left: 60px;
-  width: 50px;
-  height: 50px;
+  left: 3.5em;
+  width: 3.5em;
+  height: 3.5em;
   border-radius: 50%;
   background-position: left top;
   background-size: auto 100%;
@@ -42,19 +42,12 @@
   position: fixed;
   left: 0;
   bottom: 0;
+  height: 25%;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 #mobileparts #mobile #mobile-actions {
-  height: 100vh;
+  height: 25vh;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -67,18 +60,20 @@
 }
 
 #mobileparts #mobile #mobile-actions .mobact {
+  width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #15ff00;
 }
 
 #mobileparts #mobile #mobile-actions .mobact button {
+  width: auto;
   height: 100%;
   border-radius: 50%;
   padding: 100%;

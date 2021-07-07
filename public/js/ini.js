@@ -10,6 +10,7 @@ const ENDDOM = document.getElementById('end')
 const PX = "px"
 
 // console
+const CONSOLEON = true
 const CONSOLE = document.getElementById('console')
 // ScreenManager
 // const SCREENDOM = document.getElementById('screen')

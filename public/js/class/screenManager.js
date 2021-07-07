@@ -25,11 +25,11 @@ class ScreenManager {
 	}
 	resizeScreenElements(firsttime) {
 		// Board
-		BOARDDOM.style.width = (
-			this.screenDisplayVertical
-				? parseInt(SCREEN.h * this.playerDatas.display.displayratio)
-				: parseInt(SCREEN.w * this.playerDatas.display.displayratio)
-		) + PX
+		// BOARDDOM.style.width = (
+		// 	this.screenDisplayVertical
+		// 		? parseInt(SCREEN.h * this.playerDatas.display.displayratio)
+		// 		: parseInt(SCREEN.h * this.playerDatas.display.displayratio)
+		// ) + PX
 		// road sizing
 		ROADDOM.style.width = parseInt(this.roadDatas.nbpan * SCREEN.w * this.playerDatas.display.displayratio) + PX
 		ROADDOM.style.height = parseInt(this.OriginalPanH * this.playerDatas.display.displayratio) + PX

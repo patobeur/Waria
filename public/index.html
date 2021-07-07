@@ -38,26 +38,32 @@
 					<div id="mobs"></div>
 
 				</div>
-			</div>
+				<!-- splash screens -->
+				<div id="paused">Game Paused !</div>
+				<div id="end">
+					You die !<br>
+					<a href="index.html" title="Replay-Rejouer">[F5]</a> to replay.
+				</div>
 
+			</div>
+			<!-- 
 			<div id="mobileparts">
 				<div id="hitbutt">
 
-					<div class="hit end" title="end"></div>
-					<div class="hit pause" title="pause"></div>
-					<div class="hit fullscreen" title="fullscreen"></div>
+					<div id="act-end" class="hit end" title="end"></div>
+					<div id="act-pause" class="hit pause" title="pause"></div>
+					<div id="act-fullscreen" class="hit fullscreen" title="fullscreen"></div>
 
 				</div>
 				<div id="mobile">
 					<div id="mobile-actions">
-						<div class="mobact left" title="left"><button class="left"></button>
-						</div>
-						<div class="mobact swing" title="swing"><button class="swing"></button></div>
-						<div class="mobact crouch" title="crouch"><button class="crouch"></button></div>
-						<div class="mobact right" title="right"><button class="right"></button></div>
+						<div class="mobact left" title="left"><button id="act-left" class="left"></button></div>
+						<div class="mobact swing" title="swing"><button id="act-swing" class="swing"></button></div>
+						<div class="mobact crouch" title="crouch"><button id="act-crouch" class="crouch"></button></div>
+						<div class="mobact right" title="right"><button id="act-right" class="right"></button></div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<!-- dev tools will be remove  -->
 			<div id="console" class="console">
@@ -76,18 +82,14 @@
 			</div>
 
 			<!-- Github links  -->
-			<div id="links">
+			<!-- <div id="links">
 				<a href="https://github.com/patobeur/Waria" target="_blank">https://github.com/patobeur/Waria</a> ♡♡♡ !
-			</div>
-
-			<!-- splash screens -->
-			<div id="paused">Game Paused !</div>
-			<div id="end">You die !<br>[F5] to replay.</div>
+			</div> -->
 
 		</section>
 
 		<!-- demo sticker -->
-		<div class="demo">Demo</div>
+		<!-- <div class="demo">Demo</div> -->
 
 		<script id="js-mob" src="js/class/Mob.js"></script>
 		<script id="js-screenManager" src="js/ini.js"></script>

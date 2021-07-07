@@ -31,6 +31,7 @@ class WariaGame {
 			if (this.Mobs.WTFmobsDatas.mobs.length > 0) {
 				this.getCollision(this.Mobs.mobs_refresh_ifMobs())
 			}
+			this.Keyboard.activeConsole(true)
 			this.Keyboard.displayConsole()
 		}
 	}
