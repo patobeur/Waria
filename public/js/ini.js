@@ -1,16 +1,16 @@
 "use strict";
-const HEALTHLOSS = true
 const WLOG = false
 const WDEV = true
-const WLANG = 'fr_FR'
 const WVERS = 'alpha.0.3'
-const REFRESHINTERV = 50 // microsec interval refresh
+let WLANG = 'fr_FR'
+let HEALTHLOSS = true
+let REFRESHINTERV = 50 // microsec interval refresh
 const PAUSEDDOM = document.getElementById('paused')
 const ENDDOM = document.getElementById('end')
 const PX = "px"
 
 // console
-const CONSOLEON = true
+let CONSOLEON = false
 const CONSOLE = document.getElementById('console')
 // ScreenManager
 // const SCREENDOM = document.getElementById('screen')

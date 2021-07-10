@@ -375,15 +375,16 @@ body {
 
 .console {
   position: absolute;
-  display: none;
   top: 25%;
   right: -200px;
   width: 200px;
   z-index: 10;
+  -webkit-transition: right 0.3s ease-in;
+  transition: right 0.3s ease-in;
 }
 
-.console.active {
-  display: initial;
+.console:hover, .console.active {
+  right: 0;
 }
 
 .console #informations {
@@ -412,10 +413,6 @@ body {
 
 .console #informations div {
   width: 100%;
-}
-
-.console:hover, .console.active {
-  right: 0;
 }
 
 #mobs {

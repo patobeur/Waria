@@ -62,6 +62,7 @@ class MobsManager {
 			this.counterRefreshAfterDeath++
 		}
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
+
 			// comment gerer la marge ???
 			let marge = (((this.WTFmobsDatas.mobs[index].w / 1.5)))// + (this.WTFmobsDatas.mobs[index].w * index * actualRatio)
 			// let actualMobX = parseInt(this.WTFmobsDatas.mobs[index].x * actualRatio)
@@ -108,7 +109,8 @@ class MobsManager {
 					this.WTFmobsDatas.mobs[index].mode = 0
 				}
 
-				//  MODE RULES
+				// MODE RULES
+				// ----------------
 				if (this.WTFmobsDatas.mobs[index].mode === 0) {
 					this.WTFmobsDatas.mobs[index].x = parseInt(this.WTFmobsDatas.mobs[index].x - (this.WTFmobsDatas.mobs[index].speed))
 					MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(this.WTFmobsDatas.mobs[index].x * actualRatio) + PX

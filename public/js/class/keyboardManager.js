@@ -29,7 +29,7 @@ class KeyboardManager {
 		}
 	}
 	detectKeyPress(eventkeydown) {
-		// if (this.playerDatas.stats.hp > 0) {
+		//if (this.playerDatas.stats.hp > 0) {
 		this.keys[WLANG].forEach(element => {// find if pressed key exist
 			if (element.keycode === eventkeydown.keyCode) {
 				this.playerDatas.actions = {
@@ -50,10 +50,10 @@ class KeyboardManager {
 				this.set_acting()
 			}
 		});
-		// }
+		//}
 	}
 	detectKeyUnPress(event) {
-		// if (this.playerDatas.stats.hp > 0) {
+		//if (this.playerDatas.stats.hp > 0) {
 		if (event.code === "ArrowRight" || event.code === "KeyD") {
 			this.playerDatas.actions.goRight = false
 			this.playerDatas.actions.acting = ""
@@ -91,7 +91,7 @@ class KeyboardManager {
 		else {
 			if (WLOG) console.log("error while counting pressed key !!!")
 		}
-		this.displayConsole(false)
+		this.refreshConsole(false)
 	}
 	set_acting() {
 		if (this.playerDatas.isKeyPressed === false) {
@@ -113,7 +113,7 @@ class KeyboardManager {
 			}
 		}
 	}
-	displayConsole(bool) {
+	refreshConsole(bool) {
 		if (CONSOLEON) {
 			document.getElementById("isKeyPressed").innerHTML = "isKeyPressed:" + (this.playerDatas.isKeyPressed ? "true" : "false");
 			document.getElementById("nbKeyPressed").innerHTML = "nbKeyPressed:" + this.nbKeyPressed;
