@@ -48,11 +48,11 @@ const PLAYERARCHETYPES = {
 // mobsManager
 const MOBSDOM = document.getElementById('mobs')
 const MOBS = {
-	// x,   name,		spawned,triggerx, posx,   aoe,hp,h,   w,   speed,xp,hit, mode, bgimg, out, delay(currentdelay,delay)
-	1: [0, "guard1", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif", false, [0, 50]],
-	2: [0, "guard2", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 3, 100, 10, 0, "run_l.gif", false, [0, 60]],
-	3: [0, "guard2", false, 300, [SCREEN.w, 2000], 30, 500, 96, 96, 1, 300, 10, 0, "run_l.gif", false, [0, 80]],
-	4: [0, "gwaria", false, 300, [SCREEN.w, 2000], 40, 1000, 88, 128, 1, 1000, 50, 0, "run_l.gif", false, [0, 80]],
+	// x,   name,		spawned,triggerx, posx,   aoe,hp,hpmax,h,   w,   speed,xp,hit, mode, bgimg, out, delay(currentdelay,delay)
+	1: [0, "guard1", false, 300, [SCREEN.w, 2000], 20, 1, 1, 96, 96, 3, 100, 5, 0, "run_l.gif", false, [0, 50]],
+	2: [0, "guard2", false, 300, [SCREEN.w, 2000], 20, 1, 1, 96, 96, 3, 100, 10, 0, "run_l.gif", false, [0, 60]],
+	3: [0, "guard2", false, 300, [SCREEN.w, 2000], 30, 500, 500, 96, 96, 1, 300, 10, 0, "run_l.gif", false, [0, 80]],
+	4: [0, "gwaria", false, 300, [SCREEN.w, 2000], 40, 1000, 1000, 88, 128, 1, 1000, 50, 0, "run_l.gif", false, [0, 80]],
 }
 const LEVELMOBS = {
 	1: {
