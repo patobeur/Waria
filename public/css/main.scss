@@ -325,7 +325,7 @@ body {
 	.mob {
 		// background-color: chartreuse;
 		// outline: 1px dotted black;
-		background-size: 100%;
+		background-size: cover;
 		background-repeat: no-repeat;
 		// &::before {
 		// 	position: absolute;
@@ -338,6 +338,10 @@ body {
 		// 	padding: 1px 5px;
 		// 	width: max-content;
 		// }
+		.mobhp {
+			height: 3px;
+			background-color: brown;
+		}
 	}
 }
 .demo {
