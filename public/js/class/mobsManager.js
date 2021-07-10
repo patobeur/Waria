@@ -35,10 +35,21 @@ class MobsManager {
 		mob.style.backgroundImage = "url(" + MOBIMGPATH + this.WTFmobsDatas.mobs[index].name + "/" + this.WTFmobsDatas.mobs[index].bgimg + ")"
 
 
+		let hpmobbarcont = document.createElement('div')
+		// hpmobbarcont.style.width = "100%"
+		hpmobbarcont.classList.add('hpmobbarcont')
+
 		let hpmobbar = document.createElement('div')
 		hpmobbar.style.width = "100%"
 		hpmobbar.classList.add('mobhp')
-		mob.prepend(hpmobbar)
+		hpmobbarcont.prepend(hpmobbar)
+
+		mob.prepend(hpmobbarcont)
+
+		let infobar = document.createElement('div')
+		infobar.style.width = "100%"
+		infobar.classList.add('infomob')
+		mob.prepend(infobar)
 		MOBSDOM.prepend(mob)
 
 		this.WTFmobsDatas.mobs[index].spawned = true
@@ -46,10 +57,14 @@ class MobsManager {
 
 
 	mobs_refreshMobInfoDiv(ref) {
-		MOBSDOM.querySelector("#mob-" + ref).innerHTML = "#:" + ref + "<br/>" +
-			parseInt(this.WTFmobsDatas.mobs[ref].x) + PX +
-			"<br/>mode:" + this.WTFmobsDatas.mobs[ref].mode + "<br/>P:" +
-			parseInt((this.playerDatas.display.defaultplayerx + this.playerDatas.display.playerx) * this.playerDatas.display.displayratio)
+		let encounter = false
+		if (encounter = MOBSDOM.querySelector("#mob-" + ref + " .infomob")) {
+			MOBSDOM.querySelector("#mob-" + ref + " .infomob").innerHTML = "#:" + ref +
+				// "<br/>" + parseInt(this.WTFmobsDatas.mobs[ref].x) + PX +
+				"<br/>Mode:" + this.WTFmobsDatas.mobs[ref].mode +
+				// "<br/>P:" + parseInt((this.playerDatas.display.defaultplayerx + this.playerDatas.display.playerx) * this.playerDatas.display.displayratio) +
+				"<br/>hp:" + this.WTFmobsDatas.mobs[ref].hp
+		}
 	}
 
 
@@ -69,106 +84,141 @@ class MobsManager {
 		}
 		for (let index = 0; index < this.WTFmobsDatas.mobs.length; index++) {
 
-			let THEFORCEBEWITHYOU = this.WTFmobsDatas.mobs[index]
-			if (THEFORCEBEWITHYOU.out === false && THEFORCEBEWITHYOU.hp > 0) {
+			let ENCOUNTER = this.WTFmobsDatas.mobs[index]
+			if (ENCOUNTER.out === false && ENCOUNTER.hp > 0) {
 				// comment gerer la marge ???
-				let marge = (((THEFORCEBEWITHYOU.w / 1.5)))// + (THEFORCEBEWITHYOU.w * index * actualRatio)
-				// let actualMobX = parseInt(THEFORCEBEWITHYOU.x * actualRatio)
-				// let actualMode = THEFORCEBEWITHYOU.mode
+				let marge = (((ENCOUNTER.w / 1.5)))// + (ENCOUNTER.w * index * actualRatio)
+				// let actualMobX = parseInt(ENCOUNTER.x * actualRatio)
+				// let actualMode = ENCOUNTER.mode
 
 				let actualPlayerX = parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx))
 
-				//this.mobs_refreshMobInfoDiv(index)
 
 				if (this.playerDatas.actions.acting === "attack") {
 					// console.log(this.playerDatas.actions.acting)
-					marge = THEFORCEBEWITHYOU.w + this.playerDatas.display.OriginalPlayerW
+					marge = ENCOUNTER.w + this.playerDatas.display.OriginalPlayerW
 				}
 				let distanceContact = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx + marge)
 				let distanceHorsPortee = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx)
 
 				// if mob is not out
 				// -----------------------
-				// this need to be refactored ;(
+				// this need to be refactorised ;(
 				// monkey business ;()
 				// -----------------------
-				if (THEFORCEBEWITHYOU.out === false) {
-					let playeract = this.playerDatas.actions.acting
-					// stop runningmob in front of player
-					if (this.playerDatas.stats.hp < 1) {
-						if (THEFORCEBEWITHYOU.mode > 1 &&
-							THEFORCEBEWITHYOU.x >= 500 &&
-							mobsToRemove.length < this.WTFmobsDatas.mobs.length
-						) {
-							THEFORCEBEWITHYOU.mode = 3
-							mobsToRemove.push([index, "#mob-" + (index)])
-						}
-						else {
-							THEFORCEBEWITHYOU.mode = 2
-						}
-					}
-					// hit and swing
-					else if (THEFORCEBEWITHYOU.x <= distanceContact
-						&& THEFORCEBEWITHYOU.x > distanceHorsPortee
+				// if (ENCOUNTER.out === false) {
+				let playeract = this.playerDatas.actions.acting
+
+				// stop runningmob in front of player
+				if (this.playerDatas.stats.hp < 1) {
+					if (ENCOUNTER.mode > 1 &&
+						ENCOUNTER.x >= 500 &&
+						mobsToRemove.length < this.WTFmobsDatas.mobs.length
 					) {
-						THEFORCEBEWITHYOU.mode = 1
+						ENCOUNTER.mode = 3 // run home
+						mobsToRemove.push([index, "#mob-" + (index)])
 					}
-					// to far to hit ? then run again
-					else if (THEFORCEBEWITHYOU.x < distanceHorsPortee
-						&& THEFORCEBEWITHYOU.mode === 1) {
-						THEFORCEBEWITHYOU.mode = 0
-					}
-					else if (THEFORCEBEWITHYOU.x > distanceContact) {
-						THEFORCEBEWITHYOU.mode = 0
-					}
-
-					// MODE RULES
-					// ----------------
-					if (THEFORCEBEWITHYOU.mode === 0) {
-						THEFORCEBEWITHYOU.x = parseInt(THEFORCEBEWITHYOU.x - (THEFORCEBEWITHYOU.speed))
-						MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(THEFORCEBEWITHYOU.x * actualRatio) + PX
-						MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + THEFORCEBEWITHYOU.name + "/run_l.gif)"
-
-						// teleporte to end right when run out left side
-						if (THEFORCEBEWITHYOU.x < -200) {
-							THEFORCEBEWITHYOU.x = 2500//(this.roadDatas.nbpan * this.roadDatas.panW * actualRatio)
-						}
-					}
-					if (THEFORCEBEWITHYOU.mode === 1) {
-						MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + THEFORCEBEWITHYOU.name + "/attack_l.gif)"
-
-						// COLLIDING HEALTH LOSS
-						// --
-						if (THEFORCEBEWITHYOU.x > actualPlayerX && THEFORCEBEWITHYOU.x < actualPlayerX + (THEFORCEBEWITHYOU.w / 1.5)) {//this.playerDatas.display.defaultplayerx) {
-
-							// ------------------------------------------
-							// getting damages
-							// ------------------------------------------
-							if (this.playerDatas.actions.acting === "attack") {
-								// console.log(this.playerDatas.actions.acting)
-								THEFORCEBEWITHYOU.hp -= this.playerDatas.stats.basehit
-
-							}
-							if (THEFORCEBEWITHYOU.hp <= 0) {
-								MOBSDOM.querySelector("#mob-" + index + " .mobhp").style.width = "0%"
-								MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + THEFORCEBEWITHYOU.name + "/death.png)"
-								THEFORCEBEWITHYOU.mode === 3
-							}
-							// ------------------------------------------
-							// colliding X return hit point
-							// ------------------------------------------
-							collide = HEALTHLOSS ? THEFORCEBEWITHYOU.hit : 0
-						}
-					}
-					if (THEFORCEBEWITHYOU.mode === 2) {
-						THEFORCEBEWITHYOU.x = parseInt(THEFORCEBEWITHYOU.x + (THEFORCEBEWITHYOU.speed))
-						MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(THEFORCEBEWITHYOU.x * actualRatio) + PX
-						MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + THEFORCEBEWITHYOU.name + "/run.gif)"
-					}
-					if (THEFORCEBEWITHYOU.mode === 3) {
-
+					else {
+						ENCOUNTER.mode = 2
 					}
 				}
+				// hit and swing
+				else if (ENCOUNTER.x <= distanceContact
+					&& ENCOUNTER.x > distanceHorsPortee
+					&& ENCOUNTER.mode != 1
+				) {
+					ENCOUNTER.mode = 1
+				}
+				// to far to hit ? then idle if waria aggressive
+				else if (ENCOUNTER.x < distanceHorsPortee
+					&& ENCOUNTER.mode != 5
+					&& ENCOUNTER.mode === this.playerDatas.actions.acting === "attack") {
+					ENCOUNTER.mode = 5
+				}
+				// to far to hit and idle then run again if waria not aggressive
+				else if (ENCOUNTER.x < distanceHorsPortee
+					&& ENCOUNTER.mode === 5
+					&& !(ENCOUNTER.mode === this.playerDatas.actions.acting === "attack")) {
+					ENCOUNTER.mode = 0
+				}
+				// to far to hit ? then run again if waria not aggressive
+				else if (ENCOUNTER.x < distanceHorsPortee
+					&& ENCOUNTER.mode === 1
+					&& !(ENCOUNTER.mode === this.playerDatas.actions.acting === "attack")) {
+					ENCOUNTER.mode = 0
+				}
+				else if (ENCOUNTER.x > distanceContact) {
+					ENCOUNTER.mode = 0
+				}
+
+				// MODE RULES
+				// ----------------
+				if (ENCOUNTER.mode === 0) {
+					ENCOUNTER.x = parseInt(ENCOUNTER.x - (ENCOUNTER.speed)) // move left
+					MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(ENCOUNTER.x * actualRatio) + PX
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/run_l.gif)"
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(0,255,0,.2)'
+
+					// teleporte to end right when run out left side
+					if (ENCOUNTER.x < -200) {
+						ENCOUNTER.x = 2500//(this.roadDatas.nbpan * this.roadDatas.panW * actualRatio)
+					}
+				}
+				if (ENCOUNTER.mode === 1) { //hit and swing
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/attack_l.gif)"
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,0,0,.2)'
+
+					// COLLIDING HEALTH LOSS
+					// --
+					if (ENCOUNTER.x > actualPlayerX && ENCOUNTER.x < actualPlayerX + (ENCOUNTER.w / 1.5)) {//this.playerDatas.display.defaultplayerx) {
+
+						// ------------------------------------------
+						// getting damages
+						// ------------------------------------------
+						if (this.playerDatas.actions.acting === "attack") {
+							// console.log(this.playerDatas.actions.acting)
+							ENCOUNTER.hp -= this.playerDatas.stats.basehit
+						}
+						if (ENCOUNTER.hp <= 0) {
+							MOBSDOM.querySelector("#mob-" + index + " .mobhp").style.width = "0%"
+							MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/death.png)"
+							MOBSDOM.querySelector("#mob-" + index + " .infomob").remove()
+							ENCOUNTER.mode === 3 // mobs run home
+						}
+						// ------------------------------------------
+						// colliding X return hit point
+						// ------------------------------------------
+						collide = HEALTHLOSS ? ENCOUNTER.hit : 0
+					}
+				}
+				if (ENCOUNTER.mode === 2) { // move right
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,0,255,.2)'
+					ENCOUNTER.x = parseInt(ENCOUNTER.x + (ENCOUNTER.speed)) // move right
+					MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(ENCOUNTER.x * actualRatio) + PX
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/run.gif)"//,url(" + MOBIMGPATH + ENCOUNTER.name + "/idle.gif)"
+				}
+				if (ENCOUNTER.mode === 3) {
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,255,255,.2)'
+
+				}
+				if (ENCOUNTER.mode === 4) {
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,255,0,.2)'
+					ENCOUNTER.x = parseInt(ENCOUNTER.x - (ENCOUNTER.speed)) // move left
+					MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(ENCOUNTER.x * actualRatio) + PX
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/run_l.gif)"
+
+					// teleporte to end right when run out left side
+					if (ENCOUNTER.x < -200) {
+						ENCOUNTER.x = 2500//(this.roadDatas.nbpan * this.roadDatas.panW * actualRatio)
+					}
+				}
+				if (ENCOUNTER.mode === 5) { // IDLE cause agressiv Waria
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(0,255,255,.2)'
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/idle.gif)"
+				}
+
+				this.mobs_refreshMobInfoDiv(index)
+				// }
 			}
 		} // end for
 
