@@ -157,7 +157,7 @@ class MobsManager {
 					ENCOUNTER.x = parseInt(ENCOUNTER.x - (ENCOUNTER.speed)) // move left
 					MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(ENCOUNTER.x * actualRatio) + PX
 					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/run_l.gif)"
-					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(0,255,0,.2)'
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(0,255,0,.1)'
 
 					// teleporte to end right when run out left side
 					if (ENCOUNTER.x < -200) {
@@ -166,11 +166,13 @@ class MobsManager {
 				}
 				if (ENCOUNTER.mode === 1) { //hit and swing
 					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/attack_l.gif)"
-					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,0,0,.2)'
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,0,0,.1)'
 
 					// COLLIDING HEALTH LOSS
 					// --
-					if (ENCOUNTER.x > actualPlayerX && ENCOUNTER.x < actualPlayerX + (ENCOUNTER.w / 1.5)) {//this.playerDatas.display.defaultplayerx) {
+					if (ENCOUNTER.x > actualPlayerX
+						&& ENCOUNTER.x < actualPlayerX + (ENCOUNTER.w / 1.5)
+					) {//this.playerDatas.display.defaultplayerx) {
 
 						// ------------------------------------------
 						// getting damages
@@ -179,30 +181,32 @@ class MobsManager {
 							// console.log(this.playerDatas.actions.acting)
 							ENCOUNTER.hp -= this.playerDatas.stats.basehit
 						}
-						if (ENCOUNTER.hp <= 0) {
-							MOBSDOM.querySelector("#mob-" + index + " .mobhp").style.width = "0%"
-							MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/death.png)"
-							MOBSDOM.querySelector("#mob-" + index + " .infomob").remove()
-							ENCOUNTER.mode === 3 // mobs run home
-						}
 						// ------------------------------------------
 						// colliding X return hit point
 						// ------------------------------------------
 						collide = HEALTHLOSS ? ENCOUNTER.hit : 0
+
+						if (ENCOUNTER.hp <= 0) {
+							MOBSDOM.querySelector("#mob-" + index + " .mobhp").style.width = "0%"
+							MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/death.png)"
+							MOBSDOM.querySelector("#mob-" + index + " .infomob").remove()
+
+							ENCOUNTER.mode === 6 // mobs dead
+						}
 					}
 				}
 				if (ENCOUNTER.mode === 2) { // move right
-					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,0,255,.2)'
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,0,255,.1)'
 					ENCOUNTER.x = parseInt(ENCOUNTER.x + (ENCOUNTER.speed)) // move right
 					MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(ENCOUNTER.x * actualRatio) + PX
 					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/run.gif)"//,url(" + MOBIMGPATH + ENCOUNTER.name + "/idle.gif)"
 				}
 				if (ENCOUNTER.mode === 3) {
-					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,255,255,.2)'
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,255,255,.1)'
 
 				}
 				if (ENCOUNTER.mode === 4) {
-					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,255,0,.2)'
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(255,255,0,.1)'
 					ENCOUNTER.x = parseInt(ENCOUNTER.x - (ENCOUNTER.speed)) // move left
 					MOBSDOM.querySelector("#mob-" + index).style.left = parseInt(ENCOUNTER.x * actualRatio) + PX
 					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/run_l.gif)"
@@ -213,8 +217,11 @@ class MobsManager {
 					}
 				}
 				if (ENCOUNTER.mode === 5) { // IDLE cause agressiv Waria
-					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(0,255,255,.2)'
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'rgba(0,255,255,.1)'
 					MOBSDOM.querySelector("#mob-" + index).style.backgroundImage = "url(" + MOBIMGPATH + ENCOUNTER.name + "/idle.gif)"
+				}
+				if (ENCOUNTER.mode === 6) { // dead
+					MOBSDOM.querySelector("#mob-" + index).style.backgroundColor = 'none'
 				}
 
 				this.mobs_refreshMobInfoDiv(index)
