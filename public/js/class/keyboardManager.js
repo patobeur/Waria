@@ -105,12 +105,10 @@ class KeyboardManager {
 		PLAYERDOM.setAttribute("class", this.playerDatas.actions.acting + " " + this.playerDatas.actions.facing + " " + this.playerDatas.actions.standing)
 	}
 	activeConsole(bool) {
-		if (CONSOLEON) {
-			if (bool && !CONSOLE.classList.contains('active')) {
-				CONSOLE.classList.add("active")
-			} else if (!bool && CONSOLE.classList.contains('active')) {
-				CONSOLE.classList.remove("active")
-			}
+		if (bool && !CONSOLE.classList.contains('active')) {
+			CONSOLE.classList.add("active")
+		} else if (!bool && CONSOLE.classList.contains('active')) {
+			CONSOLE.classList.remove("active")
 		}
 	}
 	refreshConsole(bool) {

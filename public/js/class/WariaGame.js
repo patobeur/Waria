@@ -13,22 +13,17 @@ class WariaGame {
 			this.Player.playerDatas,
 			this.Mobs.WTFmobsDatas
 		)
-
 		this.Keyboard = new KeyboardManager(this.Player.playerDatas)
-
-
 		// this.Collisions = new collisionsManager(this.Mobs);
 		this.paused = false
 		this.Iteration = 1
 		setInterval(this.renderScene, REFRESHINTERV)
-		this.Keyboard.activeConsole(true)
 	}
 
 	// SCENE RENDER
 	renderScene = () => {
 		if (!this.paused) {//& this.Player.playerDatas.stats.hp >= 1) {
 			this.Iteration++
-			if (WLOG) console.log("iteration:")// + this.Iteration)
 			if (this.Mobs.WTFmobsDatas.mobs.length > 0) {
 				this.getCollision(this.Mobs.mobs_refresh_ifMobs())
 			}

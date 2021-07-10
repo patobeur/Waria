@@ -67,10 +67,15 @@ class MobsManager {
 			let marge = (((this.WTFmobsDatas.mobs[index].w / 1.5)))// + (this.WTFmobsDatas.mobs[index].w * index * actualRatio)
 			// let actualMobX = parseInt(this.WTFmobsDatas.mobs[index].x * actualRatio)
 			// let actualMode = this.WTFmobsDatas.mobs[index].mode
+
 			let actualPlayerX = parseInt((this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx))
 
 			//this.mobs_refreshMobInfoDiv(index)
 
+			if (this.playerDatas.actions.acting === "attack") {
+				// console.log(this.playerDatas.actions.acting)
+				marge = 150//this.WTFmobsDatas.mobs[index].w + this.playerDatas.display.OriginalPlayerW
+			}
 			let distanceContact = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx + marge)
 			let distanceHorsPortee = (this.playerDatas.display.playerx + this.playerDatas.display.defaultplayerx)
 
@@ -126,7 +131,7 @@ class MobsManager {
 
 					// COLLIDING HEALTH LOSS
 					// --
-					if (this.WTFmobsDatas.mobs[index].x > actualPlayerX && this.WTFmobsDatas.mobs[index].x < actualPlayerX + marge) {//this.playerDatas.display.defaultplayerx) {
+					if (this.WTFmobsDatas.mobs[index].x > actualPlayerX && this.WTFmobsDatas.mobs[index].x < actualPlayerX + (this.WTFmobsDatas.mobs[index].w / 1.5)) {//this.playerDatas.display.defaultplayerx) {
 						// colliding X return hit point
 						collide = HEALTHLOSS ? this.WTFmobsDatas.mobs[index].hit : 0
 					}
