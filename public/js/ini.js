@@ -29,15 +29,15 @@ const HEALTH = { w: 250, h: 32 }
 const PLAYERDOM = document.getElementById('player')
 const PLAYERARCHETYPES = {
 	"Warrior": {
-		"stats": { movesize: 4, playerx: 100, hp: 250, maxhp: 250, range: 1 },
+		"stats": { movesize: 4, playerx: 100, hp: 250, maxhp: 250, range: 1, basehit: 100 },
 		"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	},
 	// "Wizard": {
-	// 	"stats": { movesize: 3, playerx: 100, hp: 150, maxhp: 250, range: 10 },
+	// 	"stats": { movesize: 3, playerx: 100, hp: 150, maxhp: 250, range: 10, basehit: 100 },
 	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	// },
 	// "Ranger": {
-	// 	"stats": { movesize: 4, playerx: 100, hp: 200, maxhp: 250, range: 5 },
+	// 	"stats": { movesize: 4, playerx: 100, hp: 200, maxhp: 250, range: 5, basehit: 100 },
 	// 	"actions": { goRight: false, goLeft: false, facing: "", acting: "", standing: "" }
 	// }
 }
@@ -48,10 +48,11 @@ const PLAYERARCHETYPES = {
 // mobsManager
 const MOBSDOM = document.getElementById('mobs')
 const MOBS = {
-	// x,   name,		spawned,triggerx, posx,   aoe,hp,h,   w,   speed,xp,hit, mode, bgimg, out
-	1: [0, "guard1", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif", false],
-	2: [0, "guard2", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 6, 100, 10, 0, "run_l.gif", false],
-	3: [0, "guard1", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif", false],
+	// x,   name,		spawned,triggerx, posx,   aoe,hp,h,   w,   speed,xp,hit, mode, bgimg, out, delay(currentdelay,delay)
+	1: [0, "guard1", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 3, 100, 5, 0, "run_l.gif", false, [0, 50]],
+	2: [0, "guard2", false, 300, [SCREEN.w, 2000], 20, 1, 96, 96, 6, 100, 10, 0, "run_l.gif", false, [0, 60]],
+	3: [0, "guard2", false, 300, [SCREEN.w, 2000], 30, 1, 128, 128, 2.8, 75, 5, 0, "run_l.gif", false, [0, 80]],
+	4: [0, "gwaria", false, 300, [SCREEN.w, 2000], 40, 1, 88, 128, 2.8, 75, 5, 0, "run_l.gif", false, [0, 80]],
 }
 const LEVELMOBS = {
 	1: {
@@ -59,16 +60,10 @@ const LEVELMOBS = {
 			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
 			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[1]),
-			new Mob(...MOBS[2]),
 			new Mob(...MOBS[1])
 		],
 		boss: [ // boss level 1 (0)
-			new Mob(...MOBS[2]),
+			new Mob(...MOBS[4]),
 		]
 	},
 	2: {
