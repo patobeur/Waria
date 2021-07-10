@@ -6,9 +6,9 @@ class Mob {
 			this.name = name, // mob name
 			this.spawned = spawned, // become true if spawned
 			this.triggerx = triggerx, // when x = triggerx something is trigered.. or not
-			this.posx = [...posx],
+			this.posx = [...posx], // range x spawning
 			this.aoe = aoe, // area of effect, hurting distance in pixels ( must be ratio converted )
-			this.hp = hp,
+			this.hp = hp, // hit points
 			this.h = h, // div heigth ( ratio converted )
 			this.w = w, // div width ( ratio converted )
 			this.speed = speed, // pixel to move each scene iteration
