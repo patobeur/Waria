@@ -327,6 +327,10 @@ body {
 		// outline: 1px dotted black;
 		background-size: cover;
 		background-repeat: no-repeat;
+		display: flex;
+		flex-direction: column;
+		// align-items: center;
+		justify-content: end;
 		// &::before {
 		// 	position: absolute;
 		// 	font-size: 0.8rem;
@@ -338,9 +342,14 @@ body {
 		// 	padding: 1px 5px;
 		// 	width: max-content;
 		// }
-		.mobhp {
-			height: 3px;
-			background-color: brown;
+		.hpmobbarcont {
+			width: 100%;
+			background-color: black;
+			.mobhp {
+				height: 3px;
+				background-color: brown;
+				width: 100%;
+			}
 		}
 	}
 }
